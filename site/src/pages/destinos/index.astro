@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const destinations = await getCollection('destinations');
+---
+<Base title="Destinos" description="Lugares que enseñan: cada destino tiene una narrativa que lo hace ideal para desarrollar habilidades concretas.">
+<section class="container hero">
+  <h1>Destinos</h1>
+  <p class="lede">No coleccionamos países. Coleccionamos lugares cuya esencia enseña algo concreto a quien los visita con intención.</p>
+</section>
+<section class="container section">
+  <div class="grid">
+    {destinations.map(d => (
+      <a href={`/destinos/${d.data.slug}`} class="cover-link">
+        <div class="card">
+          <h3>{d.data.name}</h3>
+          {d.data.narrative_hook && <p class="tagline">{d.data.narrative_hook}</p>}
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+</Base>

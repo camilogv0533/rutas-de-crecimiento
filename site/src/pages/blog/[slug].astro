@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(p => ({ params: { slug: p.data.slug }, props: { entry: p } }));
+}
+
+const { entry } = Astro.props;
+const p = entry.data;
+const { Content } = await render(entry);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: p.title,
+  datePublished: p.date,
+  description: p.description,
+  url: new URL(Astro.url.pathname, Astro.site).toString()
+};
+---
+<Base title={p.title} description={p.description} schema={schema}>
+<article class="narrow" style="padding: 3rem 0;">
+  <h1>{p.title}</h1>
+  <p style="color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 2rem;">{p.date}</p>
+  <Content />
+</article>
+</Base>

@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import RetreatCard from '../../components/RetreatCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const skills = await getCollection('skills');
+  return skills.map(s => ({ params: { slug: s.data.slug }, props: { entry: s } }));
+}
+
+const { entry } = Astro.props;
+const s = entry.data;
+const retreats = await getCollection('retreats');
+const matching = retreats.filter(r => r.data.skills.includes(s.slug));
+---
+<Base
+  title={`Retiros de ${s.name_es}`}
+  description={`Retiros curados que desarrollan ${s.name_es.toLowerCase()}. Cada uno conecta un lugar con un método de aprendizaje.`}
+>
+<section class="container hero">
+  <h1>Retiros de {s.name_es}</h1>
+  <p class="lede">{s.description_es || `Selección curada de viajes inmersivos para desarrollar ${s.name_es.toLowerCase()}.`}</p>
+</section>
+<section class="container section">
+  {matching.length > 0 ? (
+    <div class="grid">
+      {matching.map(r => <RetreatCard data={r.data} />)}
+    </div>
+  ) : (
+    <p>Aún no hemos curado retiros para esta habilidad. Vuelve pronto — alimentamos el directorio semanalmente.</p>
+  )}
+</section>
+</Base>

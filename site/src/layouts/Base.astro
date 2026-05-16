@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  schema?: Record<string, any>;
+}
+const { title, description, image, canonical, schema } = Astro.props;
+const siteName = 'Rutas de Crecimiento';
+const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = image || new URL('/og-default.png', Astro.site).toString();
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{fullTitle}</title>
+{description && <meta name="description" content={description} />}
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={fullTitle} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="es_ES" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+{description && <meta name="twitter:description" content={description} />}
+<meta name="twitter:image" content={ogImage} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+</head>
+<body>
+<header class="site-header">
+  <div class="container inner">
+    <div class="brand"><a href="/">Rutas de Crecimiento</a></div>
+    <nav>
+      <a href="/">Retiros</a>
+      <a href="/habilidades">Habilidades</a>
+      <a href="/destinos">Destinos</a>
+      <a href="/blog">Blog</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <slot />
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>Rutas de Crecimiento — Turismo para el desarrollo de habilidades.</p>
+    <p>Curamos viajes que desarrollan habilidades. No agencia de viajes, no buscador genérico.</p>
+  </div>
+</footer>
+</body>
+</html>

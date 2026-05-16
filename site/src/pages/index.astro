@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import RetreatCard from '../components/RetreatCard.astro';
+import { getCollection } from 'astro:content';
+
+const retreats = await getCollection('retreats');
+const skills = await getCollection('skills');
+const destinations = await getCollection('destinations');
+
+const sorted = retreats.sort((a, b) => (b.data.reviewed_by_us ? 1 : 0) - (a.data.reviewed_by_us ? 1 : 0));
+
+const allSkillsInUse = new Set<string>();
+retreats.forEach(r => r.data.skills.forEach(s => allSkillsInUse.add(s)));
+const featuredSkills = skills.filter(s => allSkillsInUse.has(s.data.slug)).slice(0, 8);
+---
+<Base
+  title="Rutas de Crecimiento"
+  description="Directorio curado de viajes que desarrollan habilidades. Liderazgo, creatividad, propósito — un lugar, una habilidad, un viaje intencional."
+>
+<section class="hero container">
+  <h1>Viajes que desarrollan habilidades.</h1>
+  <p class="lede">Curamos retiros que toman inspiración del lugar para enseñar una habilidad concreta. No somos un buscador de retiros genérico. No somos agencia de viajes. Somos lo que queríamos encontrar y no existía.</p>
+</section>
+
+<section class="container section">
+  <h2>Retiros curados</h2>
+  <input class="search-input" type="text" placeholder="Buscar por habilidad, país o tipo (filtro client-side próximamente)" />
+  <div class="filters">
+    {featuredSkills.map(s => (
+      <a href={`/habilidades/${s.data.slug}`} class="filter-pill">{s.data.name_es}</a>
+    ))}
+  </div>
+  <div class="grid">
+    {sorted.map(r => <RetreatCard data={{ ...r.data }} />)}
+  </div>
+</section>
+
+<section class="container section">
+  <h2>Habilidades</h2>
+  <div class="filters">
+    {skills.map(s => (
+      <a href={`/habilidades/${s.data.slug}`} class="filter-pill">{s.data.name_es}</a>
+    ))}
+  </div>
+</section>
+
+<section class="container section">
+  <h2>Destinos</h2>
+  <div class="grid">
+    {destinations.map(d => (
+      <a href={`/destinos/${d.data.slug}`} class="cover-link">
+        <div class="card">
+          <h3>{d.data.name}</h3>
+          {d.data.narrative_hook && <p class="tagline">{d.data.narrative_hook}</p>}
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+</Base>

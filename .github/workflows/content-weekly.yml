@@ -1,0 +1,33 @@
+name: Content weekly
+
+on:
+  schedule:
+    - cron: '0 8 * * 3'  # Wed 8am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/init_db.py
+      - name: Generate weekly drafts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MONTHLY_BUDGET_USD: '5'
+        run: python scripts/content_gen.py --weekly
+      - name: Commit drafts
+        run: |
+          git config user.name "rutas-bot"
+          git config user.email "bot@rutasdecrecimiento.com"
+          git add content/drafts/ data/retreats.db || true
+          git diff --staged --quiet || git commit -m "content weekly $(date -u +%Y-%m-%d)"
+          git push

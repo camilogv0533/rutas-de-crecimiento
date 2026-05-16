@@ -1,0 +1,22 @@
+---
+export interface Props {
+  data: any;
+}
+const { data } = Astro.props;
+const r = data;
+---
+<article class="card">
+  <a href={`/retiros/${r.slug}`} class="cover-link">
+    <h3>{r.title}</h3>
+    <div class="meta">
+      {r.location_city && <span>{r.location_city}, </span>}
+      {r.location_country && <span>{r.location_country}</span>}
+      {r.duration_days && <span> · {r.duration_days} días</span>}
+      {r.price_usd_from && <span> · ${r.price_usd_from} USD</span>}
+    </div>
+    {r.tagline && <p class="tagline">{r.tagline}</p>}
+    <div style="margin-top: 0.75rem;">
+      {(r.skills || []).slice(0, 3).map((s: string) => <span class="tag skill">{s.replace(/-/g, ' ')}</span>)}
+    </div>
+  </a>
+</article>

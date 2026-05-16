@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import RetreatCard from '../../components/RetreatCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const destinations = await getCollection('destinations');
+  return destinations.map(d => ({ params: { slug: d.data.slug }, props: { entry: d } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const retreats = await getCollection('retreats');
+const matching = retreats.filter(r => r.data.destinations?.includes(d.slug));
+---
+<Base
+  title={`Retiros en ${d.name}`}
+  description={d.narrative_hook}
+>
+<section class="container hero">
+  <h1>{d.name}</h1>
+  {d.narrative_hook && <p class="lede">{d.narrative_hook}</p>}
+  {d.region && <p style="color: var(--text-muted); font-family: var(--font-mono);">{d.region}, {d.country}</p>}
+</section>
+<section class="container section">
+  <h2>Retiros en este destino</h2>
+  {matching.length > 0 ? (
+    <div class="grid">{matching.map(r => <RetreatCard data={r.data} />)}</div>
+  ) : (
+    <p>Sin retiros curados aún en {d.name}. Estamos buscando.</p>
+  )}
+</section>
+{d.skills?.length > 0 && (
+  <section class="container section">
+    <h2>Habilidades asociadas a este destino</h2>
+    <div>
+      {d.skills.map((s: string) => <a href={`/habilidades/${s}`} class="tag skill">{s.replace(/-/g, ' ')}</a>)}
+    </div>
+  </section>
+)}
+</Base>

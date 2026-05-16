@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-05-16",
+  "notes": "Fuentes semilla curadas desde Calendario de publicaciones.xlsx + .docx originales del usuario. type: host = retreat owner. type: aggregator = directorio multi-host. type: editorial = solo referencia de inspiración tono.",
+  "sources": [
+    {"url": "https://alptitu.de", "type": "host", "language": "en", "notes": "Retiros liderazgo Alpes franceses"},
+    {"url": "https://epicleadership.org", "type": "host", "language": "en", "notes": "Liderazgo Kripalu"},
+    {"url": "https://www.wanderlearnretreats.com", "type": "host", "language": "en", "notes": "Wander + learn, Ischia"},
+    {"url": "https://www.theretreatcompany.com/retreat-diary/", "type": "aggregator", "language": "en", "notes": "Five elements Japón"},
+    {"url": "https://www.welovetransformationaltravel.com", "type": "aggregator", "language": "en", "notes": "Transformational travel, incluye sleep retreats Bali"},
+    {"url": "https://www.health.travel", "type": "aggregator", "language": "en", "notes": "Burnout, longevidad, wellness corporativo"},
+    {"url": "https://www.theglobalretreatcompany.com", "type": "aggregator", "language": "en", "notes": "Curado bonito wellness"},
+    {"url": "https://retreatfinder.com", "type": "aggregator", "language": "en", "notes": "Catálogo masivo, filtrar curado"},
+    {"url": "https://bookretreats.com", "type": "aggregator", "language": "en", "notes": "Masivo wellness/yoga"},
+    {"url": "https://www.tripaneer.com", "type": "aggregator", "language": "en", "notes": "Categoría women empowerment etc"},
+    {"url": "https://www.blacktomato.com", "type": "host", "language": "en", "notes": "Field-trip, james-bond, the-challenge, the-journey"},
+    {"url": "https://explorer-x.squarespace.com", "type": "host", "language": "en", "notes": "Destination unknown"},
+    {"url": "https://www.aweventurer.com", "type": "host", "language": "en", "notes": "Reading retreats Edimburgo / Inglaterra"},
+    {"url": "https://www.roadscholar.org", "type": "aggregator", "language": "en", "notes": "Academic travel literature military history"},
+    {"url": "https://www.kilroy.co.uk", "type": "aggregator", "language": "en", "notes": "Referencia UX para asesoría de viaje"},
+    {"url": "https://retreat.guru", "type": "aggregator", "language": "en", "notes": "Vendor signup, multi-niche"},
+    {"url": "https://inspyria.com/en/gift-experiences", "type": "host", "language": "en", "notes": "Gift experiences corporate"},
+    {"url": "https://www.teamraderie.com/modern-employee-experience", "type": "host", "language": "en", "notes": "Corporate L&D experiences"},
+    {"url": "https://blacktietravel.com", "type": "host", "language": "en", "notes": "Sección 'whats your why'"},
+    {"url": "https://retreatmehappy.com", "type": "aggregator", "language": "en", "notes": "Categorización de retiros mundo"},
+    {"url": "https://voyagergs.com", "type": "host", "language": "en", "notes": "Cuestionarios de viaje transformacional"}
+  ]
+}

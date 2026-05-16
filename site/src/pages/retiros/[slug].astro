@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const retreats = await getCollection('retreats');
+  return retreats.map(r => ({ params: { slug: r.data.slug }, props: { entry: r } }));
+}
+
+const { entry } = Astro.props;
+const r = entry.data;
+const { Content } = await render(entry);
+
+const schema: Record<string, any> = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  name: r.title,
+  description: r.tagline || r.what_unique,
+  url: new URL(Astro.url.pathname, Astro.site).toString(),
+  touristType: r.who_for,
+  provider: { '@type': 'Organization', name: r.host_name, url: r.host_url }
+};
+if (r.price_usd_from) {
+  schema.offers = { '@type': 'Offer', price: r.price_usd_from, priceCurrency: 'USD', url: r.source_url };
+}
+if (r.location_city) {
+  schema.location = {
+    '@type': 'Place',
+    name: `${r.location_city}, ${r.location_country}`,
+    address: { '@type': 'PostalAddress', addressLocality: r.location_city, addressCountry: r.location_country }
+  };
+}
+---
+<Base title={r.title} description={r.tagline} schema={schema}>
+<article class="narrow retreat-detail" style="padding-top: 3rem;">
+  <h1>{r.title}</h1>
+  {r.tagline && <p class="lede">{r.tagline}</p>}
+
+  <div class="meta-bar">
+    {r.location_city && <span><strong>Dónde:</strong>{r.location_city}, {r.location_country}</span>}
+    {r.duration_days && <span><strong>Duración:</strong>{r.duration_days} días</span>}
+    {r.recurring && <span><strong>Frecuencia:</strong>{r.recurring}</span>}
+    {r.price_usd_from && <span class="price"><strong>Desde:</strong>${r.price_usd_from} USD</span>}
+    {r.language && <span><strong>Idioma:</strong>{r.language}</span>}
+    {r.group_size_max && <span><strong>Grupo máx:</strong>{r.group_size_max}</span>}
+  </div>
+
+  <a href={r.source_url} class="cta" rel="noopener nofollow" target="_blank">Ver retiro en sitio del host →</a>
+
+  {r.what_unique && (
+    <section>
+      <h2>Qué lo hace único</h2>
+      <p>{r.what_unique}</p>
+    </section>
+  )}
+
+  {r.who_for && (
+    <section>
+      <h2>Para quién</h2>
+      <p>{r.who_for}</p>
+    </section>
+  )}
+
+  {r.skills.length > 0 && (
+    <section>
+      <h2>Habilidades que desarrolla</h2>
+      <div>
+        {r.skills.map((s: string) => (
+          <a href={`/habilidades/${s}`} class="tag skill">{s.replace(/-/g, ' ')}</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section>
+    <Content />
+  </section>
+
+  {r.host_name && (
+    <section>
+      <h2>Meet the host</h2>
+      <p>
+        <strong>{r.host_name}</strong>
+        {r.host_url && <> · <a href={r.host_url} rel="noopener nofollow" target="_blank">{r.host_url}</a></>}
+      </p>
+    </section>
+  )}
+
+  <p style="margin-top: 3rem; color: var(--text-muted); font-size: 0.85rem;">
+    Información curada por Rutas de Crecimiento. Datos del host pueden cambiar — verifica en su sitio antes de reservar.
+  </p>
+</article>
+</Base>

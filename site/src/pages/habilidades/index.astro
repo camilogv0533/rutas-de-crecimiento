@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const skills = await getCollection('skills');
+---
+<Base title="Habilidades" description="Explora retiros por habilidad: liderazgo, creatividad, propósito, resiliencia, y más.">
+<section class="container hero">
+  <h1>Habilidades</h1>
+  <p class="lede">Cada habilidad tiene retiros que la trabajan de manera intencional, conectando lugar y método.</p>
+</section>
+<section class="container section">
+  <div class="grid">
+    {skills.map(s => (
+      <a href={`/habilidades/${s.data.slug}`} class="cover-link">
+        <div class="card">
+          <h3>{s.data.name_es}</h3>
+          <p class="tagline">{s.data.name_en} · {s.data.type}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+</Base>

@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-05-16",
+  "notes": "Backlog de keywords para content_gen.py. Mezcla ES y EN. Prioridad ordenada por intent ratio (commercial / informational).",
+  "buckets": {
+    "pillar_es": [
+      "retiros de liderazgo",
+      "retiros para creadores",
+      "retiros de propósito profesional",
+      "retiros para burnout ejecutivo",
+      "retiros transformadores",
+      "viajes de desarrollo personal",
+      "turismo de habilidades",
+      "viajes para emprendedores",
+      "retiros de creatividad",
+      "retiros de resiliencia"
+    ],
+    "long_tail_es": [
+      "retiros de liderazgo en Italia 2026",
+      "retiros para mujeres líderes",
+      "retiros de creatividad para escritores",
+      "retiros para ejecutivos con burnout",
+      "viajes de aprendizaje experiencial Latam",
+      "retiros de propósito 7 días",
+      "retiros con coaching individual",
+      "retiros para founders Latinoamérica",
+      "team retreat liderazgo offsite",
+      "retiros para HR L&D"
+    ],
+    "english_seed": [
+      "leadership retreat 2026",
+      "transformational travel",
+      "skills tourism",
+      "immersive learning retreat",
+      "executive burnout retreat",
+      "mastermind retreat",
+      "purpose retreat",
+      "behavioral design experience",
+      "destination training",
+      "fellowship retreat"
+    ],
+    "questions_aeo": [
+      "qué es el turismo de habilidades",
+      "diferencia entre retiro espiritual y retiro de liderazgo",
+      "cómo elegir un retiro para ejecutivos",
+      "cuánto cuesta un retiro de liderazgo en Europa",
+      "qué llevar a un retiro de creatividad",
+      "retiro o coach: qué es mejor para mi carrera",
+      "cuáles son los mejores retiros de liderazgo en 2026"
+    ]
+  }
+}

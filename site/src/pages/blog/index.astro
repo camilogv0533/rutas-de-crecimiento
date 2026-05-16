@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog')).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+<Base title="Blog" description="Ensayos editoriales sobre turismo de habilidades, aprendizaje experiencial y crecimiento profesional.">
+<section class="container hero">
+  <h1>Blog</h1>
+  <p class="lede">Ensayos sobre por qué viajar con intención es una de las formas más subestimadas de desarrollar habilidades.</p>
+</section>
+<section class="container section">
+  <div class="grid">
+    {posts.map(p => (
+      <a href={`/blog/${p.data.slug}`} class="cover-link">
+        <div class="card">
+          <h3>{p.data.title}</h3>
+          <div class="meta">{p.data.date}</div>
+          {p.data.description && <p class="tagline">{p.data.description}</p>}
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+</Base>

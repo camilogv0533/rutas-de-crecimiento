@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rutasdecrecimiento.com/sitemap-index.xml

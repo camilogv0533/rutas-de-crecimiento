@@ -1,0 +1,37 @@
+name: SEO audit weekly
+
+on:
+  schedule:
+    - cron: '0 10 * * 6'  # Sat 10am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt
+      - run: python scripts/init_db.py
+      - name: Build site
+        working-directory: site
+        run: |
+          npm ci
+          npm run build
+      - run: python scripts/seo_audit.py
+      - name: Commit findings
+        run: |
+          git config user.name "rutas-bot"
+          git config user.email "bot@rutasdecrecimiento.com"
+          git add .claude/findings.md || true
+          git diff --staged --quiet || git commit -m "seo audit $(date -u +%Y-%m-%d)"
+          git push

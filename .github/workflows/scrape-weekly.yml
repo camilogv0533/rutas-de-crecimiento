@@ -1,0 +1,46 @@
+name: Scrape weekly
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Mon 6am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Init DB
+        run: python scripts/init_db.py && python scripts/seed_skills.py && python scripts/seed_destinations.py
+      - name: Discover
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: python scripts/discover.py --limit 3 || true
+      - name: Scrape batch
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MONTHLY_BUDGET_USD: '5'
+        run: python scripts/scraper.py --batch --limit 10
+      - name: Classify new
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MONTHLY_BUDGET_USD: '5'
+        run: python scripts/classify.py --all
+      - name: Build export
+        run: python scripts/build_export.py
+      - name: Commit DB + content
+        run: |
+          git config user.name "rutas-bot"
+          git config user.email "bot@rutasdecrecimiento.com"
+          git add data/retreats.db site/src/content/ data/discovered_urls.json || true
+          git diff --staged --quiet || git commit -m "scrape weekly $(date -u +%Y-%m-%d)"
+          git push

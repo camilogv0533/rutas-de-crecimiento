@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+site/dist/
+site/.astro/
+.streamlit/secrets.toml
+content/drafts/.published/
+*.log

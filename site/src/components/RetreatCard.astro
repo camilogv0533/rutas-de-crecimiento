@@ -15,10 +15,14 @@ const gradients = [
   'linear-gradient(135deg, #2c1810 0%, #8b4513 100%)',
 ];
 const gradient = gradients[index % gradients.length];
+const imageUrl = (r.image_urls && r.image_urls.length > 0)
+  ? r.image_urls[0]
+  : `https://picsum.photos/seed/${r.slug}/600/400`;
 ---
 <article class="retreat-card">
   <a href={`/retiros/${r.slug}`} class="retreat-card__link">
     <div class="retreat-card__image" style={`background: ${gradient}`}>
+      <img src={imageUrl} alt={r.title} class="retreat-card__photo" loading="lazy" />
       {r.reviewed_by_us && <span class="retreat-card__badge">Curado</span>}
       {r.duration_days && <span class="retreat-card__duration">{r.duration_days} días</span>}
     </div>

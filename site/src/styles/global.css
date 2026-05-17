@@ -161,14 +161,27 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 .retreat-card__link { display: block; color: inherit; border: none; }
 .retreat-card__link:hover { border: none; }
 .retreat-card__image {
-  height: 180px;
+  height: 200px;
   position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   padding: 1rem;
+  overflow: hidden;
 }
+.retreat-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity .3s, transform .4s;
+}
+.retreat-card:hover .retreat-card__photo { opacity: 1; transform: scale(1.04); }
 .retreat-card__badge {
+  position: relative;
+  z-index: 1;
   background: var(--accent-green);
   color: #fff;
   font-size: 0.7rem;
@@ -179,12 +192,15 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
   border-radius: 999px;
 }
 .retreat-card__duration {
+  position: relative;
+  z-index: 1;
   background: rgba(0,0,0,0.4);
   color: rgba(255,255,255,0.9);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
+  backdrop-filter: blur(4px);
 }
 .retreat-card__body { padding: 1.25rem; }
 .retreat-card__skills { display: flex; gap: 0.4rem; margin-bottom: 0.6rem; flex-wrap: wrap; }

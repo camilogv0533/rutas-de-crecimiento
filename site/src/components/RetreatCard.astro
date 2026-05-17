@@ -1,22 +1,43 @@
 ---
 export interface Props {
   data: any;
+  index?: number;
 }
-const { data } = Astro.props;
+const { data, index = 0 } = Astro.props;
 const r = data;
+
+const gradients = [
+  'linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 100%)',
+  'linear-gradient(135deg, #1a2744 0%, #2d4a6e 100%)',
+  'linear-gradient(135deg, #3d2314 0%, #7a4528 100%)',
+  'linear-gradient(135deg, #1a1a2e 0%, #4a3560 100%)',
+  'linear-gradient(135deg, #0d3b2e 0%, #1a6b50 100%)',
+  'linear-gradient(135deg, #2c1810 0%, #8b4513 100%)',
+];
+const gradient = gradients[index % gradients.length];
 ---
-<article class="card">
-  <a href={`/retiros/${r.slug}`} class="cover-link">
-    <h3>{r.title}</h3>
-    <div class="meta">
-      {r.location_city && <span>{r.location_city}, </span>}
-      {r.location_country && <span>{r.location_country}</span>}
-      {r.duration_days && <span> · {r.duration_days} días</span>}
-      {r.price_usd_from && <span> · ${r.price_usd_from} USD</span>}
+<article class="retreat-card">
+  <a href={`/retiros/${r.slug}`} class="retreat-card__link">
+    <div class="retreat-card__image" style={`background: ${gradient}`}>
+      {r.reviewed_by_us && <span class="retreat-card__badge">Curado</span>}
+      {r.duration_days && <span class="retreat-card__duration">{r.duration_days} días</span>}
     </div>
-    {r.tagline && <p class="tagline">{r.tagline}</p>}
-    <div style="margin-top: 0.75rem;">
-      {(r.skills || []).slice(0, 3).map((s: string) => <span class="tag skill">{s.replace(/-/g, ' ')}</span>)}
+    <div class="retreat-card__body">
+      <div class="retreat-card__skills">
+        {(r.skills || []).slice(0, 2).map((s: string) => (
+          <span class="retreat-card__skill">{s.replace(/-/g, ' ')}</span>
+        ))}
+      </div>
+      <h3 class="retreat-card__title">{r.title}</h3>
+      {r.tagline && <p class="retreat-card__tagline">{r.tagline}</p>}
+      <div class="retreat-card__footer">
+        <span class="retreat-card__location">
+          {[r.location_city, r.location_country].filter(Boolean).join(', ')}
+        </span>
+        {r.price_usd_from && (
+          <span class="retreat-card__price">desde ${r.price_usd_from}</span>
+        )}
+      </div>
     </div>
   </a>
 </article>

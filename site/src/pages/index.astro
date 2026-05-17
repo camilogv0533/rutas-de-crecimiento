@@ -11,50 +11,69 @@ const sorted = retreats.sort((a, b) => (b.data.reviewed_by_us ? 1 : 0) - (a.data
 
 const allSkillsInUse = new Set<string>();
 retreats.forEach(r => r.data.skills.forEach(s => allSkillsInUse.add(s)));
-const featuredSkills = skills.filter(s => allSkillsInUse.has(s.data.slug)).slice(0, 8);
+const featuredSkills = skills.filter(s => allSkillsInUse.has(s.data.slug)).slice(0, 10);
 ---
 <Base
   title="Rutas de Crecimiento"
   description="Directorio curado de viajes que desarrollan habilidades. Liderazgo, creatividad, propósito — un lugar, una habilidad, un viaje intencional."
 >
-<section class="hero container">
-  <h1>Viajes que desarrollan habilidades.</h1>
-  <p class="lede">Curamos retiros que toman inspiración del lugar para enseñar una habilidad concreta. No somos un buscador de retiros genérico. No somos agencia de viajes. Somos lo que queríamos encontrar y no existía.</p>
-</section>
 
-<section class="container section">
-  <h2>Retiros curados</h2>
-  <input class="search-input" type="text" placeholder="Buscar por habilidad, país o tipo (filtro client-side próximamente)" />
-  <div class="filters">
-    {featuredSkills.map(s => (
-      <a href={`/habilidades/${s.data.slug}`} class="filter-pill">{s.data.name_es}</a>
-    ))}
-  </div>
-  <div class="grid">
-    {sorted.map(r => <RetreatCard data={{ ...r.data }} />)}
-  </div>
-</section>
-
-<section class="container section">
-  <h2>Habilidades</h2>
-  <div class="filters">
-    {skills.map(s => (
-      <a href={`/habilidades/${s.data.slug}`} class="filter-pill">{s.data.name_es}</a>
-    ))}
+<section class="home-hero">
+  <div class="home-hero__overlay"></div>
+  <div class="home-hero__content container">
+    <p class="home-hero__eyebrow">Turismo intencional</p>
+    <h1 class="home-hero__headline">Viajes que desarrollan<br/>habilidades reales.</h1>
+    <p class="home-hero__sub">Retiros curados donde el lugar enseña. Liderazgo en los Andes, creatividad en Oaxaca, propósito en el Mediterráneo.</p>
+    <div class="home-hero__actions">
+      <a href="#retiros" class="btn-primary">Ver retiros</a>
+      <a href="/habilidades" class="btn-ghost">Explorar habilidades</a>
+    </div>
+    <div class="home-hero__stats">
+      <div class="home-hero__stat"><strong>{retreats.length}</strong><span>retiros</span></div>
+      <div class="home-hero__stat"><strong>{destinations.length}</strong><span>destinos</span></div>
+      <div class="home-hero__stat"><strong>{skills.length}</strong><span>habilidades</span></div>
+    </div>
   </div>
 </section>
 
-<section class="container section">
-  <h2>Destinos</h2>
-  <div class="grid">
-    {destinations.map(d => (
-      <a href={`/destinos/${d.data.slug}`} class="cover-link">
-        <div class="card">
-          <h3>{d.data.name}</h3>
-          {d.data.narrative_hook && <p class="tagline">{d.data.narrative_hook}</p>}
-        </div>
-      </a>
-    ))}
+<section class="skills-strip">
+  <div class="container">
+    <div class="skills-strip__pills">
+      {featuredSkills.map(s => (
+        <a href={`/habilidades/${s.data.slug}`} class="skill-chip">{s.data.name_es}</a>
+      ))}
+    </div>
   </div>
 </section>
+
+<section id="retiros" class="container section-lg">
+  <div class="section-header">
+    <h2>Retiros curados</h2>
+    <a href="/retiros" class="section-link">Ver todos →</a>
+  </div>
+  <div class="retreat-grid">
+    {sorted.map((r, i) => <RetreatCard data={{ ...r.data }} index={i} />)}
+  </div>
+</section>
+
+<section class="destinations-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Destinos</h2>
+      <a href="/destinos" class="section-link">Ver todos →</a>
+    </div>
+    <div class="destinations-grid">
+      {destinations.slice(0, 6).map((d, i) => (
+        <a href={`/destinos/${d.data.slug}`} class="destination-card">
+          <div class="destination-card__bg" style={`background: linear-gradient(160deg, hsl(${(i * 47 + 140) % 360}, 40%, 25%) 0%, hsl(${(i * 47 + 160) % 360}, 50%, 35%) 100%)`}></div>
+          <div class="destination-card__content">
+            <h3>{d.data.name}</h3>
+            {d.data.narrative_hook && <p>{d.data.narrative_hook}</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
 </Base>

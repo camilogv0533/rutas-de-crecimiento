@@ -1,0 +1,33 @@
+name: CEO Marketing
+
+on:
+  schedule:
+    - cron: '0 9 * * 4'  # Thu 9am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  marketing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/init_db.py
+      - name: Publish approved drafts + gen social
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MONTHLY_BUDGET_USD: '5'
+        run: python scripts/marketing_agent.py
+      - name: Commit published content
+        run: |
+          git config user.name "rutas-bot"
+          git config user.email "bot@rutasdecrecimiento.com"
+          git add site/src/content/blog/ data/social_ready/ data/retreats.db || true
+          git diff --staged --quiet || git commit -m "marketing: publish drafts $(date -u +%Y-%m-%d)"
+          git push

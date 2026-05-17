@@ -2,7 +2,7 @@ name: SEO audit weekly
 
 on:
   schedule:
-    - cron: '0 10 * * 6'  # Sat 10am UTC
+    - cron: '0 14 * * 6'  # Sat 9am Ecuador (UTC-5)
   workflow_dispatch:
 
 permissions:
@@ -35,3 +35,22 @@ jobs:
           git add .claude/findings.md || true
           git diff --staged --quiet || git commit -m "seo audit $(date -u +%Y-%m-%d)"
           git push
+      - name: Notificacion email
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: camilo.gutierrezing33@gmail.com
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          to: camilo.gutierrezing33@gmail.com
+          from: Rutas Bot <camilo.gutierrezing33@gmail.com>
+          subject: "[${{ job.status == 'success' && '✅' || '❌' }}] SEO Audit — ${{ github.run_id }}"
+          body: |
+            Auditoría SEO semanal completada.
+            Revisar hallazgos en .claude/findings.md
+
+            Estado: ${{ job.status }}
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            — Rutas Bot

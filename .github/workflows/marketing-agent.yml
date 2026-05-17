@@ -2,7 +2,7 @@ name: CEO Marketing
 
 on:
   schedule:
-    - cron: '0 9 * * 4'  # Thu 9am UTC
+    - cron: '0 14 * * 4'  # Thu 9am Ecuador (UTC-5)
   workflow_dispatch:
 
 permissions:
@@ -31,3 +31,22 @@ jobs:
           git add site/src/content/blog/ data/social_ready/ data/retreats.db || true
           git diff --staged --quiet || git commit -m "marketing: publish drafts $(date -u +%Y-%m-%d)"
           git push
+      - name: Notificacion email
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: camilo.gutierrezing33@gmail.com
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          to: camilo.gutierrezing33@gmail.com
+          from: Rutas Bot <camilo.gutierrezing33@gmail.com>
+          subject: "[${{ job.status == 'success' && '✅' || '❌' }}] CEO Marketing — ${{ github.run_id }}"
+          body: |
+            CEO de Marketing corrió hoy.
+
+            Estado: ${{ job.status }}
+            Ver detalles y social copy generado:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            — Rutas Bot

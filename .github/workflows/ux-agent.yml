@@ -2,7 +2,7 @@ name: CEO UX
 
 on:
   schedule:
-    - cron: '0 8 * * 0'  # Sun 8am UTC
+    - cron: '0 14 * * 0'  # Sun 9am Ecuador (UTC-5)
   workflow_dispatch:
 
 permissions:
@@ -32,3 +32,22 @@ jobs:
           git add data/ site/src/content/ .claude/findings.md || true
           git diff --staged --quiet || git commit -m "ux: gaps analysis $(date -u +%Y-%m-%d)"
           git push
+      - name: Notificacion email
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: camilo.gutierrezing33@gmail.com
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          to: camilo.gutierrezing33@gmail.com
+          from: Rutas Bot <camilo.gutierrezing33@gmail.com>
+          subject: "[${{ job.status == 'success' && '✅' || '❌' }}] CEO UX — ${{ github.run_id }}"
+          body: |
+            CEO de UX corrió hoy. Revisar wishlist y gaps detectados en:
+            data/wishlist.md y data/ux_report_$(date -u +%Y-%m-%d).md
+
+            Estado: ${{ job.status }}
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            — Rutas Bot

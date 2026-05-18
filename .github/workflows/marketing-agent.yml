@@ -22,7 +22,7 @@ jobs:
       - name: Publish approved drafts + gen social
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MONTHLY_BUDGET_USD: '5'
+          MONTHLY_BUDGET_USD: '6.5'
         run: python scripts/marketing_agent.py
       - name: Commit published content
         run: |

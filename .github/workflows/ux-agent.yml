@@ -22,7 +22,7 @@ jobs:
       - name: Analizar gaps y enriquecer skills
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MONTHLY_BUDGET_USD: '5'
+          MONTHLY_BUDGET_USD: '6.5'
         run: python scripts/ux_agent.py
       - name: Export y commit
         run: |

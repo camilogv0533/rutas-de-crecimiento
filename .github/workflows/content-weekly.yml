@@ -3,6 +3,7 @@ name: Content weekly
 on:
   schedule:
     - cron: '0 14 * * 3'  # Wed 9am Ecuador (UTC-5)
+    - cron: '0 14 * * 6'  # Sat 9am Ecuador (UTC-5)
   workflow_dispatch:
 
 permissions:
@@ -22,7 +23,7 @@ jobs:
       - name: Generate weekly drafts
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MONTHLY_BUDGET_USD: '5'
+          MONTHLY_BUDGET_USD: '6.5'
         run: python scripts/content_gen.py --weekly
       - name: Commit drafts
         run: |

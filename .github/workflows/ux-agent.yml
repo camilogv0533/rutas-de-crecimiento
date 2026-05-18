@@ -43,7 +43,8 @@ jobs:
           ICON="✅" && [ "$JOB_STATUS" != "success" ] && ICON="❌"
           MSG="$ICON CEO UX — wishlist y gaps en data/ux\_report
 Estado: $JOB_STATUS
-$RUN_URL"
+$RUN_URL
+Sitio: https://rutas-de-crecimiento.pages.dev"
           curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
             -d "chat_id=$CHAT_ID" \
             --data-urlencode "text=$MSG"

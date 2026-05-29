@@ -12,8 +12,9 @@ duration_days: 7
 price_usd_from: 4445.0
 currency_original: "GBP"
 price_original: 3500.0
-what_unique: "No talks yet powerful stories get told, no egos, answers from nature and wisdom of the crowd, emergent and playful approach, optional activities so everyone gets the week they want, emphasis on in-between moments like campfire conversations and spontaneous mountain songs"
-who_for: "Purpose-driven founders, changemakers, leaders, professionals looking for reset, clarity, inspiration, and recalibration"
+language: "English"
+what_unique: "Emergent, playful and transformational approach with no talks or gurus; powerful stories shared in natural settings; optional activities so everyone gets the week they want; heartbeat is the in-between moments – campfire conversations, impromptu talks, spontaneous songs at mountain tops"
+who_for: "Founders looking for a reset, changemakers looking to make more impact, leaders looking to get inspired, professionals looking to recalibrate"
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true

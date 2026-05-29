@@ -1,26 +1,23 @@
 ---
 slug: "alptitude-alpes-franceses"
-title: "Alptitude — Liderazgo en los Alpes franceses"
-tagline: "Cinco días de coaching de liderazgo entre cumbres alpinas."
+title: "Alptitude"
+tagline: "The week that dreams are made of"
 source_url: "https://alptitu.de"
-host_name: "Alptitude"
+host_name: "The Happy Startup School"
 host_url: "https://alptitu.de"
-location_city: "Chamonix"
+location_city: "Morillon"
 location_country: "FR"
-location_region: "Auvergne-Rhône-Alpes"
-duration_days: 5
-recurring: "2 cohortes al año"
-price_usd_from: 4500.0
-currency_original: "EUR"
-price_original: 4200.0
-language: "EN"
-group_size_max: 12
-what_unique: "El programa combina caminatas técnicas con sesiones de coaching individual y grupal. Cada actividad outdoor refleja un dilema de liderazgo: la cuerda compartida en una vía ferrata enseña delegación; la decisión de retroceder ante el clima practica el juicio bajo presión."
-who_for: "Líderes senior, founders y ejecutivos C-level que sienten que la rutina diaria erosiona su criterio estratégico."
+location_region: "French Alps"
+duration_days: 7
+price_usd_from: 4445.0
+currency_original: "GBP"
+price_original: 3500.0
+what_unique: "Emergent, playful and transformational business event with no talks yet powerful stories; answers from nature and peer wisdom rather than gurus; optional activities so everyone gets the week they want; campfire conversations and spontaneous experiences are the heartbeat; diverse mix of purpose-driven people from around the world"
+who_for: "Purpose-driven founders, leaders, changemakers, professionals, and entrepreneurs looking for clarity, reset, impact, and inspiration"
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true
 image_urls: []
 ---
 
-Alptitude reúne a líderes de alto desempeño en los Alpes franceses para una semana de reflexión, caminatas guiadas y coaching ejecutivo. La premisa: el aire delgado, el silencio de la montaña y la fatiga compartida revelan patrones de decisión que la oficina esconde.
+Alptitude is an entrepreneurial gathering with a difference. There are no talks, yet powerful stories get told. There are no egos, yet some of the most inspiring people you'll ever meet. Where you find answers, not from gurus, but from nature at its finest and the wisdom of the crowd. This is the future of business events – emergent, playful and transformational.

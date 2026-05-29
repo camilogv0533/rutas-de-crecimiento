@@ -1,6 +1,6 @@
 # SEO + AEO findings
-_Run at 2026-05-16T18:47:21.335205Z_
-_Site built at: /Users/camilogv/Desktop/AI Tools/rutas-de-crecimiento/site/dist_
+_Run at 2026-05-29T23:24:09.345072Z_
+_Site built at: /home/runner/work/rutas-de-crecimiento/rutas-de-crecimiento/site/dist_
 
 Total findings: 0
 

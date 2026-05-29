@@ -1,7 +1,7 @@
 ---
 slug: "alptitude-alpes-franceses"
-title: "Alptitude"
-tagline: "The week that dreams are made of"
+title: "Alptitude – the week that dreams are made of"
+tagline: "A 7 day gathering for purpose-driven founders & leaders"
 source_url: "https://alptitu.de"
 host_name: "The Happy Startup School"
 host_url: "https://alptitu.de"
@@ -12,8 +12,8 @@ duration_days: 7
 price_usd_from: 4445.0
 currency_original: "GBP"
 price_original: 3500.0
-what_unique: "Emergent, playful and transformational business event with no talks yet powerful stories; answers from nature and peer wisdom rather than gurus; optional activities so everyone gets the week they want; campfire conversations and spontaneous experiences are the heartbeat; diverse mix of purpose-driven people from around the world"
-who_for: "Purpose-driven founders, leaders, changemakers, professionals, and entrepreneurs looking for clarity, reset, impact, and inspiration"
+what_unique: "No talks yet powerful stories get told, no egos, answers from nature and wisdom of the crowd, emergent and playful approach, optional activities so everyone gets the week they want, emphasis on in-between moments like campfire conversations and spontaneous mountain songs"
+who_for: "Purpose-driven founders, changemakers, leaders, professionals looking for reset, clarity, inspiration, and recalibration"
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true

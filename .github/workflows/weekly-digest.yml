@@ -2,7 +2,7 @@ name: Resumen semanal
 
 on:
   schedule:
-    - cron: '0 14 * * 5'  # Fri 9am Ecuador (UTC-5)
+    - cron: '45 15 * * 5'  # Fri 10:45am Guayaquil (UTC-5)
   workflow_dispatch:
 
 jobs:

@@ -2,8 +2,8 @@ name: Scrape weekly
 
 on:
   schedule:
-    - cron: '0 14 * * 1'  # Mon 9am Ecuador (UTC-5)
-    - cron: '0 14 * * 4'  # Thu 9am Ecuador (UTC-5)
+    - cron: '45 15 * * 1'  # Mon 10:45am Guayaquil (UTC-5)
+    - cron: '45 15 * * 4'  # Thu 10:45am Guayaquil (UTC-5)
   workflow_dispatch:
 
 permissions:

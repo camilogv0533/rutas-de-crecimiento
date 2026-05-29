@@ -2,8 +2,8 @@ name: Content weekly
 
 on:
   schedule:
-    - cron: '0 14 * * 3'  # Wed 9am Ecuador (UTC-5)
-    - cron: '0 14 * * 6'  # Sat 9am Ecuador (UTC-5)
+    - cron: '45 15 * * 3'  # Wed 10:45am Guayaquil (UTC-5)
+    - cron: '45 15 * * 6'  # Sat 10:45am Guayaquil (UTC-5)
   workflow_dispatch:
 
 permissions:

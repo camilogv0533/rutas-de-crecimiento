@@ -2,7 +2,7 @@ name: CEO Operaciones
 
 on:
   schedule:
-    - cron: '0 14 * * 2'  # Tue 9am Ecuador (UTC-5)
+    - cron: '45 15 * * 2'  # Tue 10:45am Guayaquil (UTC-5)
   workflow_dispatch:
 
 permissions:

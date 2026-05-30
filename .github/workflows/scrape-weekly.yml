@@ -54,7 +54,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MONTHLY_BUDGET_USD: '6.5'
-        run: python scripts/scraper.py --batch --limit 10
+        run: python scripts/scraper.py --batch --include-discovered --limit 25
       - name: Classify new
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

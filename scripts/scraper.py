@@ -22,6 +22,7 @@ from _llm import HAIKU, call, cost_of, log_run, now_iso, BudgetExceeded
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "retreats.db"
 SOURCES_PATH = ROOT / "data" / "sources.json"
+DISCOVERED_PATH = ROOT / "data" / "discovered_urls.json"
 
 MAX_HTML_CHARS = 60_000  # tighten input; Haiku can re-read sub-sections if needed
 
@@ -190,6 +191,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--url", help="Single URL to scrape")
     parser.add_argument("--batch", action="store_true", help="Process all sources from data/sources.json")
+    parser.add_argument("--include-discovered", action="store_true",
+                        help="Also process new URLs from data/discovered_urls.json (filtered, deduped)")
     parser.add_argument("--limit", type=int, default=0, help="Limit batch size")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -206,6 +209,18 @@ def main():
         elif args.batch:
             sources = json.loads(SOURCES_PATH.read_text())["sources"]
             urls = [s["url"] for s in sources if s["type"] == "host"]
+            if args.include_discovered and DISCOVERED_PATH.exists():
+                # bridge discover -> scrape; dedupe vs already-scraped + sources before spending LLM
+                conn = sqlite3.connect(DB_PATH)
+                scraped = {r[0].rstrip("/") for r in conn.execute("SELECT source_url FROM retreats")}
+                conn.close()
+                known = scraped | {u.rstrip("/") for u in urls}
+                discovered = json.loads(DISCOVERED_PATH.read_text())
+                for d in discovered:
+                    du = d.get("url", "").rstrip("/")
+                    if du and du not in known:
+                        urls.append(du)
+                        known.add(du)
             if args.limit:
                 urls = urls[: args.limit]
         else:

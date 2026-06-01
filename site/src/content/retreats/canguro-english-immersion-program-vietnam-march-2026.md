@@ -1,7 +1,7 @@
 ---
 slug: "canguro-english-immersion-program-vietnam-march-2026"
 title: "Canguro English Immersion Program | Vietnam March 2026"
-tagline: "Break the Barrier. Speak with Confidence."
+tagline: "Rompe la barrera. Habla con confianza."
 source_url: "https://canguroenglish.com/english-immersion-retreat-vietnam-march-2026"
 host_name: "Canguro English"
 host_url: "https://canguroenglish.com/english-immersion-retreat-vietnam-march-2026"
@@ -11,12 +11,12 @@ location_region: "Vietnam"
 duration_days: 10
 language: "English"
 group_size_max: 12
-what_unique: "Small group experience limited to 12 participants with maximum 6 students per class; immersive full-day English environment; combination of language training with cultural experiences in Vietnam including Ha Long Bay cruise, Hoi An exploration, and Vietnamese cooking classes; supportive, family-like atmosphere; experienced teachers; all logistics and transportation included; flexible travel - can arrive earlier or leave later"
-who_for: "You've studied English for years, but you can't speak; you want to gain real confidence in real conversations; you want to make meaningful human connections; you want to have authentic travel experiences in Vietnam; you are at least a pre-intermediate level (A2+); minimum 18 years old"
+what_unique: "Grupo reducido de máximo 12 participantes, con no más de 6 estudiantes por clase; entorno de inmersión total en inglés durante el día completo; combinación de formación en el idioma con experiencias culturales en Vietnam, incluyendo un crucero por Ha Long Bay, la exploración de Hoi An y clases de cocina vietnamita; ambiente cálido y de apoyo mutuo, con dinámica de grupo cercana; profesores con amplia experiencia; toda la logística y los traslados están incluidos; flexibilidad de viaje para llegar antes o partir después del retiro"
+who_for: "Has estudiado inglés durante años, pero al momento de hablar te bloqueas; quieres ganar confianza real en conversaciones reales; buscas establecer conexiones humanas genuinas; deseas vivir experiencias auténticas viajando por Vietnam; tienes al menos un nivel pre-intermedio (A2+); mayor de 18 años"
 skills: ["comunicacion", "inteligencia-emocional", "networking", "idiomas"]
 destinations: []
 reviewed_by_us: false
 image_urls: []
 ---
 
-Join us for a life-changing 10-day English Immersion Retreat in Vietnam, March 8th-18th 2026. Many students study English for years and still feel nervous, stuck, or shy when it's time to speak. This Retreat is designed to break that barrier – not with pressure, but with connection. For 10 unforgettable days, you'll live fully in English: talking, laughing, exploring, and sharing real moments with supportive teachers and new friends from around the world. It doesn't feel like school, it feels like life. And that's where the real change happens.
+Únete a nosotros en un retiro de inmersión en inglés de 10 días en Vietnam, del 8 al 18 de marzo de 2026. Muchas personas estudian inglés durante años y aun así se sienten nerviosas, bloqueadas o tímidas a la hora de hablar. Este retiro está diseñado para romper esa barrera, no desde la presión, sino desde la conexión. Durante 10 días, vivirás completamente en inglés: conversando, riendo, explorando y compartiendo momentos reales con profesores que acompañan y nuevos amigos de distintas partes del mundo. No se siente como una clase; se siente como la vida misma. Y ahí es donde ocurre el cambio verdadero.

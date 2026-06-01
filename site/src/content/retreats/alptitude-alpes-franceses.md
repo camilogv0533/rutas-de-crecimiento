@@ -1,7 +1,7 @@
 ---
 slug: "alptitude-alpes-franceses"
 title: "Alptitude – the week that dreams are made of"
-tagline: "A 7 day gathering for purpose-driven founders & leaders"
+tagline: "Un encuentro de 7 días para fundadores y líderes con propósito"
 source_url: "https://alptitu.de"
 host_name: "The Happy Startup School"
 host_url: "https://alptitu.de"
@@ -13,12 +13,12 @@ price_usd_from: 4445.0
 currency_original: "GBP"
 price_original: 3500.0
 language: "English"
-what_unique: "No traditional talks or gurus – learning through nature, storytelling, wisdom of the crowd, emergent and playful experiences. Everything is optional. Heartbeat of experience is in the campfire conversations, impromptu talks and spontaneous mountain moments. Strong emphasis on wellbeing, adventure and authentic connection."
-who_for: "Purpose-driven founders, changemakers, leaders, professionals looking for reset, clarity, inspiration and recalibration"
+what_unique: "No hay ponencias tradicionales ni figuras de autoridad: el aprendizaje ocurre a través de la naturaleza, la narrativa personal, la sabiduría colectiva y experiencias que surgen de forma orgánica. Todo es opcional. El pulso del retiro late en las conversaciones alrededor del fuego, las charlas improvisadas y los momentos espontáneos en la montaña. Hay un énfasis real en el bienestar, la aventura y la conexión genuina."
+who_for: "Fundadores, agentes de cambio, líderes y profesionales con propósito que buscan una pausa, claridad, inspiración y recalibración personal."
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true
 image_urls: []
 ---
 
-Alptitude is an entrepreneurial gathering with a difference. There are no talks, yet powerful stories get told. There are no egos, yet some of the most inspiring people you'll ever meet. Where you find answers, not from gurus, but from nature at its finest and the wisdom of the crowd. This is the future of business events – emergent, playful and transformational. A space for clarity, serendipity & connection where purpose-driven founders, changemakers, leaders and professionals can grow themselves and their impact with likeminded visionaries.
+Alptitude es un encuentro empresarial que funciona de manera distinta. No hay ponencias, y sin embargo se comparten historias poderosas. No hay egos, y aun así conocerás a algunas de las personas más inspiradoras de tu vida. Las respuestas no vienen de gurús, sino de la naturaleza en su máxima expresión y de la inteligencia colectiva del grupo. Esto es el futuro de los encuentros de negocios: emergente, lúdico y profundamente significativo. Un espacio para ganar claridad, cultivar conexiones auténticas y abrirse a lo inesperado, donde fundadores, agentes de cambio, líderes y profesionales con propósito pueden crecer y ampliar su impacto junto a personas que piensan en grande.

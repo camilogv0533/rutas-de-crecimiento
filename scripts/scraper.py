@@ -34,7 +34,7 @@ EXTRACTION_TOOL = {
         "properties": {
             "title": {"type": "string"},
             "tagline": {"type": ["string", "null"]},
-            "intro": {"type": ["string", "null"], "description": "1-3 paragraph intro in original language."},
+            "intro": {"type": ["string", "null"], "description": "1-3 paragraph intro EN ESPAÑOL (traducido si la fuente está en otro idioma)."},
             "location_city": {"type": ["string", "null"]},
             "location_country": {"type": ["string", "null"], "description": "ISO 2-letter country code."},
             "location_region": {"type": ["string", "null"]},
@@ -94,6 +94,9 @@ def extract(url: str, text: str) -> tuple[dict, dict]:
         "Strictness: do NOT invent. If a field is not visible, use null. "
         "Set is_actually_a_retreat=false if the page is a hotel listing, online course, "
         "blog article, agency homepage, or anything that is not an immersive multi-day learning retreat with a defined cohort. "
+        "IDIOMA: el sitio publica en español. Traduce SIEMPRE al español natural y editorial estos campos narrativos: "
+        "tagline, intro, what_unique, who_for, what_youll_learn — aunque la página original esté en inglés u otro idioma. "
+        "NO traduzcas: title (nombre propio del retiro), host_name, ni códigos (país, moneda). "
         "Return all fields by calling the save_retreat tool."
     )
     user = f"URL: {url}\n\n--- PAGE TEXT ---\n{text}\n--- END ---\nExtract the retreat info now by calling save_retreat."

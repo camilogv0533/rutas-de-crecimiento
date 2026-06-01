@@ -9,3 +9,5 @@ site/.astro/
 .streamlit/secrets.toml
 content/drafts/.published/
 *.log
+.venv/
+data/rutas.db

@@ -1,7 +1,7 @@
 ---
 slug: "the-portugal-writing-retreat"
 title: "The Portugal Writing Retreat"
-tagline: "Reclaim your voice. Reconnect with your writing. Rediscover your self."
+tagline: "Recupera tu voz. Reconecta con tu escritura. Reencuéntrate contigo mismo."
 source_url: "https://thewritingcoach.co.uk/the-portugal-writing-retreat/"
 host_name: "Jacqui Lofthouse"
 host_url: "https://thewritingcoach.co.uk"
@@ -14,12 +14,12 @@ currency_original: "GBP"
 price_original: 1795.0
 language: "English"
 group_size_max: 13
-what_unique: "Located at a 150-year-old luxury farm stay (Quinta Carvalhas/The Green Farm) one hour from Lisbon, featuring spacious ensuite and shared bathroom bedrooms, swimming pool, optional yoga sessions in restored stone barn and outdoor deck, farm-to-table vegetarian meals, and optional equine therapy with resident horses. Led by Jacqui Lofthouse, experienced novelist and writing mentor known for insightful, compassionate teaching approach."
-who_for: "Writers of all backgrounds and levels of experience – whether you're returning to the page after time away, are deep in the middle of a project, or simply seeking a fresh perspective"
+what_unique: "El retiro se desarrolla en Quinta Carvalhas (The Green Farm), una finca de lujo de 150 años a una hora de Lisboa. Cuenta con habitaciones amplias —con baño privado o compartido—, piscina, sesiones opcionales de yoga en un granero de piedra restaurado y en la terraza exterior, cocina vegetariana de kilómetro cero, y terapia ecuestre opcional con los caballos de la finca. Lo dirige Jacqui Lofthouse, novelista y mentora de escritura con una reconocida capacidad para enseñar con profundidad y sensibilidad."
+who_for: "Escritores de todo tipo y nivel de experiencia: quienes regresan a la página tras un período de pausa, quienes están en pleno desarrollo de un proyecto, o quienes simplemente buscan una perspectiva nueva."
 skills: ["creatividad", "proposito", "inteligencia-emocional", "mindfulness", "escritura"]
 destinations: []
 reviewed_by_us: false
 image_urls: []
 ---
 
-Spring 2026. A Writing Retreat in the Portuguese countryside. Time, space, and support – as you immerse yourself in your writing in this stunning and peaceful environment. Join us at Quinta Carvalhas – also known as The Green Farm – a 150-year-old luxury farm stay just one hour from Lisbon. A rolling landscape, gorgeous old stone buildings and olive groves, this is the perfect place to write. The Green Farm is designed for slowing down, opening up, and coming home to your creativity.
+Primavera 2026. Un retiro de escritura en el campo portugués. Tiempo, espacio y acompañamiento para sumergirte en tu escritura en un entorno sereno y de una belleza difícil de ignorar. Únete a nosotros en Quinta Carvalhas —también conocida como The Green Farm—, una finca de lujo de 150 años a tan solo una hora de Lisboa. Paisajes ondulantes, construcciones antiguas de piedra y olivares: el escenario ideal para escribir. The Green Farm está concebida para desacelerar, abrirse y regresar a la propia creatividad.

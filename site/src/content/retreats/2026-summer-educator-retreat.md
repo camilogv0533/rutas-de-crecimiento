@@ -19,7 +19,7 @@ who_for: "Educadores de K-12: docentes, bibliotecarios, coordinadores, naturalis
 skills: ["creatividad", "proposito", "problem-solving", "trabajo-equipo", "sostenibilidad"]
 destinations: []
 reviewed_by_us: false
-image_urls: []
+image_urls: ["https://www.birds.cornell.edu/k12/wp-content/uploads/2024/12/2024_1290_001by-Alexandra-Bayer.jpg", "https://www.birds.cornell.edu/k12/wp-content/uploads/2025/09/A6808827-13DA-43D5-919B-3E09FDE6CA3C_1_201_a-edited-1280x720.jpg", "https://www.birds.cornell.edu/k12/wp-content/uploads/2025/09/A6808827-13DA-43D5-919B-3E09FDE6CA3C_1_201_a-edited-480x270.jpg"]
 ---
 
 Únete al Cornell Lab of Ornithology en un retiro inmersivo de 4 días, del 13 al 16 de julio de 2026. La experiencia combina aprendizaje práctico, colaboración entre educadores y herramientas concretas para avanzar en la educación ambiental. Gracias al apoyo de donantes, el retiro es gratuito o de costo mínimo; los participantes seleccionados reciben estipendios para viaje y alojamiento.

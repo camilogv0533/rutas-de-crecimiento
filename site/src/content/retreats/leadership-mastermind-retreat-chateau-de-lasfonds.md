@@ -19,7 +19,7 @@ who_for: "Líderes ambiciosos en un momento decisivo: fundadores de empresas que
 skills: ["liderazgo", "proposito", "toma-decisiones", "inteligencia-emocional", "estrategia"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: false
-image_urls: []
+image_urls: ["https://chateaudelasfonds.com/wp-content/uploads/2025/07/REINVENT-1.webp", "https://chateaudelasfonds.com/wp-content/uploads/2025/07/REINVENT-1-600x781.webp", "https://chateaudelasfonds.com/wp-content/uploads/2025/07/REINVENT-2.webp"]
 ---
 
 The Lasfonds Leadership Mastermind Retreat es una experiencia intensiva de 6 días diseñada para pensadores de alto nivel que buscan romper con la rutina, reflexionar con profundidad y definir su próximo capítulo con claridad y convicción. Celebrado en el corazón de la campiña francesa, en el Château de Lasfonds, este programa exclusivo reúne a un grupo cuidadosamente seleccionado de 5 a 10 líderes excepcionales para sesiones intensivas de mastermind, cenas de reflexión y planificación estratégica. Está diseñado para profesionales ambiciosos que atraviesan momentos bisagra: escalar una empresa, dar un giro audaz en su carrera o reconectar con su visión. El retiro combina sesiones de pares en profundidad, facilitación experta a cargo de Ashley Dudarenok, y el marco incomparable de una histórica finca francesa para propiciar un pensamiento verdaderamente disruptivo.

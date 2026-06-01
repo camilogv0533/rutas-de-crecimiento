@@ -20,7 +20,7 @@ who_for: "Ejecutivos, directores de L&D y founders interesados en integrar mindf
 skills: ["liderazgo", "inteligencia-emocional", "mindfulness"]
 destinations: []
 reviewed_by_us: true
-image_urls: []
+image_urls: ["https://i0.wp.com/epicleadership.org/wp-content/uploads/2022/05/1pause.png?fit=472%2C466&ssl=1", "https://i0.wp.com/epicleadership.org/wp-content/uploads/2022/05/2pause.png?fit=472%2C466&ssl=1", "https://i0.wp.com/epicleadership.org/wp-content/uploads/2022/05/3pause.png?fit=472%2C466&ssl=1"]
 ---
 
 Epic Leadership trae su programa intensivo de liderazgo al campus boscoso de Kripalu en los Berkshires. La metodología combina prácticas contemplativas con simulaciones de liderazgo organizacional, integrando cuerpo y estrategia.

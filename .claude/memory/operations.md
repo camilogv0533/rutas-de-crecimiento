@@ -19,8 +19,8 @@ Razón duplicación: scrape captura retiros nuevos más fresh, content da más d
 
 ## URLs del sitio
 - **Cloudflare Pages auto**: `https://rutas-de-crecimiento.pages.dev` — funciona apenas deploy corre.
-- **Custom domain**: `https://rutasdecrecimiento.com` — pendiente migración DNS SiteGround→CF.
-- Notificaciones Telegram incluyen pages.dev URL (no el custom, hasta que DNS migre).
+- **Custom domain**: `https://rutasdecrecimiento.com` — ✅ LIVE (2026-06-01). DNS ya en Cloudflare (NS apollo/lindsey.ns.cloudflare.com), resuelve a IPs CF, HTTPS 200, sirve la prod de Pages. La migración SiteGround→CF ya está hecha.
+- Notificaciones Telegram aún apuntan a pages.dev URL (cosmético; ambas sirven el mismo deploy).
 
 ## Telegram notification pattern
 Bloque en cada workflow:

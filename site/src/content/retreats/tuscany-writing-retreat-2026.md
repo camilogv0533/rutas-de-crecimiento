@@ -19,7 +19,7 @@ who_for: "Escritores y aspirantes a escritores con buenas ideas listas para conv
 skills: ["creatividad", "comunicacion", "proposito", "trabajo-equipo", "escritura"]
 destinations: ["italia-toscana", "italia-ischia"]
 reviewed_by_us: false
-image_urls: []
+image_urls: ["https://writeawayeurope.com/images/WriteAwayTuscany2022.jpg", "https://writeawayeurope.com/images/TuscanyVillaWritingRetreatpool.jpg", "https://writeawayeurope.com/images/GetinspiredatTuscanyWritingRetreat.jpeg"]
 ---
 
 Comienza tu próximo capítulo en el retiro de escritura en Toscana de Write Away Europe, una encantadora villa en lo alto de una colina italiana rodeada de viñedos ondulantes y la belleza intacta del campo toscano. Ya sea que estés desarrollando ideas nuevas o puliendo un proyecto en curso, este retiro de escritura creativa te acompañará a cruzar el umbral hacia tus sueños creativos: talleres diarios, guía experimentada y una comunidad inspiradora en uno de los paisajes artísticos más ricos del mundo.

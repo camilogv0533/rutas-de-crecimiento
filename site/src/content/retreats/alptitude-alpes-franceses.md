@@ -18,7 +18,7 @@ who_for: "Fundadores, agentes de cambio, líderes y profesionales con propósito
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true
-image_urls: []
+image_urls: ["http://static1.squarespace.com/static/54b83090e4b07e9224f689f4/t/59ef6eee9f8dceee178e5ace/1508863730663/alptitude-thumb.png?format=1500w", "https://images.squarespace-cdn.com/content/v1/54b83090e4b07e9224f689f4/7c6993bd-61c9-4055-928e-9f03be75b7bd/transparent-01+%281%29.png?format=1500w", "https://images.squarespace-cdn.com/content/v1/54b83090e4b07e9224f689f4/1697462116131-4DTHJZNBC4CLTS8UZW38/DSC_1448+%281%29.jpg"]
 ---
 
 Alptitude es un encuentro empresarial que funciona de manera distinta. No hay ponencias, y sin embargo se comparten historias poderosas. No hay egos, y aun así conocerás a algunas de las personas más inspiradoras de tu vida. Las respuestas no vienen de gurús, sino de la naturaleza en su máxima expresión y de la inteligencia colectiva del grupo. Esto es el futuro de los encuentros de negocios: emergente, lúdico y profundamente significativo. Un espacio para ganar claridad, cultivar conexiones auténticas y abrirse a lo inesperado, donde fundadores, agentes de cambio, líderes y profesionales con propósito pueden crecer y ampliar su impacto junto a personas que piensan en grande.

@@ -20,7 +20,7 @@ who_for: "Creadores, escritores, founders early-stage y profesionales senior con
 skills: ["creatividad", "proposito", "escritura"]
 destinations: ["italia-toscana", "italia-ischia"]
 reviewed_by_us: true
-image_urls: []
+image_urls: ["/img/retreats/wanderlearn-ischia.webp"]
 ---
 
 WanderLearn Ischia mezcla la tradición termal de la isla con sesiones de escritura, exploración cultural y coaching individual. La isla es pequeña, lenta, y profundamente sensorial — el contraste con la vida ejecutiva acelera el descubrimiento de ritmos creativos sostenibles.

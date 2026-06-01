@@ -3,6 +3,17 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+  workflow_run:
+    # Deploy automático cuando termina cualquier workflow que commitea a main.
+    # GitHub no dispara 'push' desde commits del bot (anti-loop), por eso workflow_run.
+    workflows:
+      - "Scrape weekly"
+      - "Content weekly"
+      - "CEO Operaciones"
+      - "CEO Marketing"
+      - "SEO audit weekly"
+      - "CEO UX"
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -10,6 +21,7 @@ permissions:
 
 jobs:
   deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

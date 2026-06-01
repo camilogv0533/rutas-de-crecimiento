@@ -60,13 +60,26 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MONTHLY_BUDGET_USD: '6.5'
         run: python scripts/classify.py --all
+      - name: Imagenes reales (gratis, og:image + hero del source)
+        run: python scripts/images.py || true
+      - name: IA fallback solo si falta imagen (gpt-image-1, ~$0.06 c/u)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MONTHLY_BUDGET_USD: '6.5'
+        run: |
+          if [ -n "$OPENAI_API_KEY" ]; then
+            python scripts/image_gen.py || true
+          else
+            echo "Sin OPENAI_API_KEY — se omite IA fallback (retiros sin foto quedan con gradiente)."
+          fi
       - name: Build export
         run: python scripts/build_export.py
       - name: Commit DB + content
         run: |
           git config user.name "rutas-bot"
           git config user.email "bot@rutasdecrecimiento.com"
-          git add data/retreats.db site/src/content/ data/discovered_urls.json || true
+          git add data/retreats.db site/src/content/ site/public/img/retreats/ data/discovered_urls.json || true
           git diff --staged --quiet && echo "sin cambios" && exit 0
           git commit -m "scrape weekly $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do

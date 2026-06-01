@@ -19,7 +19,7 @@ who_for: "Escritores de todos los orígenes y niveles de experiencia: aquellos q
 skills: ["creatividad", "proposito", "inteligencia-emocional", "mindfulness", "escritura"]
 destinations: []
 reviewed_by_us: false
-image_urls: ["https://thewritingcoach.co.uk/wp-content/uploads/2025/10/Carousel-Cover-23.png", "https://thewritingcoach.co.uk/wp-content/uploads/2025/05/Quinta-Overview-300x200.jpg", "https://thewritingcoach.co.uk/wp-content/uploads/2025/05/Quinta-Overview.jpg"]
+image_urls: ["/img/retreats/the-portugal-writing-retreat.webp"]
 ---
 
 Un retiro de escritura primaveral en la campiña portuguesa. Tiempo, espacio y apoyo mientras te sumerges en tu escritura en este entorno sorprendente y tranquilo. Únete a nosotros en Quinta Carvalhas, también conocida como The Green Farm, una granja de lujo de 150 años de antigüedad a solo una hora de Lisboa. Con un paisaje ondulante, hermosos edificios de piedra antiguos y olivos, este es el lugar perfecto para escribir. The Green Farm está diseñada para ralentizar el ritmo, abrirse y reconectar con tu creatividad.

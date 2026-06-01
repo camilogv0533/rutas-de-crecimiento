@@ -60,9 +60,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MONTHLY_BUDGET_USD: '6.5'
         run: python scripts/classify.py --all
-      - name: Imagenes reales (gratis, og:image + hero del source)
-        run: python scripts/images.py || true
-      - name: IA fallback solo si falta imagen (gpt-image-1, ~$0.06 c/u)
+      - name: Imagen IA propia por retiro nuevo (gpt-image-1, ~$0.06 c/u)
+        # Solo IA generada por nosotros — 0 riesgo de copyright. No usamos fotos ajenas.
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -71,7 +70,7 @@ jobs:
           if [ -n "$OPENAI_API_KEY" ]; then
             python scripts/image_gen.py || true
           else
-            echo "Sin OPENAI_API_KEY — se omite IA fallback (retiros sin foto quedan con gradiente)."
+            echo "Sin OPENAI_API_KEY — retiros nuevos quedan con gradiente CSS."
           fi
       - name: Build export
         run: python scripts/build_export.py

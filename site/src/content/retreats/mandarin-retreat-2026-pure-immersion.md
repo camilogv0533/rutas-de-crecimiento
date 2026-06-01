@@ -20,7 +20,7 @@ who_for: "Adultos que buscan alcanzar una fluidez conversacional real en chino m
 skills: ["comunicacion", "inteligencia-emocional", "observacion-consciente", "cocina", "idiomas"]
 destinations: []
 reviewed_by_us: false
-image_urls: ["https://imlearningmandarin.com/og-default.png", "https://imlearningmandarin.com/wp-content/uploads/2025/08/IMG_1786-rotated.webp", "https://imlearningmandarin.com/wp-content/uploads/2025/07/HACKINGCHINESE.webp"]
+image_urls: ["/img/retreats/mandarin-retreat-2026-pure-immersion.webp"]
 ---
 
 Únete a un Mandarin Retreat® en 2026: dos semanas de inmersión completa en mandarín, en un campamento inmersivo para adultos como ningún otro. Tomar clases de chino está bien, pero si quieres alcanzar una fluidez real, llega un momento en que hay que dejar el aula atrás y lanzarse de lleno. La solución es concreta: un campamento inmersivo en el Reino Unido. Durante una o dos semanas estarás rodeado de chino en todo momento, realizando actividades bajo la guía de tutores nativos profesionales y coaches de idiomas.

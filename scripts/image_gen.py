@@ -97,6 +97,7 @@ def generate(prompt: str, slug: str) -> Path:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug")
+    ap.add_argument("--all", action="store_true", help="regenera TODOS los activos con IA (reemplaza fotos hotlink)")
     args = ap.parse_args()
 
     if not os.environ.get("OPENAI_API_KEY"):
@@ -115,7 +116,9 @@ def main():
     for r in rows:
         iu = r.get("image_urls")
         has = bool(iu and iu not in ("[]", "null") and json.loads(iu))
-        if not has or args.slug:
+        # Solo IA: regenera si no tiene imagen IA propia (/img/retreats/...).
+        own_ia = has and "/img/retreats/" in (iu or "")
+        if args.all or args.slug or not own_ia:
             targets.append(r)
 
     if not targets:

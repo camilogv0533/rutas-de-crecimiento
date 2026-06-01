@@ -14,7 +14,7 @@ who_for: "Personas que se sienten atrapadas en su dirección de carrera o vida, 
 skills: ["proposito", "toma-decisiones", "inteligencia-emocional", "mindfulness", "estrategia"]
 destinations: []
 reviewed_by_us: false
-image_urls: ["https://images.squarespace-cdn.com/content/v1/647f578c489b5b79d0936bb7/c64090ae-48fd-4ee3-8844-e7c308b4b67b/TI+-+Social+Media+Posts+%281080+x+1350+px%29.png?format=1500w", "https://images.squarespace-cdn.com/content/v1/647f578c489b5b79d0936bb7/1687784828706-OXMD2V6ILGQVGXTRVQDV/image-asset.jpeg", "https://images.squarespace-cdn.com/content/v1/647f578c489b5b79d0936bb7/1687784828706-OXMD2V6ILGQVGXTRVQDV/image-asset.jpeg?format=2500w"]
+image_urls: ["/img/retreats/the-immersion-a-life-and-career-coaching-retreat.webp"]
 ---
 
 The Immersion es un retiro privado de coaching diseñado para ayudarte a apartarte de la rutina, pensar claramente sobre tu dirección y avanzar con confianza. Ya sea que estés navegando un cambio de carrera, una transición personal o una decisión importante, esta experiencia crea el tiempo y la estructura necesarios para hacer un progreso significativo. Es tiempo dedicado a reflexionar, decidir y actuar.

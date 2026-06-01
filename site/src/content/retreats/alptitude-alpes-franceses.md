@@ -19,7 +19,7 @@ who_for: "Fundadores que buscan reiniciarse y aclarar su dirección futura, agen
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true
-image_urls: ["http://static1.squarespace.com/static/54b83090e4b07e9224f689f4/t/59ef6eee9f8dceee178e5ace/1508863730663/alptitude-thumb.png?format=1500w", "https://images.squarespace-cdn.com/content/v1/54b83090e4b07e9224f689f4/7c6993bd-61c9-4055-928e-9f03be75b7bd/transparent-01+%281%29.png?format=1500w", "https://images.squarespace-cdn.com/content/v1/54b83090e4b07e9224f689f4/1697462116131-4DTHJZNBC4CLTS8UZW38/DSC_1448+%281%29.jpg"]
+image_urls: ["/img/retreats/alptitude-alpes-franceses.webp"]
 ---
 
 Alptitude es un encuentro empresarial con diferencia. Una reunión de 7 días para fundadores y líderes impulsados por un propósito. No hay charlas, pero se cuentan historias poderosas. No hay egos, pero encontrarás a algunas de las personas más inspiradoras que jamás has conocido. Aquí obtendrás respuestas no de gurús, sino de la naturaleza en su máxima expresión y de la sabiduría colectiva. Este es el futuro de los eventos empresariales: emergente, lúdico y transformacional.

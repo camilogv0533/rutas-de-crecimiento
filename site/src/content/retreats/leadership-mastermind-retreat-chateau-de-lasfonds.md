@@ -19,7 +19,7 @@ who_for: "Profesionales ambiciosos navegando transiciones críticas: líderes em
 skills: ["liderazgo", "proposito", "toma-decisiones", "inteligencia-emocional", "estrategia"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: false
-image_urls: ["https://chateaudelasfonds.com/wp-content/uploads/2025/07/REINVENT-1.webp", "https://chateaudelasfonds.com/wp-content/uploads/2025/07/REINVENT-1-600x781.webp", "https://chateaudelasfonds.com/wp-content/uploads/2025/07/REINVENT-2.webp"]
+image_urls: ["/img/retreats/leadership-mastermind-retreat-chateau-de-lasfonds.webp"]
 ---
 
 En el corazón del campo francés, donde lomas ondulantes se encuentran con muros de piedra centenarios, yace una oportunidad exclusiva para redefinir tu camino como líder, emprendedor o profesional visionario. El Retiro de Liderazgo Mastermind de Lasfonds no es otro retiro empresarial más; es una experiencia transformacional de 6 días diseñada para ayudar a pensadores de alto nivel a romper con la rutina, reflexionar profundamente y desbloquear su próximo capítulo con claridad y confianza. Si estás listo para reinventarte, reconectar con tu propósito y ascender al siguiente nivel, este retiro de liderazgo en Francia es tu invitación.

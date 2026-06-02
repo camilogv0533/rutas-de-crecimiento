@@ -47,7 +47,7 @@ jobs:
       - name: Generate weekly drafts
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MONTHLY_BUDGET_USD: '6.5'
+          MONTHLY_BUDGET_USD: '4'
         run: python scripts/content_gen.py --weekly
       - name: Commit drafts
         run: |

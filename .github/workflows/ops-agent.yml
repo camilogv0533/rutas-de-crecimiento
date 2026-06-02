@@ -46,7 +46,7 @@ jobs:
       - name: Evaluar y enriquecer retiros
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MONTHLY_BUDGET_USD: '6.5'
+          MONTHLY_BUDGET_USD: '4'
         run: python scripts/ops_agent.py --limit 20
       - name: Export y commit
         run: |

@@ -19,7 +19,7 @@ load_dotenv(ROOT / ".env")
 
 HAIKU = os.getenv("HAIKU_MODEL", "claude-haiku-4-5-20251001")
 SONNET = os.getenv("SONNET_MODEL", "claude-sonnet-4-6")
-MONTHLY_BUDGET = float(os.getenv("MONTHLY_BUDGET_USD", "5"))
+MONTHLY_BUDGET = float(os.getenv("MONTHLY_BUDGET_USD", "4"))
 
 PRICES_PER_1M = {
     HAIKU: {"in": 0.80, "out": 4.0, "cache_write": 1.0, "cache_read": 0.08},

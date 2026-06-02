@@ -53,19 +53,19 @@ jobs:
       - name: Scrape batch
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MONTHLY_BUDGET_USD: '6.5'
+          MONTHLY_BUDGET_USD: '4'
         run: python scripts/scraper.py --batch --include-discovered --limit 25
       - name: Classify new
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MONTHLY_BUDGET_USD: '6.5'
+          MONTHLY_BUDGET_USD: '4'
         run: python scripts/classify.py --all
       - name: Imagen IA propia por retiro nuevo (gpt-image-1, ~$0.06 c/u)
         # Solo IA generada por nosotros — 0 riesgo de copyright. No usamos fotos ajenas.
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          MONTHLY_BUDGET_USD: '6.5'
+          MONTHLY_BUDGET_USD: '4'
         run: |
           if [ -n "$OPENAI_API_KEY" ]; then
             python scripts/image_gen.py || true

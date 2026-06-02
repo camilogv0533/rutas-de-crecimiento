@@ -26,7 +26,7 @@ from pathlib import Path
 import requests
 from PIL import Image
 
-from _llm import HAIKU, call, cost_of, log_run, now_iso
+from _llm import HAIKU, MONTHLY_BUDGET, _month_cost, call, cost_of, log_run, now_iso
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "retreats.db"
@@ -130,7 +130,14 @@ def main():
 
     started = now_iso()
     tcost = ti = to = 0
+    done = 0
     for r in targets:
+        # Kill switch: la imagen NO pasa por _llm.call, así que la chequeamos aquí.
+        # Si el gasto del mes + esta imagen supera el budget, paramos.
+        if _month_cost() + IMG_COST >= MONTHLY_BUDGET:
+            print(f"\n🛑 Budget ${MONTHLY_BUDGET:.2f} alcanzado (mes: ${_month_cost():.3f}). "
+                  f"Detenido. Faltaron {len(targets) - done} imagen(es).")
+            break
         prompt, usage = make_prompt(r)
         tcost += cost_of(HAIKU, usage)
         ti += getattr(usage, "input_tokens", 0)
@@ -142,10 +149,13 @@ def main():
                      (json.dumps([rel]), r["id"]))
         conn.commit()
         tcost += IMG_COST
+        done += 1
+        # Loguea incremental para que _month_cost refleje el gasto de imagen en tiempo real.
+        log_run("image_gen", started, now_iso(), ti, to, IMG_COST + cost_of(HAIKU, usage),
+                1, "success")
         print(f"    ✅ {path.name}  (~${IMG_COST:.3f})")
 
-    log_run("image_gen", started, now_iso(), ti, to, tcost, len(targets), "success")
-    print(f"\nGeneradas: {len(targets)}  costo total: ~${tcost:.3f}")
+    print(f"\nGeneradas: {done}/{len(targets)}  costo total: ~${tcost:.3f}")
 
 
 if __name__ == "__main__":

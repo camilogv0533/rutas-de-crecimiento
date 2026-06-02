@@ -17,7 +17,7 @@ who_for: "Líderes de escuelas internacionales"
 skills: ["liderazgo", "comunicacion", "proposito", "trabajo-equipo", "inteligencia-emocional"]
 destinations: []
 reviewed_by_us: false
-image_urls: ["https://ecis.org/wp-content/uploads/2025/06/leadership_preview.jpg", "https://ecis.org/wp-content/uploads/CVENT_top_banner_leadership2026-scaled.jpeg", "https://ecis.org/wp-content/uploads/CVENT_top_banner_leadership2026-1568x626.jpeg"]
+image_urls: ["/img/retreats/2026-ecis-leadership-conference-love-based-leadership.webp"]
 ---
 
 Únete a nosotros en Lisboa para Love-Based Leadership 2026, donde nos reunimos para abrazar el poder sanador del amor en el liderazgo. Esta reunión transformadora invita a líderes de escuelas internacionales a explorar cómo la compasión, la empatía y la conexión intencional pueden formar comunidades escolares prósperas. A través de diálogos significativos, experiencias compartidas y reflexión intencional, profundizaremos nuestro compromiso de liderar con corazón y propósito.

@@ -1,21 +1,21 @@
 ---
 slug: "alptitude-alpes-franceses"
 title: "Alptitude"
-tagline: "La semana hecha para que los sueños se hagan realidad"
+tagline: "La semana de la que están hechos los sueños"
 source_url: "https://alptitu.de"
 host_name: "The Happy Startup School"
 host_url: "https://alptitu.de"
 location_city: "Morillon"
 location_country: "FR"
-location_region: "Alpes Franceses"
+location_region: "French Alps"
 duration_days: 7
-recurring: "Annually"
+recurring: "annually"
 price_usd_from: 4445.0
 currency_original: "GBP"
 price_original: 3500.0
 language: "English"
-what_unique: "En Alptitude, todo es opcional, por lo que cada persona vive la semana que desea. Los días comienzan con experiencias de bienestar, aprendizaje y aventura, pero lo más importante son los momentos intermedios: conversaciones junto a la hoguera, charlas espontáneas o canciones improvisadas en la cima de una montaña. Es la única reunión donde se combinan claridad, serendipia, conexión, rebooting mental y aventura segura en el corazón de los Alpes Franceses."
-who_for: "Fundadores que buscan reiniciarse y aclarar su dirección futura, agentes de cambio que desean impactar más con menos esfuerzo, líderes que buscan inspirarse y construir su tribu de personas afines, profesionales que desean alejarse de lo cotidiano para recalibrarse, y cualquier persona impulsada por un propósito que ama las nuevas ideas, el paisaje natural impresionante y pasar tiempo con personas que piensan como tú."
+group_size_max: 5
+what_unique: "Es una reunión empresarial transformadora donde no hay charlas magistrales ni egos. Los participantes comparten historias significativas, aprenden de sus pares y encuentran respuestas a través de la naturaleza y la sabiduría colectiva. Todo es opcional, permitiendo que cada persona viva la semana que necesita. El corazón de la experiencia son las conversaciones espontáneas junto a la hoguera, charlas improvisadas y momentos mágicos en la montaña.</unique> <parameter name=\"who_for\">Fundadores y líderes con propósito que buscan claridad, reinvención y conexión. Emprendedores en busca de un reset, agentes de cambio que quieren mayor impacto, líderes que desean inspiración, y profesionales que necesitan alejarse de la rutina diaria para recalibrar."
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true
@@ -23,4 +23,4 @@ image_urls: ["/img/retreats/alptitude-alpes-franceses.webp"]
 categories: ["retiro"]
 ---
 
-Alptitude es un encuentro empresarial con diferencia. Una reunión de 7 días para fundadores y líderes impulsados por un propósito. No hay charlas, pero se cuentan historias poderosas. No hay egos, pero encontrarás a algunas de las personas más inspiradoras que jamás has conocido. Aquí obtendrás respuestas no de gurús, sino de la naturaleza en su máxima expresión y de la sabiduría colectiva. Este es el futuro de los eventos empresariales: emergente, lúdico y transformacional.
+Alptitude es una reunión empresarial con una diferencia. No hay charlas, pero se cuentan historias poderosas. No hay egos, pero encontrarás a algunas de las personas más inspiradoras que jamás hayas conocido. Es un espacio donde encuentras respuestas, no de gurús, sino de la naturaleza en su máxima expresión y la sabiduría colectiva. Este es el futuro de los eventos empresariales: emergentes, lúdicos y transformadores. Una semana de 7 días para fundadores y líderes con propósito, en el corazón de los Alpes Franceses.

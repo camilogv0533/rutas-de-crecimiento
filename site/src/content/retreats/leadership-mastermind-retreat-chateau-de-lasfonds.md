@@ -1,11 +1,11 @@
 ---
 slug: "leadership-mastermind-retreat-chateau-de-lasfonds"
 title: "Leadership Mastermind - Château de Lasfonds"
-tagline: "Una experiencia transformacional de 6 días para líderes en encrucijadas profesionales"
+tagline: "Una experiencia transformacional de 6 días para líderes en la encrucijada, reimaginando tu carrera en el corazón de la campiña francesa."
 source_url: "https://chateaudelasfonds.com/leadership-mastermind/"
 host_name: "Ashley Dudarenok"
-host_url: "https://chateaudelasfonds.com/leadership-mastermind/"
-location_city: "Near Angoulême"
+host_url: "https://chateaudelasfonds.com"
+location_city: "Angoulême"
 location_country: "FR"
 location_region: "Périgord"
 duration_days: 6
@@ -14,8 +14,8 @@ currency_original: "USD"
 price_original: 9800.0
 language: "English"
 group_size_max: 10
-what_unique: "Curación rigurosa de un grupo de máximo 10 pares excepcionales (no solo profesionales con recursos financieros), el prestigioso entorno del Château de Lasfonds que crea una transformación atmosférica, la combinación única de experiencia empresarial, conocimiento empresarial internacional y pericia comprobada en facilitación de Ashley Dudarenok, una evolución sistemática de 6 días que garantiza resultados tangibles (no solo motivación), y una garantía sin precedentes: reembolso completo si no sientes valor excepcional de $20,000 USD o superior antes del final del Día 3."
-who_for: "Profesionales ambiciosos navegando transiciones críticas: líderes empresariales que escalan sus empresas al siguiente nivel, profesionales que contemplan cambios significativos en sus carreras (recientemente vendieron su empresa o consideran un cambio de carrera audaz), emprendedores que buscan \"cortacircuitos\" mentales para el pensamiento revolucionario, y líderes de equipos en industrias de rápido movimiento que necesitan tiempo estratégico para reflexionar."
+what_unique: "Grupo cuidadosamente curado de 5-10 líderes excepcionales; ubicación única en un château del siglo XIX en la campiña francesa que favorece la reflexión y el pensamiento innovador; marco probado de metodología mastermind de alto nivel de Ashley Dudarenok; estructura de 6 días con garantía de resultados (reembolso completo si no sientes transformación excepcional al día 3); experiencia inmersiva que combina sesiones de mastermind profundas, cenas de reflexión, actividades culturales y gastronomía local de granja a mesa."
+who_for: "Profesionales ambiciosos que navegan transiciones críticas: emprendedores que crecen a nivel empresarial y necesitan claridad estratégica, profesionales contemplando su próximo paso importante, empresarios que recientemente vendieron su empresa, y líderes de equipos en industrias de rápido movimiento que buscan tiempo para reflexionar. Este retiro es para visionaries líderes navegando cambios, escalando negocios, pivotando carreras, liderando en industrias volátiles, o en transición post-salida."
 skills: ["liderazgo", "proposito", "toma-decisiones", "inteligencia-emocional", "estrategia"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: false
@@ -23,4 +23,4 @@ image_urls: ["/img/retreats/leadership-mastermind-retreat-chateau-de-lasfonds.we
 categories: ["retiro"]
 ---
 
-En el corazón del campo francés, donde lomas ondulantes se encuentran con muros de piedra centenarios, yace una oportunidad exclusiva para redefinir tu camino como líder, emprendedor o profesional visionario. El Retiro de Liderazgo Mastermind de Lasfonds no es otro retiro empresarial más; es una experiencia transformacional de 6 días diseñada para ayudar a pensadores de alto nivel a romper con la rutina, reflexionar profundamente y desbloquear su próximo capítulo con claridad y confianza. Si estás listo para reinventarte, reconectar con tu propósito y ascender al siguiente nivel, este retiro de liderazgo en Francia es tu invitación.
+El Retiro de Liderazgo Mastermind de Lasfonds no es un retiro empresarial común. Es una experiencia transformacional de 6 días diseñada para ayudar a pensadores de alto nivel a liberarse de la rutina, reflexionar profundamente y desbloquear su próximo capítulo con claridad y confianza. En el corazón de la campiña francesa—donde colinas ondulantes se encuentran con muros de piedra centenarios—encontrarás la oportunidad exclusiva de redefinir tu camino como líder, empresario o profesional visionario. Si estás listo para reinventarte, reconectar con tu propósito y alcanzar tu siguiente nivel, este retiro de liderazgo en Francia es tu invitación.

@@ -20,6 +20,7 @@ skills: ["liderazgo", "resiliencia", "proposito", "inteligencia-emocional", "est
 destinations: []
 reviewed_by_us: false
 image_urls: ["/img/retreats/global-leadership-retreats.webp"]
+categories: ["retiro"]
 ---
 
 Durante cuatro días transformadores, el Global Leadership Retreat te llevará más allá del ruido del negocio cotidiano hacia un espacio donde las grandes preguntas se encuentran con la acción audaz. Te unirás a 25 líderes excepcionales de diferentes industrias, visionarios comprometidos a hacer del negocio una verdadera fuerza para el bien. Este es más que un retiro: es una invitación a unirte a un movimiento de líderes que reinventan la forma en que el mundo hace negocios, por las personas, el planeta y las ganancias.

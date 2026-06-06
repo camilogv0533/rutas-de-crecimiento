@@ -20,6 +20,7 @@ skills: ["liderazgo", "resiliencia", "toma-decisiones"]
 destinations: ["alpes-franceses"]
 reviewed_by_us: true
 image_urls: ["/img/retreats/alptitude-alpes-franceses.webp"]
+categories: ["retiro"]
 ---
 
 Alptitude es un encuentro empresarial con diferencia. Una reunión de 7 días para fundadores y líderes impulsados por un propósito. No hay charlas, pero se cuentan historias poderosas. No hay egos, pero encontrarás a algunas de las personas más inspiradoras que jamás has conocido. Aquí obtendrás respuestas no de gurús, sino de la naturaleza en su máxima expresión y de la sabiduría colectiva. Este es el futuro de los eventos empresariales: emergente, lúdico y transformacional.

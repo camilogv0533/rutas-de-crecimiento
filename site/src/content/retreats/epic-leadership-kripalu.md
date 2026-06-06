@@ -21,6 +21,7 @@ skills: ["liderazgo", "inteligencia-emocional", "mindfulness"]
 destinations: []
 reviewed_by_us: true
 image_urls: ["/img/retreats/epic-leadership-kripalu.webp"]
+categories: ["retiro"]
 ---
 
 Epic Leadership trae su programa intensivo de liderazgo al campus boscoso de Kripalu en los Berkshires. La metodología combina prácticas contemplativas con simulaciones de liderazgo organizacional, integrando cuerpo y estrategia.

@@ -92,7 +92,8 @@ def export_retreats(conn, only_slug: str | None = None):
             "skills": skills,
             "destinations": destinations,
             "reviewed_by_us": bool(r.get("reviewed_by_us")),
-            "image_urls": json.loads(r["image_urls"]) if r.get("image_urls") else []
+            "image_urls": json.loads(r["image_urls"]) if r.get("image_urls") else [],
+            "categories": [c.strip() for c in (r.get("categories") or "retiro").split(",") if c.strip()],
         }
         for k in ("title", "tagline", "host_name", "host_url", "location_city",
                   "location_country", "location_region", "recurring",

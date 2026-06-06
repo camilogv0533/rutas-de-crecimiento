@@ -1,0 +1,114 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Retiros de liderazgo en los Andes: qué son, para quién y por qué importa el lugar",
+    "description": "Los retiros de liderazgo en los Andes son programas inmersivos de tres a siete días diseñados para que directivos, fundadores y profesionales senior desarrollen habilidades de liderazgo concretas en el entorno de la cordillera andina.",
+    "url": "https://rutasdecrecimiento.com/blog/retiros-liderazgo-andes",
+    "inLanguage": "es",
+    "author": {
+      "@type": "Organization",
+      "name": "Rutas de Crecimiento",
+      "url": "https://rutasdecrecimiento.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Rutas de Crecimiento",
+      "url": "https://rutasdecrecimiento.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://rutasdecrecimiento.com/logo.png"
+      }
+    },
+    "datePublished": "2025-01-01",
+    "dateModified": "2025-01-01",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://rutasdecrecimiento.com/blog/retiros-liderazgo-andes"
+    },
+    "keywords": [
+      "retiros de liderazgo en los Andes",
+      "retiro liderazgo Cusco",
+      "retiro liderazgo Bariloche",
+      "retiro ejecutivo Andes",
+      "turismo de desarrollo de habilidades",
+      "liderazgo inmersivo Latinoamérica"
+    ],
+    "articleSection": "Liderazgo",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Liderazgo ejecutivo"
+      },
+      {
+        "@type": "Thing",
+        "name": "Retiros inmersivos de aprendizaje"
+      },
+      {
+        "@type": "Place",
+        "name": "Andes",
+        "containsPlace": [
+          {
+            "@type": "Place",
+            "name": "Cusco, Perú"
+          },
+          {
+            "@type": "Place",
+            "name": "Bariloche, Argentina"
+          },
+          {
+            "@type": "Place",
+            "name": "Medellín, Colombia"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "url": "https://rutasdecrecimiento.com/blog/retiros-liderazgo-andes",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta un retiro de liderazgo en los Andes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El rango varía según la duración, el nivel de facilitación y el tipo de alojamiento. Los retiros de tres a cinco días con facilitadores certificados y grupos reducidos (menos de 15 personas) suelen situarse entre $1.500 y $4.500 USD sin incluir vuelos. Programas de siete días con coaching individual integrado pueden superar los $6.000 USD. Los retiros corporativos para equipos de liderazgo tienen estructura de precio diferente y se negocian directamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué diferencia a un retiro de liderazgo en los Andes de un tour de aventura?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El elemento diferenciador es la intención de aprendizaje y la estructura metodológica. Un tour de aventura prioriza la experiencia física y el paisaje. Un retiro de liderazgo usa ese mismo entorno como contexto deliberado para desarrollar habilidades específicas: toma de decisiones, liderazgo sin jerarquía formal, resiliencia operativa. La diferencia está en qué pasa cuando el grupo se detiene a hablar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué nivel de condición física se necesita para un retiro andino?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Depende del programa. Existen retiros que no incluyen trekking de alta exigencia y se desarrollan en lodges o espacios rurales con acceso fácil, donde la altitud de Cusco o el entorno de Bariloche son el marco pero no el reto físico principal. Otros programas integran jornadas de caminata como parte del método. Siempre hay que consultar el itinerario específico y el organizador debe ser transparente sobre las exigencias físicas reales."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Los retiros andinos son solo para directivos de empresa o también para fundadores y creadores?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El perfil es amplio. Fundadores de startups en fase de escala, creadores con audiencias significativas que sienten que su crecimiento profesional se ha vuelto reactivo, y directivos corporativos senior son todos perfiles habituales. Lo que los une no es el título: es la sensación de que el crecimiento se ha vuelto plano y que las herramientas habituales ya no producen el salto que necesitan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo saber si un retiro en los Andes tiene calidad suficiente antes de pagar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tres preguntas concretas al organizador: uno, ¿qué habilidad específica voy a desarrollar? Dos, ¿cómo contribuye este lugar —los Andes, esta región, este contexto cultural— a ese desarrollo? Y tres, ¿quién facilita y cuál es su formación en desarrollo de liderazgo (no solo en bienestar o yoga)? Si las respuestas son vagas o intercambiables con cualquier otro destino, el lugar es decorado, no metodología."
+        }
+      }
+    ]
+  }
+]

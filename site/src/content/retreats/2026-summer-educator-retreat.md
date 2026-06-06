@@ -20,6 +20,7 @@ skills: ["creatividad", "proposito", "problem-solving", "trabajo-equipo", "soste
 destinations: []
 reviewed_by_us: false
 image_urls: ["/img/retreats/2026-summer-educator-retreat.webp"]
+categories: ["retiro"]
 ---
 
 Únete al Cornell Lab of Ornithology en un retiro inmersivo de 4 días, del 13 al 16 de julio de 2026. La experiencia combina aprendizaje práctico, colaboración entre educadores y herramientas concretas para avanzar en la educación ambiental. Gracias al apoyo de donantes, el retiro es gratuito o de costo mínimo; los participantes seleccionados reciben estipendios para viaje y alojamiento.

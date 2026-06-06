@@ -75,11 +75,33 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
     radial-gradient(ellipse at 80% 20%, rgba(217,119,6,0.1) 0%, transparent 50%);
 }
 .home-hero__overlay { position: absolute; inset: 0; }
-.home-hero__content {
+.home-hero__split {
   position: relative;
   z-index: 1;
-  padding: 6rem 1.5rem;
-  max-width: 780px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 5rem 1.5rem;
+  width: 100%;
+}
+.home-hero__content {
+  min-width: 0;
+}
+.home-hero__visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  aspect-ratio: 4/3;
+  background: linear-gradient(160deg, #1a3a28 0%, #0d1f15 100%);
+}
+.home-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.9;
 }
 .home-hero__eyebrow {
   font-family: var(--font-mono);
@@ -91,7 +113,7 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 }
 .home-hero__headline {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
   font-weight: 900;
   color: #fff;
   line-height: 1.05;
@@ -99,13 +121,13 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
   margin-bottom: 1.5rem;
 }
 .home-hero__sub {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: rgba(255,255,255,0.7);
-  max-width: 560px;
+  max-width: 520px;
   line-height: 1.7;
   margin-bottom: 2.5rem;
 }
-.home-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
+.home-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
 .btn-primary {
   display: inline-block;
   background: var(--accent-green);
@@ -129,10 +151,18 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
   transition: border-color .15s, color .15s;
 }
 .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
-.home-hero__stats { display: flex; gap: 3rem; }
+.home-hero__stats { display: flex; gap: 2.5rem; }
 .home-hero__stat { display: flex; flex-direction: column; }
-.home-hero__stat strong { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1; }
+.home-hero__stat strong { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: #fff; line-height: 1; }
 .home-hero__stat span { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.08em; }
+@media (max-width: 860px) {
+  .home-hero__split { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+  .home-hero__visual { order: -1; aspect-ratio: 16/9; max-height: 260px; }
+}
+@media (max-width: 480px) {
+  .home-hero__stats { gap: 1.5rem; }
+  .home-hero__stat strong { font-size: 1.6rem; }
+}
 
 /* ── Skills strip ──────────────────────────────────────── */
 .skills-strip { background: var(--bg-secondary); padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
@@ -179,9 +209,13 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
   transition: opacity .3s, transform .4s;
 }
 .retreat-card:hover .retreat-card__photo { opacity: 1; transform: scale(1.04); }
-.retreat-card__badge {
+.retreat-card__badges-top {
   position: relative;
   z-index: 1;
+  display: flex;
+  gap: 0.4rem;
+}
+.retreat-card__badge {
   background: var(--accent-green);
   color: #fff;
   font-size: 0.7rem;
@@ -190,6 +224,19 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
   text-transform: uppercase;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
+}
+.retreat-card__badge--mastermind {
+  background: var(--accent-warm);
+}
+.retreat-card__lang {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-mono);
 }
 .retreat-card__duration {
   position: relative;
@@ -216,6 +263,42 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 .retreat-card__footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--border); }
 .retreat-card__location { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); }
 .retreat-card__price { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600; color: var(--accent-warm); }
+
+/* ── Masterminds section ───────────────────────────────── */
+.masterminds-section {
+  background: linear-gradient(180deg, #0d1f15 0%, #1a2e1e 100%);
+  padding: 5rem 0;
+}
+.masterminds-section .section-header h2 { color: #fff; }
+.masterminds-section .section-header { margin-bottom: 0.5rem; }
+.masterminds-badge {
+  display: inline-block;
+  background: var(--accent-warm);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  font-family: var(--font-ui);
+}
+.masterminds-sub {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 2rem;
+}
+.masterminds-section .retreat-card {
+  background: #1e3328;
+  border-color: rgba(255,255,255,0.1);
+}
+.masterminds-section .retreat-card__title,
+.masterminds-section .retreat-card__tagline { color: rgba(255,255,255,0.9); }
+.masterminds-section .retreat-card__tagline { color: rgba(255,255,255,0.6); }
+.masterminds-section .retreat-card__location { color: rgba(255,255,255,0.4); }
+.masterminds-section .retreat-card__footer { border-color: rgba(255,255,255,0.1); }
 
 /* ── Destinations ──────────────────────────────────────── */
 .destinations-section { background: var(--bg-secondary); padding: 5rem 0; }

@@ -15,14 +15,27 @@ const gradients = [
   'linear-gradient(135deg, #2c1810 0%, #8b4513 100%)',
 ];
 const gradient = gradients[index % gradients.length];
-// Solo imagen propia (IA generada). Sin fallback a fotos ajenas: si no hay, gradiente.
 const imageUrl = (r.image_urls && r.image_urls.length > 0) ? r.image_urls[0] : null;
+
+const LANG_LABELS: Record<string, string> = {
+  en: 'Inglés', es: 'Español', fr: 'Francés', de: 'Alemán',
+  it: 'Italiano', pt: 'Portugués', multilingual: 'Multi-idioma',
+};
+const langLabel = r.language ? (LANG_LABELS[r.language.toLowerCase()] || r.language) : null;
+
+const categories: string[] = r.categories
+  ? (typeof r.categories === 'string' ? r.categories.split(',').map((c: string) => c.trim()) : r.categories)
+  : [];
+const isMastermind = categories.includes('mastermind');
 ---
-<article class="retreat-card">
+<article class="retreat-card" data-categories={categories.join(',')}>
   <a href={`/retiros/${r.slug}`} class="retreat-card__link">
     <div class="retreat-card__image" style={`background: ${gradient}`}>
       {imageUrl && <img src={imageUrl} alt={r.title} class="retreat-card__photo" loading="lazy" />}
-      {r.reviewed_by_us && <span class="retreat-card__badge">Curado</span>}
+      <div class="retreat-card__badges-top">
+        {r.reviewed_by_us && <span class="retreat-card__badge">Curado</span>}
+        {isMastermind && <span class="retreat-card__badge retreat-card__badge--mastermind">Mastermind</span>}
+      </div>
       {r.duration_days && <span class="retreat-card__duration">{r.duration_days} días</span>}
     </div>
     <div class="retreat-card__body">
@@ -30,6 +43,7 @@ const imageUrl = (r.image_urls && r.image_urls.length > 0) ? r.image_urls[0] : n
         {(r.skills || []).slice(0, 2).map((s: string) => (
           <span class="retreat-card__skill">{s.replace(/-/g, ' ')}</span>
         ))}
+        {langLabel && <span class="retreat-card__lang">{langLabel}</span>}
       </div>
       <h3 class="retreat-card__title">{r.title}</h3>
       {r.tagline && <p class="retreat-card__tagline">{r.tagline}</p>}

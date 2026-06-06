@@ -20,6 +20,7 @@ skills: ["creatividad", "comunicacion", "proposito", "trabajo-equipo", "escritur
 destinations: ["italia-toscana", "italia-ischia"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/tuscany-writing-retreat-2026.webp"]
+categories: ["retiro"]
 ---
 
 Entra en tu próximo capítulo en nuestro retiro de escritura creativa en Toscana, Italia, en una encantadora villa tusca ubicada en una colina rodeada de viñedos rodantes y la belleza atemporal del campo italiano. Ya sea que estés nuriendo nuevas ideas o refinando un trabajo en progreso, nuestro retiro inmersivo de escritura creativa en Toscana te ayudará a cruzar hacia tus sueños creativos con talleres diarios, orientación experimentada y comunidad creativa inspiradora en uno de los paisajes artísticos más históricos del mundo.

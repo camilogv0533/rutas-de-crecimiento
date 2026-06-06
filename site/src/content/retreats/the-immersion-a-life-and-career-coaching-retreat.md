@@ -15,6 +15,7 @@ skills: ["proposito", "toma-decisiones", "inteligencia-emocional", "mindfulness"
 destinations: []
 reviewed_by_us: false
 image_urls: ["/img/retreats/the-immersion-a-life-and-career-coaching-retreat.webp"]
+categories: ["retiro"]
 ---
 
 The Immersion es un retiro privado de coaching diseñado para ayudarte a apartarte de la rutina, pensar claramente sobre tu dirección y avanzar con confianza. Ya sea que estés navegando un cambio de carrera, una transición personal o una decisión importante, esta experiencia crea el tiempo y la estructura necesarios para hacer un progreso significativo. Es tiempo dedicado a reflexionar, decidir y actuar.

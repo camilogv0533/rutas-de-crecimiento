@@ -58,7 +58,8 @@ EXTRACTION_TOOL = {
             "host_url": {"type": ["string", "null"]},
             "social_instagram": {"type": ["string", "null"]},
             "image_urls": {"type": "array", "items": {"type": "string"}, "default": []},
-            "is_actually_a_retreat": {"type": "boolean", "description": "False if the page is a hotel, online course, hardware product, blog post, etc. — anything that is NOT an immersive learning retreat."}
+            "is_actually_a_retreat": {"type": "boolean", "description": "True if the page is an immersive multi-day in-person learning experience that requires travel to a destination. This includes: retreats, residencies, and MASTERMINDS with a physical travel component. False if it is: an online course, a hotel listing without curated programming, a blog post, a hardware product, or a pure conference without travel/lodging component."},
+            "categories": {"type": "array", "items": {"type": "string"}, "description": "Tags describing the format. Always include one of: 'retiro', 'mastermind', 'residencia', 'inmersion'. Add others if clearly applicable (e.g. 'liderazgo', 'escritura'). Must include 'mastermind' if the page uses that word or clearly describes a peer mastermind group format.", "default": ["retiro"]}
         },
         "required": ["title", "is_actually_a_retreat"]
     }
@@ -157,6 +158,7 @@ def upsert(data: dict, source_url: str) -> str:
         "host_url": data.get("host_url"),
         "social_instagram": data.get("social_instagram"),
         "image_urls": json.dumps(data.get("image_urls", []), ensure_ascii=False),
+        "categories": ",".join(data.get("categories") or ["retiro"]),
         "scraped_at": now_iso(),
         "last_seen_at": now_iso(),
         "status": "active"

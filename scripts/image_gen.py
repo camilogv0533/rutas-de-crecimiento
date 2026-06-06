@@ -7,13 +7,14 @@ ser el venue específico — honestidad editorial (voice.md).
 
 Flujo:
   1. Haiku escribe un prompt fotográfico desde los datos del retiro (~$0.001)
-  2. gpt-image-1 genera 1536x1024 calidad media (~$0.06)
-  3. Guarda PNG en site/public/img/retreats/<slug>.png (versionado, no hotlink)
-  4. image_urls = ["/img/retreats/<slug>.png"]
+  2. Gemini 2.5 Flash Image genera la imagen (~$0.039)
+  3. Guarda como webp en site/public/img/retreats/<slug>.webp (versionado)
+  4. image_urls = ["/img/retreats/<slug>.webp"]
 
-Requiere OPENAI_API_KEY. Usage:
+Requiere GEMINI_API_KEY. Usage:
   python scripts/image_gen.py --slug wanderlearn-ischia
-  python scripts/image_gen.py            # todos los activos sin imagen
+  python scripts/image_gen.py            # todos los activos sin imagen propia
+  python scripts/image_gen.py --all      # regenera todos (reemplaza existentes)
 """
 import argparse
 import base64
@@ -33,8 +34,8 @@ DB_PATH = ROOT / "data" / "retreats.db"
 OUT_DIR = ROOT / "site" / "public" / "img" / "retreats"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# gpt-image-1, 1536x1024 medium ≈ 1568 tokens × $40/1M ≈ $0.063
-IMG_COST = 0.063
+# Gemini 2.5 Flash Image ≈ $0.039/imagen (estimado conservador)
+IMG_COST = 0.039
 
 PROMPT_TOOL = {
     "name": "save_prompt",
@@ -47,12 +48,17 @@ PROMPT_TOOL = {
 }
 
 PROMPT_SYS = (
-    "Escribes prompts para un generador de imágenes. Genera UNA escena fotográfica, "
-    "editorial, realista, que ILUSTRE el lugar y el ambiente de aprendizaje de un retiro. "
-    "Reglas: paisaje/entorno real del destino + luz natural cálida; sin texto, sin logos, "
-    "sin personas reconocibles, sin marcas; NO inventes un edificio específico — evoca el "
-    "lugar y la habilidad. Estilo: fotografía documental de viaje, formato horizontal. "
-    "Devuelve el prompt EN INGLÉS llamando save_prompt."
+    "Escribes prompts fotográficos para un generador de imágenes de viaje editorial. "
+    "Crea UNA escena fotográfica específica que ilustre el lugar y el ambiente de aprendizaje del retiro. "
+    "Reglas de calidad: "
+    "(1) Detalle arquitectónico o paisajístico MUY específico del destino (ej: tejados terracota toscanos, fiordo noruego al amanecer, adobe nuevo-mexicano). "
+    "(2) Presencia humana difusa/de espaldas permitida — sin rostros reconocibles. "
+    "(3) Luz cinematográfica: hora dorada, contraluz suave o luz de ventana interior. "
+    "(4) Lente 35mm f/2.0, profundidad de campo visible, bokeh suave en fondo. "
+    "(5) Sin texto, sin logos, sin marcas. "
+    "(6) NO menciones 'retreat' ni 'workshop' — solo escena del lugar. "
+    "Estilo: fotografía documental de viaje, Magnum Photos, formato horizontal 16:9. "
+    "Devuelve el prompt EN INGLÉS llamando save_prompt (máx 200 palabras)."
 )
 
 
@@ -75,18 +81,30 @@ def make_prompt(r: dict) -> tuple[str, object]:
 
 
 def generate(prompt: str, slug: str) -> Path:
-    key = os.environ["OPENAI_API_KEY"]
+    key = os.environ["GEMINI_API_KEY"]
     r = requests.post(
-        "https://api.openai.com/v1/images/generations",
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        json={"model": "gpt-image-1", "prompt": prompt, "size": "1536x1024",
-              "quality": "medium", "n": 1},
+        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={key}",
+        headers={"Content-Type": "application/json"},
+        json={
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"responseModalities": ["TEXT", "IMAGE"]},
+        },
         timeout=180,
     )
     r.raise_for_status()
-    b64 = r.json()["data"][0]["b64_json"]
-    # PNG crudo (~2.7MB) → webp comprimido (~150KB), ancho máx 1200px.
-    img = Image.open(io.BytesIO(base64.b64decode(b64))).convert("RGB")
+    candidates = r.json().get("candidates", [])
+    b64_data = None
+    for candidate in candidates:
+        for part in candidate.get("content", {}).get("parts", []):
+            if "inlineData" in part:
+                b64_data = part["inlineData"]["data"]
+                break
+        if b64_data:
+            break
+    if not b64_data:
+        raise RuntimeError(f"Gemini no devolvió imagen. Response: {r.text[:500]}")
+    # PNG crudo → webp comprimido (~150KB), ancho máx 1200px.
+    img = Image.open(io.BytesIO(base64.b64decode(b64_data))).convert("RGB")
     if img.width > 1200:
         img = img.resize((1200, round(img.height * 1200 / img.width)), Image.LANCZOS)
     path = OUT_DIR / f"{slug}.webp"
@@ -94,14 +112,91 @@ def generate(prompt: str, slug: str) -> Path:
     return path
 
 
+def generate_to_path(prompt: str, out_path: Path) -> Path:
+    """Generate image from prompt and save to specified path (webp)."""
+    key = os.environ["GEMINI_API_KEY"]
+    r = requests.post(
+        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={key}",
+        headers={"Content-Type": "application/json"},
+        json={
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"responseModalities": ["TEXT", "IMAGE"]},
+        },
+        timeout=180,
+    )
+    r.raise_for_status()
+    b64_data = None
+    for candidate in r.json().get("candidates", []):
+        for part in candidate.get("content", {}).get("parts", []):
+            if "inlineData" in part:
+                b64_data = part["inlineData"]["data"]
+                break
+        if b64_data:
+            break
+    if not b64_data:
+        raise RuntimeError(f"Gemini no devolvió imagen: {r.text[:400]}")
+    img = Image.open(io.BytesIO(base64.b64decode(b64_data))).convert("RGB")
+    if img.width > 1200:
+        img = img.resize((1200, round(img.height * 1200 / img.width)), Image.LANCZOS)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_path, "WEBP", quality=82, method=6)
+    return out_path
+
+
+def generate_hero() -> Path:
+    """Genera imagen hero para la portada del sitio."""
+    hero_prompt = (
+        "Editorial travel photograph. A person silhouetted against dramatic Andean mountain peaks at golden hour, "
+        "sitting on stone steps of an ancient terraced landscape, writing in a journal. "
+        "Warm ochre and deep green tones, cinematic depth of field, 35mm f/2.0 lens, "
+        "Magnum Photos style, horizontal 16:9, no text, no logos."
+    )
+    out_dir = ROOT / "site" / "public" / "img"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    key = os.environ["GEMINI_API_KEY"]
+    r = requests.post(
+        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={key}",
+        headers={"Content-Type": "application/json"},
+        json={
+            "contents": [{"parts": [{"text": hero_prompt}]}],
+            "generationConfig": {"responseModalities": ["TEXT", "IMAGE"]},
+        },
+        timeout=180,
+    )
+    r.raise_for_status()
+    candidates = r.json().get("candidates", [])
+    b64_data = None
+    for candidate in candidates:
+        for part in candidate.get("content", {}).get("parts", []):
+            if "inlineData" in part:
+                b64_data = part["inlineData"]["data"]
+                break
+        if b64_data:
+            break
+    if not b64_data:
+        raise RuntimeError(f"Gemini hero: no imagen. Response: {r.text[:500]}")
+    img = Image.open(io.BytesIO(base64.b64decode(b64_data))).convert("RGB")
+    if img.width > 1400:
+        img = img.resize((1400, round(img.height * 1400 / img.width)), Image.LANCZOS)
+    path = out_dir / "hero.webp"
+    img.save(path, "WEBP", quality=85, method=6)
+    return path
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug")
     ap.add_argument("--all", action="store_true", help="regenera TODOS los activos con IA (reemplaza fotos hotlink)")
+    ap.add_argument("--hero", action="store_true", help="genera solo la imagen hero de portada")
     args = ap.parse_args()
 
-    if not os.environ.get("OPENAI_API_KEY"):
-        raise SystemExit("Falta OPENAI_API_KEY en el entorno.")
+    if not os.environ.get("GEMINI_API_KEY"):
+        raise SystemExit("Falta GEMINI_API_KEY en el entorno.")
+
+    if args.hero:
+        path = generate_hero()
+        print(f"Hero generado: {path}  (~${IMG_COST:.3f})")
+        return
 
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row

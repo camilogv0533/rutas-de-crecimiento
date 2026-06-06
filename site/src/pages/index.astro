@@ -12,6 +12,9 @@ const sorted = retreats.sort((a, b) => (b.data.reviewed_by_us ? 1 : 0) - (a.data
 const allSkillsInUse = new Set<string>();
 retreats.forEach(r => r.data.skills.forEach(s => allSkillsInUse.add(s)));
 const featuredSkills = skills.filter(s => allSkillsInUse.has(s.data.slug)).slice(0, 10);
+
+const masterminds = sorted.filter(r => (r.data.categories || []).includes('mastermind'));
+const regularRetreats = sorted.filter(r => !(r.data.categories || []).includes('mastermind'));
 ---
 <Base
   title="Rutas de Crecimiento"
@@ -20,18 +23,29 @@ const featuredSkills = skills.filter(s => allSkillsInUse.has(s.data.slug)).slice
 
 <section class="home-hero">
   <div class="home-hero__overlay"></div>
-  <div class="home-hero__content container">
-    <p class="home-hero__eyebrow">Turismo intencional</p>
-    <h1 class="home-hero__headline">Viajes que desarrollan<br/>habilidades reales.</h1>
-    <p class="home-hero__sub">Retiros curados donde el lugar enseña. Liderazgo en los Andes, creatividad en Oaxaca, propósito en el Mediterráneo.</p>
-    <div class="home-hero__actions">
-      <a href="#retiros" class="btn-primary">Ver retiros</a>
-      <a href="/habilidades" class="btn-ghost">Explorar habilidades</a>
+  <div class="home-hero__split container">
+    <div class="home-hero__content">
+      <p class="home-hero__eyebrow">Turismo intencional</p>
+      <h1 class="home-hero__headline">Viajes que desarrollan<br/>habilidades reales.</h1>
+      <p class="home-hero__sub">Retiros curados donde el lugar enseña. Liderazgo en los Andes, creatividad en Oaxaca, propósito en el Mediterráneo.</p>
+      <div class="home-hero__actions">
+        <a href="#retiros" class="btn-primary">Ver retiros</a>
+        <a href="/habilidades" class="btn-ghost">Explorar habilidades</a>
+      </div>
+      <div class="home-hero__stats">
+        <div class="home-hero__stat"><strong>{retreats.length}</strong><span>retiros</span></div>
+        <div class="home-hero__stat"><strong>{destinations.length}</strong><span>destinos</span></div>
+        <div class="home-hero__stat"><strong>{skills.length}</strong><span>habilidades</span></div>
+      </div>
     </div>
-    <div class="home-hero__stats">
-      <div class="home-hero__stat"><strong>{retreats.length}</strong><span>retiros</span></div>
-      <div class="home-hero__stat"><strong>{destinations.length}</strong><span>destinos</span></div>
-      <div class="home-hero__stat"><strong>{skills.length}</strong><span>habilidades</span></div>
+    <div class="home-hero__visual">
+      <img
+        src="/img/hero.webp"
+        alt="Aprendizaje en destino — Rutas de Crecimiento"
+        class="home-hero__img"
+        loading="eager"
+        onerror="this.style.display='none'"
+      />
     </div>
   </div>
 </section>
@@ -52,9 +66,25 @@ const featuredSkills = skills.filter(s => allSkillsInUse.has(s.data.slug)).slice
     <a href="/retiros" class="section-link">Ver todos →</a>
   </div>
   <div class="retreat-grid">
-    {sorted.map((r, i) => <RetreatCard data={{ ...r.data }} index={i} />)}
+    {regularRetreats.map((r, i) => <RetreatCard data={{ ...r.data }} index={i} />)}
   </div>
 </section>
+
+{masterminds.length > 0 && (
+  <section id="masterminds" class="masterminds-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>Masterminds <span class="masterminds-badge">Grupo élite</span></h2>
+          <p class="masterminds-sub">Grupos reducidos de pares que se reúnen en destino. Alta intensidad, alto impacto.</p>
+        </div>
+      </div>
+      <div class="retreat-grid">
+        {masterminds.map((r, i) => <RetreatCard data={{ ...r.data }} index={i} />)}
+      </div>
+    </div>
+  </section>
+)}
 
 <section class="destinations-section">
   <div class="container">

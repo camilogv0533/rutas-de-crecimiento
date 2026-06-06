@@ -25,7 +25,8 @@ const retreats = defineCollection({
     skills: z.array(z.string()).default([]),
     destinations: z.array(z.string()).default([]),
     reviewed_by_us: z.boolean().default(false),
-    image_urls: z.array(z.string()).default([])
+    image_urls: z.array(z.string()).default([]),
+    categories: z.array(z.string()).default(['retiro'])
   })
 });
 

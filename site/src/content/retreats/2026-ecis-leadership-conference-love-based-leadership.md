@@ -18,6 +18,7 @@ skills: ["liderazgo", "comunicacion", "proposito", "trabajo-equipo", "inteligenc
 destinations: []
 reviewed_by_us: false
 image_urls: ["/img/retreats/2026-ecis-leadership-conference-love-based-leadership.webp"]
+categories: ["retiro"]
 ---
 
 Únete a nosotros en Lisboa para Love-Based Leadership 2026, donde nos reunimos para abrazar el poder sanador del amor en el liderazgo. Esta reunión transformadora invita a líderes de escuelas internacionales a explorar cómo la compasión, la empatía y la conexión intencional pueden formar comunidades escolares prósperas. A través de diálogos significativos, experiencias compartidas y reflexión intencional, profundizaremos nuestro compromiso de liderar con corazón y propósito.

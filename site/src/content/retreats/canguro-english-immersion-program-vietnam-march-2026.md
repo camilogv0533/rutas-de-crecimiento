@@ -17,6 +17,7 @@ skills: ["comunicacion", "inteligencia-emocional", "networking", "idiomas"]
 destinations: []
 reviewed_by_us: false
 image_urls: ["/img/retreats/canguro-english-immersion-program-vietnam-march-2026.webp"]
+categories: ["retiro"]
 ---
 
 Únete a nosotros en un retiro de inmersión en inglés de 10 días en Vietnam, del 8 al 18 de marzo de 2026. Muchas personas estudian inglés durante años y aun así se sienten nerviosas, bloqueadas o tímidas a la hora de hablar. Este retiro está diseñado para romper esa barrera, no desde la presión, sino desde la conexión. Durante 10 días, vivirás completamente en inglés: conversando, riendo, explorando y compartiendo momentos reales con profesores que acompañan y nuevos amigos de distintas partes del mundo. No se siente como una clase; se siente como la vida misma. Y ahí es donde ocurre el cambio verdadero.

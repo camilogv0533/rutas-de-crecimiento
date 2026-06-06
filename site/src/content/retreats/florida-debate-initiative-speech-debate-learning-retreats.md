@@ -10,4 +10,5 @@ skills: ["comunicacion", "resiliencia", "toma-decisiones", "inteligencia-emocion
 destinations: []
 reviewed_by_us: false
 image_urls: ["/img/retreats/florida-debate-initiative-speech-debate-learning-retreats.webp"]
+categories: ["retiro"]
 ---

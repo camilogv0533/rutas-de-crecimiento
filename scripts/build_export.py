@@ -132,9 +132,10 @@ def export_destinations(conn):
     out_dir = SITE_CONTENT / "destinations"
     if out_dir.exists():
         shutil.rmtree(out_dir)
-    cur = conn.execute("SELECT slug, name, country, region, narrative_hook, unique_skills_associated FROM destinations")
+    cur = conn.execute("SELECT slug, name, country, region, narrative_hook, unique_skills_associated, image_url FROM destinations")
     n = 0
-    for slug, name, country, region, hook, skills_json in cur.fetchall():
+    for row in cur.fetchall():
+        slug, name, country, region, hook, skills_json, image_url = row
         skills = json.loads(skills_json) if skills_json else []
         fm = {"slug": slug, "name": name}
         if country:
@@ -144,6 +145,8 @@ def export_destinations(conn):
         if hook:
             fm["narrative_hook"] = hook
         fm["skills"] = skills
+        if image_url:
+            fm["image_url"] = image_url
         write_md(out_dir / f"{slug}.md", fm)
         n += 1
     print(f"Destinations exported: {n}")

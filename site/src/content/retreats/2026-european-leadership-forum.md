@@ -14,7 +14,8 @@ who_for: "Líderes evangélicos espiritualmente maduros en roles de liderazgo (p
 skills: ["liderazgo", "comunicacion", "proposito", "inteligencia-emocional", "networking"]
 destinations: []
 reviewed_by_us: false
-image_urls: []
+image_urls: ["/img/retreats/2026-european-leadership-forum.webp"]
+categories: ["retiro"]
 ---
 
 El Foro Europeo de Liderazgo es un congreso de invitación exclusiva dedicado a unir, equipar y proporcionar recursos a líderes evangélicos para renovar la iglesia bíblica y evangelizar Europa. El foro funciona como un puente que conecta las necesidades de los líderes locales con los recursos globales de Dios. Este evento anual reúne a líderes espirituales maduros de diversas denominaciones evangélicas en un entorno colaborativo de aprendizaje y construcción de relaciones.

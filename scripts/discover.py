@@ -36,6 +36,14 @@ SEARCH_TERMS_EN = [
     "mastermind retreat for entrepreneurs"
 ]
 
+MASTERMIND_SEARCH_TERMS = [
+    "mastermind retreat presencial viaje 2026",
+    "mastermind group in-person destination 2026",
+    "mastermind retreat entrepreneurs travel Europe",
+    "mastermind retreat leadership destination 2026",
+    "peer mastermind group retreat founders 2026",
+]
+
 
 def existing_hosts() -> set:
     sources = json.loads(SOURCES.read_text())["sources"]
@@ -57,6 +65,7 @@ def already_scraped_hosts() -> set:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=3, help="Number of queries to issue")
+    parser.add_argument("--query-override", help="Use mastermind-specific search terms instead of default")
     args = parser.parse_args()
 
     api_key = os.getenv("TAVILY_API_KEY")
@@ -71,9 +80,15 @@ def main():
         discovered = json.loads(DISCOVERED.read_text())
     discovered_urls = {d["url"] for d in discovered}
 
+    # Choose search terms: mastermind-specific or default
+    if args.query_override and "mastermind" in args.query_override.lower():
+        terms = MASTERMIND_SEARCH_TERMS
+    else:
+        terms = SEARCH_TERMS_EN
+
     started = now_iso()
     new_count = 0
-    for term in SEARCH_TERMS_EN[: args.limit]:
+    for term in terms[: args.limit]:
         try:
             res = client.search(query=term, max_results=10, search_depth="basic")
             for item in res.get("results", []):

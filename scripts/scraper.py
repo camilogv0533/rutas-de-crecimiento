@@ -198,6 +198,7 @@ def main():
     parser.add_argument("--batch", action="store_true", help="Process all sources from data/sources.json")
     parser.add_argument("--include-discovered", action="store_true",
                         help="Also process new URLs from data/discovered_urls.json (filtered, deduped)")
+    parser.add_argument("--sources-filter", help="Filter sources by note/tag keyword (e.g. 'mastermind')")
     parser.add_argument("--limit", type=int, default=0, help="Limit batch size")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -213,7 +214,15 @@ def main():
             urls = [args.url]
         elif args.batch:
             sources = json.loads(SOURCES_PATH.read_text())["sources"]
-            urls = [s["url"] for s in sources if s["type"] == "host"]
+            if args.sources_filter:
+                kw = args.sources_filter.lower()
+                urls = [s["url"] for s in sources if s["type"] == "host"
+                        and kw in (s.get("notes") or "").lower()]
+                # Fallback: if no tagged sources yet, scrape all hosts (new masterminds come via discovered)
+                if not urls:
+                    urls = []
+            else:
+                urls = [s["url"] for s in sources if s["type"] == "host"]
             if args.include_discovered and DISCOVERED_PATH.exists():
                 # bridge discover -> scrape; dedupe vs already-scraped + sources before spending LLM
                 conn = sqlite3.connect(DB_PATH)

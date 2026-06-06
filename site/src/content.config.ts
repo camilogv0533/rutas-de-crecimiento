@@ -49,7 +49,8 @@ const destinations = defineCollection({
     country: z.string().optional(),
     region: z.string().optional(),
     narrative_hook: z.string().optional(),
-    skills: z.array(z.string()).default([])
+    skills: z.array(z.string()).default([]),
+    image_url: z.string().optional()
   })
 });
 

@@ -315,6 +315,16 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 }
 .destination-card:hover { transform: scale(1.02); border: none; }
 .destination-card__bg { position: absolute; inset: 0; }
+.destination-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  transition: opacity .3s, transform .4s;
+}
+.destination-card:hover .destination-card__photo { opacity: 0.9; transform: scale(1.04); }
 .destination-card::after {
   content: '';
   position: absolute;

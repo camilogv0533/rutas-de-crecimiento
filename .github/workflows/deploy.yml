@@ -9,6 +9,8 @@ on:
     workflows:
       - "Scrape weekly"
       - "Content weekly"
+      - "Content quincenal"
+      - "Mastermind weekly"
       - "CEO Operaciones"
       - "CEO Marketing"
       - "SEO audit weekly"

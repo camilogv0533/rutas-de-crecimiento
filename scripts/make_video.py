@@ -175,14 +175,27 @@ def build_ffmpeg_cmd(
     return cmd
 
 
+HAILUO_COST = 0.45  # 10s × ~$0.045/s
+
+
 def run_hailuo(images: list[Path], kit_dir: Path, out_path: Path):
-    """Genera clip AI 10s con Hailuo-02 vía fal. Requiere FAL_KEY."""
+    """Genera clip AI 10s con Hailuo-02 vía fal. Requiere FAL_KEY.
+
+    Kill switch: la llamada a fal NO pasa por _llm.call, así que chequeamos el
+    budget aquí antes del POST y logueamos el costo AL INSTANTE (regla CLAUDE.md).
+    """
     import os, base64, requests as rq, io
     from PIL import Image as PILImage
+    from _llm import _month_cost, MONTHLY_BUDGET, log_run, now_iso
 
     fal_key = os.environ.get("FAL_KEY")
     if not fal_key:
         sys.exit("FAL_KEY no encontrada en .env. Necesaria para --engine hailuo.")
+
+    spent = _month_cost()
+    if spent + HAILUO_COST >= MONTHLY_BUDGET:
+        sys.exit(f"🛑 Budget ${MONTHLY_BUDGET:.2f} alcanzado (mes: ${spent:.3f}). "
+                 f"Hailuo abortado. Usa --engine ffmpeg ($0).")
 
     print("  Convirtiendo imagen seed a base64…")
     img = PILImage.open(images[0]).convert("RGB")
@@ -194,19 +207,39 @@ def run_hailuo(images: list[Path], kit_dir: Path, out_path: Path):
     captions = parse_captions(kit_dir)
     prompt_text = " ".join(captions[:2]) if captions else "editorial travel learning scene, cinematic"
 
-    print(f"  Llamando Hailuo-02 (10s, ~$0.45)…")
-    resp = rq.post(
-        "https://fal.run/fal-ai/minimax/hailuo-02/standard/image-to-video",
-        headers={"Authorization": f"Key {fal_key}", "Content-Type": "application/json"},
-        json={
-            "image_url": image_data_uri,
-            "prompt": prompt_text,
-            "duration": 10,
-        },
-        timeout=300,
-    )
-    resp.raise_for_status()
-    data = resp.json()
+    # Endpoint QUEUE (submit + poll). El sync fal.run hace timeout: Hailuo tarda >5min.
+    import time
+    headers = {"Authorization": f"Key {fal_key}", "Content-Type": "application/json"}
+    model = "fal-ai/minimax/hailuo-02/standard/image-to-video"
+    print(f"  Encolando Hailuo-02 (10s, ~$0.45)…")
+    sub = rq.post(f"https://queue.fal.run/{model}", headers=headers,
+                  json={"image_url": image_data_uri, "prompt": prompt_text, "duration": 10},
+                  timeout=60)
+    sub.raise_for_status()
+    q = sub.json()
+    status_url = q.get("status_url")
+    response_url = q.get("response_url")
+    if not status_url:
+        sys.exit(f"Hailuo no devolvió status_url: {q}")
+
+    # Poll hasta COMPLETED (máx ~12 min)
+    deadline = time.time() + 720
+    while time.time() < deadline:
+        time.sleep(10)
+        s = rq.get(status_url, headers=headers, timeout=30)
+        s.raise_for_status()
+        status = s.json().get("status")
+        print(f"  …{status}")
+        if status == "COMPLETED":
+            break
+        if status in ("FAILED", "ERROR"):
+            sys.exit(f"Hailuo falló: {s.json()}")
+    else:
+        sys.exit("Hailuo timeout (>12min). Reintenta o usa --engine ffmpeg.")
+
+    res = rq.get(response_url, headers=headers, timeout=60)
+    res.raise_for_status()
+    data = res.json()
     video_url = data.get("video", {}).get("url")
     if not video_url:
         sys.exit(f"Hailuo no devolvió URL de video: {data}")
@@ -228,7 +261,8 @@ def run_hailuo(images: list[Path], kit_dir: Path, out_path: Path):
         str(out_path),
     ], check=True)
     tmp_path.unlink(missing_ok=True)
-    print(f"  Costo estimado: ~$0.45 (10s × $0.045/s)")
+    log_run("make_video", now_iso(), now_iso(), 0, 0, HAILUO_COST, 1, "success", "hailuo")
+    print(f"  Costo: ~${HAILUO_COST:.2f} (10s Hailuo-02) — logueado en agent_runs")
 
 
 def main():
@@ -236,6 +270,8 @@ def main():
     parser.add_argument("--kit", required=True, help="Nombre o path del kit (ej: 2026-06-15-retiros)")
     parser.add_argument("--engine", choices=["ffmpeg", "hailuo"], default="ffmpeg",
                         help="ffmpeg = slideshow Ken-Burns gratuito (default) | hailuo = clip IA ~$0.45")
+    parser.add_argument("--mode", choices=["slideshow", "tiktokslide"], default="slideshow",
+                        help="slideshow = fotos Gemini con captions | tiktokslide = slides PNG branded → mp4")
     args = parser.parse_args()
 
     check_ffmpeg()
@@ -243,10 +279,30 @@ def main():
     kit_dir = find_kit(args.kit)
     print(f"Kit: {kit_dir.name}")
 
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    # tiktokslide: encadena los PNG branded ya renderizados (sin captions extra)
+    if args.mode == "tiktokslide":
+        slide_dir = kit_dir / "tiktokslide"
+        if not slide_dir.exists() or not list(slide_dir.glob("*.png")):
+            slide_dir = kit_dir / "carousel"
+        slides = sorted(slide_dir.glob("*.png"))
+        if not slides:
+            sys.exit(f"No hay slides PNG en {kit_dir}/tiktokslide ni /carousel. "
+                     f"Corre make_carousel.py primero.")
+        out_path = OUT_DIR / f"{kit_dir.name}-tiktokslide.mp4"
+        music = FALLBACK_MUSIC[0] if FALLBACK_MUSIC else None
+        print(f"Slides: {len(slides)} | música: {music.name if music else 'ninguna'}")
+        cmd = build_ffmpeg_cmd(slides, [], music, out_path)
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            print("ffmpeg error:\n" + result.stderr[-2000:]); sys.exit(1)
+        print(f"\nTikTokSlide generado: {out_path}\nCosto: <$0.05 (ffmpeg local)")
+        return
+
     images = find_images(kit_dir)
     print(f"Imágenes: {[i.name for i in images]}")
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
     out_path = OUT_DIR / f"{kit_dir.name}.mp4"
 
     if args.engine == "hailuo":

@@ -1,0 +1,75 @@
+name: Blog semanal
+
+on:
+  schedule:
+    - cron: '45 15 * * 3'   # Miércoles 10:45am Guayaquil (UTC-5)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rutas-write
+  cancel-in-progress: false
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Avisar plan a Telegram
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          MSG=$(printf '🟡 Blog semanal quiere correr\nVa a: generar 1 artículo pillar AEO/SEO/GEO en content/drafts/articles/ (Sonnet, no publica)\nAprueba — "Review deployments" en:\n%s' "$RUN_URL")
+          curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
+            -d "chat_id=$CHAT_ID" \
+            --data-urlencode "text=$MSG"
+
+  run:
+    needs: announce
+    environment: aprobacion
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sincronizar con main más reciente
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/init_db.py
+      - name: Generar blog semanal
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MONTHLY_BUDGET_USD: '4'
+        run: python scripts/content_gen.py --blog
+      - name: Commit draft
+        run: |
+          git config user.name "rutas-bot"
+          git config user.email "bot@rutasdecrecimiento.com"
+          git add content/drafts/articles/ data/retreats.db || true
+          git diff --staged --quiet && echo "sin cambios" && exit 0
+          git commit -m "blog semanal $(date -u +%Y-%m-%d)"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && exit 0
+            echo "push rechazado, reintento $i"; sleep 5
+          done
+          exit 1
+      - name: Notificacion Telegram
+        if: always()
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          ICON="✅"; [ "$JOB_STATUS" != "success" ] && ICON="❌"
+          MSG=$(printf '%s Blog semanal — draft en content/drafts/articles/\nEstado: %s\nRevísalo y publícalo en Content Studio.\n%s' "$ICON" "$JOB_STATUS" "$RUN_URL")
+          curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
+            -d "chat_id=$CHAT_ID" \
+            --data-urlencode "text=$MSG"

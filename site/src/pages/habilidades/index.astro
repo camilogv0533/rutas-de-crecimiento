@@ -1,23 +1,77 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+
+const SKILL_ICONS: Record<string, string> = {
+  'inteligencia-emocional': '🧠',
+  'proposito': '🧭',
+  'liderazgo': '👑',
+  'comunicacion': '💬',
+  'creatividad': '🎨',
+  'toma-decisiones': '⚡',
+  'resiliencia': '🛡️',
+  'trabajo-equipo': '🤝',
+  'mindfulness': '🌿',
+  'estrategia': '🔭',
+  'escritura': '✍️',
+  'networking': '🌐',
+  'idiomas': '🗣️',
+  'problem-solving': '🔍',
+  'observacion-consciente': '👁️',
+  'cocina': '🍳',
+  'sostenibilidad': '🌱',
+  'negociacion': '🤝',
+  'longevidad': '💪',
+  'manejo-burnout': '🌊',
+  'habitos-sueno': '😴',
+  'emprendimiento': '🚀',
+  'innovacion': '💡',
+  'gestion-tiempo': '⏱️',
+  'supervivencia-outdoor': '🏕️',
+  'fotografia': '📷',
+  'musica': '🎵',
+  'ai-leadership': '🤖',
+  'no-code': '⚙️',
+  'diseno-experiencias': '🎯',
+};
+
+const TYPE_LABELS: Record<string, string> = {
+  soft: 'Blanda',
+  hard: 'Técnica',
+  tech: 'Digital',
+};
+
 const skills = await getCollection('skills');
+const sorted = [...skills].sort((a, b) => (b.data.retreat_count ?? 0) - (a.data.retreat_count ?? 0));
 ---
-<Base title="Habilidades" description="Explora retiros por habilidad: liderazgo, creatividad, propósito, resiliencia, y más.">
-<section class="container hero">
+<Base title="Habilidades — Rutas de Crecimiento" description="Explora retiros por habilidad: liderazgo, creatividad, propósito, resiliencia, y más.">
+
+<section class="skills-hero container">
   <h1>Habilidades</h1>
   <p class="lede">Cada habilidad tiene retiros que la trabajan de manera intencional, conectando lugar y método.</p>
 </section>
-<section class="container section">
-  <div class="grid">
-    {skills.map(s => (
-      <a href={`/habilidades/${s.data.slug}`} class="cover-link">
-        <div class="card">
-          <h3>{s.data.name_es}</h3>
-          <p class="tagline">{s.data.name_en} · {s.data.type}</p>
-        </div>
-      </a>
-    ))}
+
+<section class="skills-listing container section-lg">
+  <div class="skills-mosaic">
+    {sorted.map(s => {
+      const icon = SKILL_ICONS[s.data.slug] ?? '✦';
+      const typeLabel = s.data.type ? TYPE_LABELS[s.data.type] ?? s.data.type : null;
+      const count = s.data.retreat_count ?? 0;
+      return (
+        <a href={`/habilidades/${s.data.slug}`} class="skill-tile">
+          <div class="skill-tile__icon">{icon}</div>
+          <div class="skill-tile__body">
+            <h3 class="skill-tile__name">{s.data.name_es}</h3>
+            {s.data.name_en && <p class="skill-tile__sub">{s.data.name_en}</p>}
+          </div>
+          <div class="skill-tile__footer">
+            {typeLabel && <span class="skill-tile__type">{typeLabel}</span>}
+            <span class="skill-tile__count">{count} {count === 1 ? 'retiro' : 'retiros'}</span>
+          </div>
+        </a>
+      );
+    })}
   </div>
 </section>
+
 </Base>

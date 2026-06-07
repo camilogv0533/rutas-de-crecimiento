@@ -11,7 +11,8 @@ const sorted = retreats.sort((a, b) => (b.data.reviewed_by_us ? 1 : 0) - (a.data
 
 const allSkillsInUse = new Set<string>();
 retreats.forEach(r => r.data.skills.forEach(s => allSkillsInUse.add(s)));
-const featuredSkills = skills.filter(s => allSkillsInUse.has(s.data.slug)).slice(0, 10);
+const skillsWithRetreats = skills.filter(s => allSkillsInUse.has(s.data.slug));
+const featuredSkills = skillsWithRetreats.slice(0, 10);
 
 const masterminds = sorted.filter(r => (r.data.categories || []).includes('mastermind'));
 const regularRetreats = sorted.filter(r => !(r.data.categories || []).includes('mastermind'));
@@ -35,7 +36,7 @@ const regularRetreats = sorted.filter(r => !(r.data.categories || []).includes('
       <div class="home-hero__stats">
         <div class="home-hero__stat"><strong>{retreats.length}</strong><span>retiros</span></div>
         <div class="home-hero__stat"><strong>{destinations.length}</strong><span>destinos</span></div>
-        <div class="home-hero__stat"><strong>{skills.length}</strong><span>habilidades</span></div>
+        <div class="home-hero__stat"><strong>{skillsWithRetreats.length}</strong><span>habilidades</span></div>
       </div>
     </div>
     <div class="home-hero__visual">

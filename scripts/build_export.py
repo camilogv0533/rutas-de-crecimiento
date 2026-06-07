@@ -113,10 +113,15 @@ def export_skills(conn):
     out_dir = SITE_CONTENT / "skills"
     if out_dir.exists():
         shutil.rmtree(out_dir)
-    cur = conn.execute("SELECT slug, name_es, name_en, type, description_es FROM skills")
+    # Only export skills with at least one linked retreat
+    cur = conn.execute(
+        "SELECT s.slug, s.name_es, s.name_en, s.type, s.description_es, COUNT(rs.retreat_id) as cnt "
+        "FROM skills s JOIN retreat_skills rs ON s.id=rs.skill_id "
+        "GROUP BY s.id HAVING cnt > 0 ORDER BY cnt DESC"
+    )
     n = 0
-    for slug, name_es, name_en, stype, desc in cur.fetchall():
-        fm = {"slug": slug, "name_es": name_es}
+    for slug, name_es, name_en, stype, desc, cnt in cur.fetchall():
+        fm = {"slug": slug, "name_es": name_es, "retreat_count": cnt}
         if name_en:
             fm["name_en"] = name_en
         if stype:
@@ -125,7 +130,7 @@ def export_skills(conn):
             fm["description_es"] = desc
         write_md(out_dir / f"{slug}.md", fm)
         n += 1
-    print(f"Skills exported: {n}")
+    print(f"Skills exported: {n} (with retreats)")
 
 
 def export_destinations(conn):

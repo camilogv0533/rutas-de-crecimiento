@@ -37,7 +37,8 @@ const skills = defineCollection({
     name_es: z.string(),
     name_en: z.string().optional(),
     type: z.enum(['soft', 'hard', 'tech']).optional(),
-    description_es: z.string().optional()
+    description_es: z.string().optional(),
+    retreat_count: z.number().default(0)
   })
 });
 

@@ -378,7 +378,82 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 .filter-pill.active { background: var(--accent-green); color: var(--text-inverse); border-color: var(--accent-green); }
 .filter-pill:hover:not(.active) { border-color: var(--text-secondary); }
 
+/* Skills mosaic */
+.skills-hero { padding: 4rem 0 1.5rem; }
+.skills-hero h1 { margin-bottom: 0.5rem; }
+.skills-hero .lede { max-width: 600px; color: var(--text-secondary); font-size: 1.1rem; }
+
+.skills-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2rem 0 4rem;
+}
+
+.skill-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.1rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow .18s, transform .18s, border-color .18s;
+  box-shadow: var(--shadow-sm);
+}
+.skill-tile:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: rgba(5, 150, 105, 0.4);
+}
+.skill-tile__icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+.skill-tile__body { flex: 1; }
+.skill-tile__name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+}
+.skill-tile__sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: var(--font-mono);
+}
+.skill-tile__footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.skill-tile__type {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--accent-green);
+  font-weight: 500;
+}
+.skill-tile__count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  .skills-mosaic { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 640px) {
   .hero { padding: 3rem 0 2rem; }
   header.site-header nav a { margin-left: 1rem; font-size: 0.85rem; }
+  .skills-mosaic { grid-template-columns: repeat(2, 1fr); }
 }

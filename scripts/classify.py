@@ -40,6 +40,32 @@ TOOL = {
     }
 }
 
+NEW_SKILL_TOOL = {
+    "name": "propose_new_skills",
+    "description": "Propose 1-3 brand-new skills not covered by the taxonomy. Only use when no existing skill fits.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "skills": {
+                "type": "array",
+                "maxItems": 3,
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "slug": {"type": "string", "description": "lowercase-hyphenated unique identifier"},
+                        "name_es": {"type": "string"},
+                        "name_en": {"type": "string"},
+                        "type": {"type": "string", "enum": ["soft", "hard", "tech"]},
+                        "confidence": {"type": "number"}
+                    },
+                    "required": ["slug", "name_es", "name_en", "type", "confidence"]
+                }
+            }
+        },
+        "required": ["skills"]
+    }
+}
+
 
 def get_retreat(conn, slug: str | None):
     if slug:
@@ -81,6 +107,46 @@ def classify_one(rid: int, retreat_text: str, valid_slugs: set, taxonomy_block: 
     return cleaned, resp.usage
 
 
+def propose_new_skill(retreat_text: str, taxonomy_block: str):
+    system = (
+        "You propose new skills for a taxonomy when no existing skill fits. "
+        "Propose only genuinely distinct, reusable skills (not one-off retreat topics). "
+        "Use lowercase-hyphenated slugs. Confidence reflects how certain you are this skill is real and reusable."
+    )
+    user = (
+        f"EXISTING TAXONOMY (do NOT repeat these):\n{taxonomy_block}\n\n"
+        f"RETREAT (no taxonomy skill fits):\n{retreat_text}\n\n"
+        "Propose new skills this retreat clearly develops that have no existing match. "
+        "Call propose_new_skills."
+    )
+    resp = call(
+        model=HAIKU,
+        system=system,
+        messages=[{"role": "user", "content": user}],
+        tools=[NEW_SKILL_TOOL],
+        tool_choice={"type": "tool", "name": "propose_new_skills"},
+        max_tokens=512,
+    )
+    payload = None
+    for b in resp.content:
+        if b.type == "tool_use" and b.name == "propose_new_skills":
+            payload = b.input
+            break
+    proposed = payload.get("skills", []) if payload else []
+    return proposed, resp.usage
+
+
+def add_skill_to_taxonomy(tax_path: Path, slug: str, name_es: str, name_en: str, stype: str):
+    tax = json.loads(tax_path.read_text())
+    if any(s["slug"] == slug for s in tax["skills"]):
+        return
+    tax["skills"].append({
+        "slug": slug, "name_es": name_es, "name_en": name_en, "type": stype,
+        "synonyms_es": [], "synonyms_en": []
+    })
+    tax_path.write_text(json.dumps(tax, ensure_ascii=False, indent=2))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--slug")
@@ -116,6 +182,38 @@ def main():
             text = "\n".join(filter(None, [title, tagline or "", intro or "", what_unique or "", who_for or "", learn or ""]))
             try:
                 skills, usage = classify_one(rid, text, valid_slugs, taxonomy_block)
+                total_cost += cost_of(HAIKU, usage)
+                total_in += usage.input_tokens
+                total_out += usage.output_tokens
+
+                # Cycle: if no skills matched, propose new ones
+                if not skills:
+                    new_proposed, usage2 = propose_new_skill(text, taxonomy_block)
+                    total_cost += cost_of(HAIKU, usage2)
+                    total_in += usage2.input_tokens
+                    total_out += usage2.output_tokens
+                    for ns in new_proposed:
+                        nslug = ns["slug"]
+                        if nslug in slug_to_id:
+                            # already exists → use it
+                            skills.append({"slug": nslug, "confidence": ns["confidence"]})
+                        elif ns.get("confidence", 0) >= 0.7:
+                            # new skill: add to DB + taxonomy
+                            conn.execute(
+                                "INSERT OR IGNORE INTO skills (slug, name_es, name_en, type) VALUES (?,?,?,?)",
+                                (nslug, ns["name_es"], ns["name_en"], ns["type"])
+                            )
+                            conn.commit()
+                            sid_row = conn.execute("SELECT id FROM skills WHERE slug=?", (nslug,)).fetchone()
+                            if sid_row:
+                                slug_to_id[nslug] = sid_row[0]
+                                valid_slugs.add(nslug)
+                                taxonomy_lines.append(f"- {nslug}: {ns['name_es']} / {ns['name_en']}")
+                                taxonomy_block = "\n".join(taxonomy_lines)
+                                add_skill_to_taxonomy(TAXONOMY, nslug, ns["name_es"], ns["name_en"], ns["type"])
+                                skills.append({"slug": nslug, "confidence": ns["confidence"]})
+                                print(f"  NEW skill created: {nslug} ({ns['name_es']})")
+
                 conn.execute("DELETE FROM retreat_skills WHERE retreat_id=?", (rid,))
                 for s in skills:
                     sid = slug_to_id.get(s["slug"])
@@ -126,9 +224,6 @@ def main():
                         )
                 conn.commit()
                 items += 1
-                total_cost += cost_of(HAIKU, usage)
-                total_in += usage.input_tokens
-                total_out += usage.output_tokens
                 print(f"  classified {slug}: {[s['slug'] for s in skills]}")
             except BudgetExceeded as e:
                 errors.append(f"BUDGET: {e}")

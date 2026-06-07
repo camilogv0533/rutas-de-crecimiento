@@ -185,7 +185,7 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 .section-link { font-size: 0.9rem; color: var(--accent-green); font-weight: 500; }
 
 /* ── Retreat cards ─────────────────────────────────────── */
-.retreat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.retreat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 .retreat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow .2s, transform .2s; }
 .retreat-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .retreat-card__link { display: block; color: inherit; border: none; }
@@ -354,7 +354,7 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 .tag.skill { background: rgba(5, 150, 105, 0.1); color: var(--accent-green); }
 .tag.location { background: rgba(217, 119, 6, 0.1); color: var(--accent-warm); }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
 .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-sm); transition: box-shadow .2s, transform .2s; }
 .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .card h3 { margin-top: 0; margin-bottom: 0.4rem; }

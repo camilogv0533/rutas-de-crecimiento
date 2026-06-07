@@ -137,7 +137,14 @@ def export_destinations(conn):
     out_dir = SITE_CONTENT / "destinations"
     if out_dir.exists():
         shutil.rmtree(out_dir)
-    cur = conn.execute("SELECT slug, name, country, region, narrative_hook, unique_skills_associated, image_url FROM destinations")
+    # Only export destinations with at least one active retreat
+    cur = conn.execute(
+        "SELECT d.slug, d.name, d.country, d.region, d.narrative_hook, d.unique_skills_associated, d.image_url "
+        "FROM destinations d "
+        "WHERE EXISTS ("
+        "  SELECT 1 FROM retreats r WHERE r.location_country = d.country AND r.status='active'"
+        ") ORDER BY d.name"
+    )
     n = 0
     for row in cur.fetchall():
         slug, name, country, region, hook, skills_json, image_url = row
@@ -154,7 +161,7 @@ def export_destinations(conn):
             fm["image_url"] = image_url
         write_md(out_dir / f"{slug}.md", fm)
         n += 1
-    print(f"Destinations exported: {n}")
+    print(f"Destinations exported: {n} (with retreats)")
 
 
 def main():

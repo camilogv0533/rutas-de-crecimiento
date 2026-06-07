@@ -12,7 +12,7 @@ language: "English"
 what_unique: "Combinación de sesiones de coaching uno a uno con tiempo ininterrumpido para reflexionar y tomar decisiones. El retiro es estructurado, intencional y altamente personalizado, tomando lugar en un entorno privado de rancho diseñado para el enfoque y la reflexión profunda."
 who_for: "Personas que se sienten estancadas en su carrera o dirección de vida, están considerando un cambio importante o transición, desean claridad antes de tomar una decisión importante, necesitan tiempo ininterrumpido para pensar, y están listas para avanzar pero inseguras sobre cómo hacerlo."
 skills: ["proposito", "toma-decisiones", "inteligencia-emocional", "mindfulness", "estrategia"]
-destinations: []
+destinations: ["estados-unidos"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/the-immersion-a-life-and-career-coaching-retreat.webp"]
 categories: ["retiro"]

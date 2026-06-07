@@ -183,11 +183,67 @@ def generate_hero() -> Path:
     return path
 
 
+DEST_OUT_DIR = ROOT / "site" / "public" / "img" / "destinations"
+DEST_OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def generate_destination_image(dest_slug: str, dest_name: str, country: str | None) -> Path:
+    """Generate an evocative landscape image for a destination."""
+    country_hint = f" in {country}" if country else ""
+    prompt = (
+        f"Editorial travel photograph of {dest_name}{country_hint}. "
+        "Iconic landscape that captures the spirit of this place: natural light, golden hour or blue hour, "
+        "architectural or natural landmark recognizable but not branded, diffuse human presence (silhouette, backs), "
+        "35mm lens, cinematic depth of field, no text, no logos, no watermarks. "
+        "Colors authentic to the location's climate and culture."
+    )
+    path = DEST_OUT_DIR / f"{dest_slug}.webp"
+    return generate_to_path(prompt, path)
+
+
+def run_destinations(only_slug: str | None = None):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    if only_slug:
+        rows = conn.execute(
+            "SELECT slug, name, country FROM destinations WHERE slug=?", (only_slug,)
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            "SELECT d.slug, d.name, d.country FROM destinations d "
+            "WHERE NOT EXISTS (SELECT 1 FROM retreats r WHERE r.location_country=d.country AND r.status='active') IS NOT 1 "
+            "AND (d.image_url IS NULL OR d.image_url = '')"
+        ).fetchall()
+    conn.close()
+    if not rows:
+        print("Todos los destinos ya tienen imagen.")
+        return
+
+    est = len(rows) * IMG_COST
+    print(f"Generar {len(rows)} imagen(es) destino — costo estimado: ${est:.3f}")
+    for row in rows:
+        if _month_cost() + IMG_COST >= MONTHLY_BUDGET:
+            print("🛑 Budget alcanzado.")
+            break
+        slug = row["slug"]
+        print(f"  {slug}...")
+        path = generate_destination_image(slug, row["name"], row["country"])
+        rel = f"/img/destinations/{slug}.webp"
+        c2 = sqlite3.connect(DB_PATH)
+        c2.execute("UPDATE destinations SET image_url=? WHERE slug=?", (rel, slug))
+        c2.commit()
+        c2.close()
+        log_run("image_gen_dest", now_iso(), now_iso(), 0, 0, IMG_COST, 1, "success")
+        print(f"    ✅ {path.name}  (~${IMG_COST:.3f})")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug")
     ap.add_argument("--all", action="store_true", help="regenera TODOS los activos con IA (reemplaza fotos hotlink)")
     ap.add_argument("--hero", action="store_true", help="genera solo la imagen hero de portada")
+    ap.add_argument("--destinations", action="store_true", help="genera imágenes para destinos sin imagen")
+    ap.add_argument("--destination-slug", help="genera imagen para un destino específico")
     args = ap.parse_args()
 
     if not os.environ.get("GEMINI_API_KEY"):
@@ -196,6 +252,10 @@ def main():
     if args.hero:
         path = generate_hero()
         print(f"Hero generado: {path}  (~${IMG_COST:.3f})")
+        return
+
+    if args.destinations or args.destination_slug:
+        run_destinations(only_slug=args.destination_slug)
         return
 
     conn = sqlite3.connect(DB_PATH)

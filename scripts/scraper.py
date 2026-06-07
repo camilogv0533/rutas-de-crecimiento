@@ -119,6 +119,50 @@ def extract(url: str, text: str) -> tuple[dict, dict]:
     return payload, resp.usage
 
 
+COUNTRY_NAMES_ES = {
+    "AF": "Afganistán", "AL": "Albania", "DZ": "Argelia", "AR": "Argentina",
+    "AU": "Australia", "AT": "Austria", "BE": "Bélgica", "BO": "Bolivia",
+    "BR": "Brasil", "BG": "Bulgaria", "CA": "Canadá", "CL": "Chile",
+    "CN": "China", "CO": "Colombia", "CR": "Costa Rica", "HR": "Croacia",
+    "CZ": "República Checa", "DK": "Dinamarca", "EC": "Ecuador",
+    "EG": "Egipto", "FI": "Finlandia", "FR": "Francia", "DE": "Alemania",
+    "GR": "Grecia", "GT": "Guatemala", "HN": "Honduras", "HU": "Hungría",
+    "IS": "Islandia", "IN": "India", "ID": "Indonesia", "IE": "Irlanda",
+    "IL": "Israel", "IT": "Italia", "JP": "Japón", "KE": "Kenia",
+    "MX": "México", "MA": "Marruecos", "NL": "Países Bajos", "NZ": "Nueva Zelanda",
+    "NO": "Noruega", "PA": "Panamá", "PY": "Paraguay", "PE": "Perú",
+    "PH": "Filipinas", "PL": "Polonia", "PT": "Portugal", "PR": "Puerto Rico",
+    "RO": "Rumanía", "RU": "Rusia", "SA": "Arabia Saudita", "ZA": "Sudáfrica",
+    "KR": "Corea del Sur", "ES": "España", "SE": "Suecia", "CH": "Suiza",
+    "TH": "Tailandia", "TN": "Túnez", "TR": "Turquía", "UA": "Ucrania",
+    "GB": "Gran Bretaña", "US": "Estados Unidos", "UY": "Uruguay",
+    "VE": "Venezuela", "VN": "Vietnam",
+}
+
+
+def upsert_destination(country: str, region: str | None, city: str | None):
+    if not country:
+        return
+    name_es = COUNTRY_NAMES_ES.get(country.upper(), country)
+    region_clean = (region or "").strip()
+    # Build slug: prefer region for known multi-destination countries
+    if region_clean:
+        slug = slugify(region_clean)[:60]
+    else:
+        slug = slugify(name_es)[:60]
+    conn = sqlite3.connect(DB_PATH)
+    existing = conn.execute("SELECT id FROM destinations WHERE slug=?", (slug,)).fetchone()
+    if not existing:
+        # also check if any destination for this country already exists with same region
+        conn.execute(
+            "INSERT OR IGNORE INTO destinations (slug, name, country, region) VALUES (?,?,?,?)",
+            (slug, region_clean or name_es, country.upper(), region_clean or None)
+        )
+        conn.commit()
+        print(f"  destination created: {slug} ({name_es})")
+    conn.close()
+
+
 def upsert(data: dict, source_url: str) -> str:
     slug = slugify(data["title"])[:80] or slugify(urlparse(source_url).netloc)
     conn = sqlite3.connect(DB_PATH)
@@ -189,6 +233,12 @@ def process_url(url: str, dry_run: bool = False) -> dict:
     if dry_run:
         return {"url": url, "dry_run": True, "data": data, "cost": cost_of(HAIKU, usage)}
     slug = upsert(data, url)
+    # Cycle: ensure destination exists for this retreat's country
+    upsert_destination(
+        data.get("location_country"),
+        data.get("location_region"),
+        data.get("location_city")
+    )
     return {"url": url, "slug": slug, "cost": cost_of(HAIKU, usage), "tokens_in": usage.input_tokens, "tokens_out": usage.output_tokens}
 
 

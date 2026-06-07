@@ -17,7 +17,7 @@ group_size_max: 32
 what_unique: "Acceso a zonas restringidas de la Macaulay Library y el Museum of Vertebrates; encuentros directos con investigadores del Cornell Lab; retiro completamente gratuito con estipendios de viaje y alojamiento; posibilidad de obtener hasta 3 CEU otorgados por Cornell University"
 who_for: "Educadores de K-12: docentes, bibliotecarios, coordinadores, naturalistas, entrenadores y directivos"
 skills: ["creatividad", "proposito", "problem-solving", "trabajo-equipo", "sostenibilidad"]
-destinations: []
+destinations: ["estados-unidos"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/2026-summer-educator-retreat.webp"]
 categories: ["retiro"]

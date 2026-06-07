@@ -17,7 +17,7 @@ group_size_max: 25
 what_unique: "Un retiro facilitado por expertos internacionales incluyendo Senior Fellow de la Universidad de Oxford, consultores de liderazgo reconocidos globalmente y autoridades en crecimiento impulsado por propósito; sesiones individuales de integración post-retiro para consolidar insights e impulsar impacto duradero; acceso a una red global de líderes comprometidos con la transformación; énfasis en reflexión profunda, resiliencia y renovación personal junto con herramientas prácticas para el cambio organizacional"
 who_for: "Líderes con 5+ años de experiencia en roles de liderazgo; tomadores de decisiones y líderes de equipo dentro de una organización; personas con títulos como director ejecutivo, director, miembro de junta o líder senior en organizaciones del sector privado, público o ONG"
 skills: ["liderazgo", "resiliencia", "proposito", "inteligencia-emocional", "estrategia"]
-destinations: []
+destinations: ["gran-bretana"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/global-leadership-retreats.webp"]
 categories: ["retiro"]

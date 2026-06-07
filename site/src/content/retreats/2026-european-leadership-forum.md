@@ -12,7 +12,7 @@ language: "English"
 what_unique: "Movimiento donde ningún líder está solo. Foro que une, equipa y proporciona recursos a líderes evangélicos para renovar la iglesia bíblica y evangelizar Europa. Puente conectando las necesidades de los líderes locales con recursos globales de Dios."
 who_for: "Líderes evangélicos espiritualmente maduros en roles de liderazgo (pastores, planificadores de iglesias, profesores universitarios, periodistas, científicos, artistas, psicólogos, médicos). Fluidos en inglés avanzado."
 skills: ["liderazgo", "comunicacion", "proposito", "inteligencia-emocional", "networking"]
-destinations: []
+destinations: ["polonia"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/2026-european-leadership-forum.webp"]
 categories: ["retiro"]

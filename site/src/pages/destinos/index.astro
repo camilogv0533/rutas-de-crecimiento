@@ -1,23 +1,31 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+
 const destinations = await getCollection('destinations');
 ---
-<Base title="Destinos" description="Lugares que enseñan: cada destino tiene una narrativa que lo hace ideal para desarrollar habilidades concretas.">
+<Base title="Destinos — Rutas de Crecimiento" description="Lugares que enseñan: cada destino tiene una narrativa que lo hace ideal para desarrollar habilidades concretas.">
+
 <section class="container hero">
   <h1>Destinos</h1>
   <p class="lede">No coleccionamos países. Coleccionamos lugares cuya esencia enseña algo concreto a quien los visita con intención.</p>
 </section>
-<section class="container section">
-  <div class="grid">
-    {destinations.map(d => (
-      <a href={`/destinos/${d.data.slug}`} class="cover-link">
-        <div class="card">
+
+<section class="container section-lg">
+  <div class="destinations-grid">
+    {destinations.map((d, i) => (
+      <a href={`/destinos/${d.data.slug}`} class="destination-card">
+        <div class="destination-card__bg" style={`background: linear-gradient(160deg, hsl(${(i * 47 + 140) % 360}, 40%, 25%) 0%, hsl(${(i * 47 + 160) % 360}, 50%, 35%) 100%)`}></div>
+        {d.data.image_url && (
+          <img src={d.data.image_url} alt={d.data.name} class="destination-card__photo" loading="lazy" />
+        )}
+        <div class="destination-card__content">
           <h3>{d.data.name}</h3>
-          {d.data.narrative_hook && <p class="tagline">{d.data.narrative_hook}</p>}
+          {d.data.narrative_hook && <p>{d.data.narrative_hook}</p>}
         </div>
       </a>
     ))}
   </div>
 </section>
+
 </Base>

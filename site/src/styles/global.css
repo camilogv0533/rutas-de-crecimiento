@@ -302,7 +302,13 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 
 /* ── Destinations ──────────────────────────────────────── */
 .destinations-section { background: var(--bg-secondary); padding: 5rem 0; }
-.destinations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 860px) { .destinations-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .destinations-grid { grid-template-columns: 1fr; } }
 .destination-card {
   position: relative;
   height: 200px;

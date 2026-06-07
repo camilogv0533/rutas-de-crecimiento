@@ -17,7 +17,7 @@ group_size_max: 13
 what_unique: "Ubicado en Quinta Carvalhas, una granja de lujo con 150 años en la campiña portuguesa a una hora de Lisboa. El retiro incluye alojamiento en habitaciones espaciosas y elegantes, comidas vegetarianas de temporada preparadas en el sitio con ingredientes cultivados en la granja, acceso a piscina, sesiones opcionales de yoga matutino en una sala de yoga restaurada, y transferencias gratuitas desde la estación de tren. Tutelado personalmente por Jacqui Lofthouse, autora experimentada y mentora de escritura conocida por su enfoque compasivo e perspicaz."
 who_for: "Este retiro es para escritores de todos los orígenes y niveles de experiencia, ya sea que estés volviendo a la página después de un tiempo fuera, estés profundamente en medio de un proyecto, o simplemente busques una perspectiva nueva en un entorno verdaderamente inspirador."
 skills: ["creatividad", "proposito", "inteligencia-emocional", "mindfulness", "escritura"]
-destinations: []
+destinations: ["portugal"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/the-portugal-writing-retreat.webp"]
 categories: ["retiro"]

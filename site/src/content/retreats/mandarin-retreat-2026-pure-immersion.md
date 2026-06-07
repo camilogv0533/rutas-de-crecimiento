@@ -18,7 +18,7 @@ group_size_max: 13
 what_unique: "El único evento de este tipo en el mundo. Más de 100 horas de inmersión total en la campiña británica, sin cambio de huso horario. Uso exclusivo de una gran mansión con jardines y estanque natural para nadar. Una proporción equilibrada de un hablante fluido por cada participante. Entorno con norma de cero inglés. Todas las actividades —cocina, mahjong, caminatas por el campo— se desarrollan íntegramente en mandarín."
 who_for: "Adultos que buscan alcanzar una fluidez conversacional real en chino mandarín a través de la inmersión total."
 skills: ["comunicacion", "inteligencia-emocional", "observacion-consciente", "cocina", "idiomas"]
-destinations: []
+destinations: ["gran-bretana"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/mandarin-retreat-2026-pure-immersion.webp"]
 categories: ["retiro"]

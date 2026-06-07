@@ -48,9 +48,92 @@ def parse_frontmatter(path: Path):
     return fm, parts[2].strip()
 
 
-tab_drafts, tab_retreats, tab_costs, tab_logs, tab_findings = st.tabs(
-    ["Drafts pendientes", "Retiros DB", "Costos", "Logs agentes", "Findings SEO"]
+KITS = DRAFTS / "kits"
+VIDEOS = ROOT / "content" / "videos"
+
+tab_studio, tab_drafts, tab_retreats, tab_costs, tab_logs, tab_findings = st.tabs(
+    ["🎬 Content Studio", "Drafts pendientes", "Retiros DB", "Costos", "Logs agentes", "Findings SEO"]
 )
+
+
+with tab_studio:
+    import subprocess
+    PY = (ROOT / ".venv" / "bin" / "python")
+    PY = str(PY if PY.exists() else "python3")
+
+    st.subheader("Generar kit quincenal")
+    st.caption("1 carrusel + 2 estáticas + tiktokslide.mp4 + video + 3 threads + long post. "
+               "Costo ~$0.18 (ffmpeg) / ~$0.63 (Hailuo).")
+    cgen1, cgen2, cgen3 = st.columns([2, 2, 1])
+    with cgen1:
+        src = st.radio("Fuente", ["Ciclo (2 blogs recientes)", "Topic nuevo"], horizontal=False)
+        topic = st.text_input("Topic", placeholder="retiros de liderazgo en los Andes") if src == "Topic nuevo" else None
+    with cgen2:
+        engine = st.radio("Motor de video", ["ffmpeg ($0)", "hailuo (~$0.45)"], horizontal=False)
+        eng = "hailuo" if engine.startswith("hailuo") else "ffmpeg"
+    with cgen3:
+        st.write("")
+        st.write("")
+        go = st.button("⚙️ Generar kit", type="primary")
+    if go:
+        cmd = [PY, str(ROOT / "scripts" / "make_kit.py"), "--video", eng]
+        if src == "Topic nuevo" and topic:
+            cmd += ["--topic", topic]
+        else:
+            cmd += ["--cycle"]
+        with st.spinner("Generando kit… (puede tardar 1-2 min)"):
+            r = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
+        st.code((r.stdout or "") + ("\n" + r.stderr[-1500:] if r.returncode else ""))
+        if r.returncode == 0:
+            st.success("Kit generado. Selecciónalo abajo."); st.rerun()
+        else:
+            st.error("Falló — revisa el log arriba.")
+
+    st.divider()
+    st.subheader("Kits existentes")
+    kits = sorted([d for d in KITS.glob("*") if d.is_dir()], reverse=True) if KITS.exists() else []
+    if not kits:
+        st.info("Sin kits aún. Genera uno arriba.")
+    else:
+        kit = st.selectbox("Kit", kits, format_func=lambda p: p.name)
+        rd = kit / "README.md"
+        if rd.exists():
+            with st.expander("README / instrucciones de publicación"):
+                st.markdown(rd.read_text())
+
+        st.markdown("**Imágenes estáticas** (Instagram / Facebook)")
+        statics = sorted((kit / "static").glob("*.png")) if (kit / "static").exists() else []
+        if statics:
+            cols = st.columns(len(statics))
+            for col, p in zip(cols, statics):
+                col.image(str(p), use_container_width=True)
+
+        st.markdown("**Carrusel** (swipe IG / FB)")
+        cslides = sorted((kit / "carousel").glob("slide_*.png"))
+        if cslides:
+            cols = st.columns(min(4, len(cslides)))
+            for i, p in enumerate(cslides):
+                cols[i % len(cols)].image(str(p), use_container_width=True)
+        cap = kit / "carousel" / "caption.md"
+        if cap.exists():
+            st.text_area("Caption del carrusel (copiar)", cap.read_text(), height=160)
+
+        st.markdown("**Videos** (TikTok / Reels / Shorts)")
+        vcol1, vcol2 = st.columns(2)
+        tiktok = VIDEOS / f"{kit.name}-tiktokslide.mp4"
+        video = VIDEOS / f"{kit.name}.mp4"
+        if tiktok.exists():
+            vcol1.caption("TikTokSlide"); vcol1.video(str(tiktok))
+        if video.exists():
+            vcol2.caption("Video"); vcol2.video(str(video))
+
+        tcol1, tcol2 = st.columns(2)
+        th = kit / "threads.md"
+        lp = kit / "longpost.md"
+        if th.exists():
+            tcol1.text_area("Threads — Twitter/X (copiar)", th.read_text(), height=320)
+        if lp.exists():
+            tcol2.text_area("Long post — LinkedIn + X (copiar)", lp.read_text(), height=320)
 
 
 with tab_drafts:

@@ -1,77 +1,25 @@
-name: Content quincenal
+name: Recordatorio kit quincenal
+
+# El kit (carrusel, estáticas, tiktokslide.mp4, video, threads, long post) se genera
+# LOCALMENTE en el Content Studio (Streamlit) — son binarios pesados y requieren
+# revisión visual. Este workflow solo RECUERDA que es día de kit.
 
 on:
   schedule:
-    - cron: '45 15 1 * *'   # Día 1 del mes, 10:45am Guayaquil (UTC-5)
-    - cron: '45 15 15 * *'  # Día 15 del mes, 10:45am Guayaquil (UTC-5)
+    - cron: '45 15 1 * *'   # Día 1, 10:45am Guayaquil (UTC-5)
+    - cron: '45 15 15 * *'  # Día 15, 10:45am Guayaquil (UTC-5)
   workflow_dispatch:
 
-permissions:
-  contents: write
-
-concurrency:
-  group: rutas-write
-  cancel-in-progress: false
-
 jobs:
-  announce:
+  recordar:
     runs-on: ubuntu-latest
     steps:
-      - name: Avisar plan a Telegram
+      - name: Recordatorio a Telegram
         env:
           BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          MSG=$(printf '🟡 Redactor quincenal quiere correr\nVa a: generar kit completo en content/drafts/kits/ (blog+tweets+LinkedIn+imágenes, Sonnet, no publica)\nAprueba para ejecutar — "Review deployments" en:\n%s' "$RUN_URL")
-          curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
-            -d "chat_id=$CHAT_ID" \
-            --data-urlencode "text=$MSG"
-
-  run:
-    needs: announce
-    environment: aprobacion
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - name: Sincronizar con main más reciente
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install -r requirements.txt
-      - run: python scripts/init_db.py
-      - name: Generate cluster kit (blog + tweets + LinkedIn + imgs)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          MONTHLY_BUDGET_USD: '4'
-        run: python scripts/content_gen.py --cluster
-      - name: Commit drafts
-        run: |
-          git config user.name "rutas-bot"
-          git config user.email "bot@rutasdecrecimiento.com"
-          git add content/drafts/ data/retreats.db || true
-          git diff --staged --quiet && echo "sin cambios" && exit 0
-          git commit -m "content quincenal $(date -u +%Y-%m-%d)"
-          for i in 1 2 3; do
-            git pull --rebase --autostash origin main && git push && exit 0
-            echo "push rechazado, reintento $i"; sleep 5
-          done
-          exit 1
-      - name: Notificacion Telegram
-        if: always()
-        env:
-          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          JOB_STATUS: ${{ job.status }}
-        run: |
-          ICON="✅"; [ "$JOB_STATUS" != "success" ] && ICON="❌"
-          MSG=$(printf '%s Redactor quincenal — kit en content/drafts/kits/\nEstado: %s\n%s\nSitio: https://rutas-de-crecimiento.pages.dev' "$ICON" "$JOB_STATUS" "$RUN_URL")
+          MSG=$(printf '🗓️ Día de kit quincenal\nAbre el Content Studio y genera el kit con los 2 blogs recientes:\n\n  streamlit run admin/streamlit_admin.py\n\nPestaña "🎬 Content Studio" → Generar kit → revisar → copiar-pegar a redes.')
           curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
             -d "chat_id=$CHAT_ID" \
             --data-urlencode "text=$MSG"

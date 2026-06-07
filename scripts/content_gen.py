@@ -185,6 +185,50 @@ def gen_cluster_linkedin(article_title: str, article_body: str, blog_slug: str) 
     return body, cost_of(SONNET, resp.usage), resp.usage.input_tokens, resp.usage.output_tokens
 
 
+def gen_threads(article_title: str, article_body: str, blog_slug: str, n: int = 3) -> tuple[str, float, int, int]:
+    """N threads de Twitter/X (4-6 tweets numerados c/u), ángulos distintos."""
+    user = (
+        f"Basado en este artículo, escribe {n} THREADS independientes para Twitter/X.\n\n"
+        f"Artículo: **{article_title}**\n\n"
+        f"--- EXTRACTO ---\n{article_body[:3500]}\n--- FIN EXTRACTO ---\n\n"
+        f"Reglas:\n"
+        f"- Cada thread = un ángulo/tesis DISTINTA del artículo (no repitas el mismo punto entre threads).\n"
+        f"- Cada thread tiene 4-6 tweets numerados (formato '1/', '2/', …).\n"
+        f"- Tweet 1 de cada thread = hook fuerte sin emojis, que corte el scroll.\n"
+        f"- ≤280 caracteres por tweet. Cero exclamaciones múltiples, cero clichés motivacionales.\n"
+        f"- Último tweet de cada thread: CTA suave con 'rutasdecrecimiento.com/blog/{blog_slug}'.\n"
+        f"- Tono: observación inteligente, editorial.\n"
+        f"- Formato de salida: separa cada thread con un encabezado '### Thread N — <título corto>' "
+        f"y debajo los tweets, uno por línea. Solo el contenido, sin explicaciones."
+    )
+    resp = call(SONNET, brand_system(), [{"role": "user", "content": user}], max_tokens=2500)
+    body = "".join(b.text for b in resp.content if b.type == "text").strip()
+    return body, cost_of(SONNET, resp.usage), resp.usage.input_tokens, resp.usage.output_tokens
+
+
+def gen_longpost(article_title: str, article_body: str, blog_slug: str) -> tuple[str, float, int, int]:
+    """1 long post servible para LinkedIn Y para Twitter/X (long-form). 350-600 palabras."""
+    user = (
+        f"Basado en este artículo, escribe UN post largo (long-form) que sirva tanto para LinkedIn "
+        f"como para un tweet largo de X.\n\n"
+        f"Artículo: **{article_title}**\n\n"
+        f"--- EXTRACTO ---\n{article_body[:4000]}\n--- FIN EXTRACTO ---\n\n"
+        f"Reglas:\n"
+        f"- 350-600 palabras.\n"
+        f"- Primera línea: gancho que corta el scroll (observación contraintuitiva o dato concreto).\n"
+        f"- Párrafos cortos (2-3 líneas), mucho espacio en blanco.\n"
+        f"- 1 idea central desarrollada; prosa, no bullets.\n"
+        f"- Cierre con una pregunta abierta a la audiencia.\n"
+        f"- Última línea: 'Artículo completo → rutasdecrecimiento.com/blog/{blog_slug}'.\n"
+        f"- Tono editorial de alto nivel, cero clichés de LinkedIn. Máx 1 emoji si encaja.\n"
+        f"- Al final, en una sección '### Hashtags', sugiere 3 hashtags relevantes (para añadir manual).\n"
+        f"- Escribe SOLO el post, sin explicaciones."
+    )
+    resp = call(SONNET, brand_system(), [{"role": "user", "content": user}], max_tokens=2000)
+    body = "".join(b.text for b in resp.content if b.type == "text").strip()
+    return body, cost_of(SONNET, resp.usage), resp.usage.input_tokens, resp.usage.output_tokens
+
+
 def gen_cluster_image_prompts(article_title: str, article_body: str) -> tuple[list[str], float, int, int]:
     """Genera 2-3 prompts de imagen fotográfica editorial para el kit."""
     user = (
@@ -373,8 +417,14 @@ def main():
     parser.add_argument("--weekly", action="store_true")
     parser.add_argument("--cluster", action="store_true",
                         help="Modo quincenal: 1 blog pillar AEO + 5 tweets + LinkedIn + 2-3 imgs → kit/")
+    parser.add_argument("--blog", action="store_true",
+                        help="Modo semanal: 1 blog pillar AEO/SEO/GEO → content/drafts/articles/")
     parser.add_argument("--no-images", action="store_true", help="Skip image generation in cluster mode")
     args = parser.parse_args()
+
+    if args.blog:
+        _run_blog(args)
+        return
 
     if args.cluster:
         _run_cluster(args)
@@ -433,6 +483,33 @@ def main():
         errors="; ".join(errors)[:1000] if errors else ""
     )
     print(f"\ncontent_gen run: {items} items, ${total_cost:.4f}, status={status}")
+
+
+def _run_blog(args):
+    """Genera 1 blog pillar AEO/SEO/GEO semanal → content/drafts/articles/{date}-{slug}.md"""
+    kws = json.loads(KEYWORDS.read_text())
+    topic = args.topic or random.choice(kws["buckets"]["pillar_es"])
+    print(f"Blog semanal: '{topic}'")
+    started = now_iso()
+    total_cost = total_in = total_out = 0
+    errors = []
+    status = "ok"
+    try:
+        article, c, ti, to = gen_cluster_article(topic)
+        total_cost += c; total_in += ti; total_out += to
+        DRAFTS_ART.mkdir(parents=True, exist_ok=True)
+        path = save_article(article)
+        if article.get("json_ld"):
+            path.with_suffix(".schema.json").write_text(article["json_ld"], encoding="utf-8")
+        print(f"  Blog guardado: {path.name} (${c:.4f})")
+    except BudgetExceeded as e:
+        status = "partial"; errors.append(f"BUDGET: {e}")
+    except Exception as e:
+        status = "failed"; errors.append(str(e)); raise
+    finally:
+        log_run("content_blog", started, now_iso(), total_in, total_out,
+                round(total_cost, 6), 1, status, "; ".join(errors)[:1000])
+    print(f"Blog run: ${total_cost:.4f}, status={status}")
 
 
 def _run_cluster(args):

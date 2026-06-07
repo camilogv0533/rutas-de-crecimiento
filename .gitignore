@@ -11,3 +11,7 @@ content/drafts/.published/
 *.log
 .venv/
 data/rutas.db
+# Kits visuales: binarios pesados, se generan local en Content Studio
+content/drafts/kits/
+content/drafts/carousels/
+content/videos/*.mp4

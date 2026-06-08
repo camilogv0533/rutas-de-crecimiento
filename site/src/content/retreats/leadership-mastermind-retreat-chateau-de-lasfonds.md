@@ -1,10 +1,10 @@
 ---
 slug: "leadership-mastermind-retreat-chateau-de-lasfonds"
 title: "Leadership Mastermind - Château de Lasfonds"
-tagline: "Una experiencia transformacional de 6 días para líderes en la encrucijada, reimaginando tu carrera en el corazón de la campiña francesa."
+tagline: "Una experiencia transformadora de 6 días para líderes en la encrucijada"
 source_url: "https://chateaudelasfonds.com/leadership-mastermind/"
 host_name: "Ashley Dudarenok"
-host_url: "https://chateaudelasfonds.com"
+host_url: "https://chateaudelasfonds.com/leadership-mastermind/"
 location_city: "Angoulême"
 location_country: "FR"
 location_region: "Périgord"
@@ -14,13 +14,13 @@ currency_original: "USD"
 price_original: 9800.0
 language: "English"
 group_size_max: 10
-what_unique: "Grupo cuidadosamente curado de 5-10 líderes excepcionales; ubicación única en un château del siglo XIX en la campiña francesa que favorece la reflexión y el pensamiento innovador; marco probado de metodología mastermind de alto nivel de Ashley Dudarenok; estructura de 6 días con garantía de resultados (reembolso completo si no sientes transformación excepcional al día 3); experiencia inmersiva que combina sesiones de mastermind profundas, cenas de reflexión, actividades culturales y gastronomía local de granja a mesa."
-who_for: "Profesionales ambiciosos que navegan transiciones críticas: emprendedores que crecen a nivel empresarial y necesitan claridad estratégica, profesionales contemplando su próximo paso importante, empresarios que recientemente vendieron su empresa, y líderes de equipos en industrias de rápido movimiento que buscan tiempo para reflexionar. Este retiro es para visionaries líderes navegando cambios, escalando negocios, pivotando carreras, liderando en industrias volátiles, o en transición post-salida."
+what_unique: "Grupo cuidadosamente curado de 5-10 pares excepcionales; ubicación excepcional en el Château de Lasfonds, una propiedad del siglo XIX en el campo francés; garantía de resultados sin precedentes (reembolso completo antes del Día 3 si no siente valor excepcional); conducción por Ashley Dudarenok, una empresaria en serie reconocida globalmente; sesiones mastermind diarias con dinámica de grupo óptima; experiencias curadas que combinan reflexión estratégica, dinámicas de grupo de pares y actividades culturales y gastronómicas."
+who_for: "Profesionales ambiciosos navegando transiciones pivotales. Emprendedores que escalan sus empresas al siguiente nivel, profesionales contemplando cambios de carrera significativos, empresarios que recientemente vendieron sus empresas y buscan una pausa estratégica, y líderes de equipos en industrias de rápido movimiento que necesitan tiempo para reflexionar. Este retiro es para cualquiera en una posición de liderazgo, gestión o responsabilidad profesional significativa."
 skills: ["liderazgo", "proposito", "toma-decisiones", "inteligencia-emocional", "estrategia"]
-destinations: ["alpes-franceses"]
+destinations: ["alpes-franceses", "perigord"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/leadership-mastermind-retreat-chateau-de-lasfonds.webp"]
-categories: ["retiro"]
+categories: ["mastermind", "liderazgo", "inmersion"]
 ---
 
-El Retiro de Liderazgo Mastermind de Lasfonds no es un retiro empresarial común. Es una experiencia transformacional de 6 días diseñada para ayudar a pensadores de alto nivel a liberarse de la rutina, reflexionar profundamente y desbloquear su próximo capítulo con claridad y confianza. En el corazón de la campiña francesa—donde colinas ondulantes se encuentran con muros de piedra centenarios—encontrarás la oportunidad exclusiva de redefinir tu camino como líder, empresario o profesional visionario. Si estás listo para reinventarte, reconectar con tu propósito y alcanzar tu siguiente nivel, este retiro de liderazgo en Francia es tu invitación.
+El Retiro de Liderazgo Mastermind de Lasfonds es una experiencia transformadora de 6 días diseñada para ayudar a pensadores de alto nivel a romper con la rutina, reflexionar profundamente y desbloquear su próximo capítulo con claridad y confianza. Ubicado en el corazón del campo francés, este retiro exclusivo reúne a un grupo cuidadosamente seleccionado de hasta 10 líderes excepcionales para reflexionar, redefinir y desbloquear su próximo avance profesional, guiados por Ashley Dudarenok, una destacada empresaria, inversora y autora reconocida internacionalmente.

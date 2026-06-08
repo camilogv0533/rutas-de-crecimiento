@@ -7,7 +7,7 @@ host_url: "https://www.facebook.com/floridadebateinitiative/"
 location_country: "US"
 location_region: "Florida"
 skills: ["comunicacion", "resiliencia", "toma-decisiones", "inteligencia-emocional"]
-destinations: ["estados-unidos"]
+destinations: ["estados-unidos", "colorado", "az"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/florida-debate-initiative-speech-debate-learning-retreats.webp"]
 categories: ["retiro"]

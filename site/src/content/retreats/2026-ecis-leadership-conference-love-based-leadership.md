@@ -15,7 +15,7 @@ language: "en"
 what_unique: "Una reunión transformadora que enfatiza el poder sanador del amor en el liderazgo, fomentando la conexión, la pertenencia y la renovación a través de gestos de bondad, conversaciones profundas y actos de autocuidado."
 who_for: "Líderes de escuelas internacionales"
 skills: ["liderazgo", "comunicacion", "proposito", "trabajo-equipo", "inteligencia-emocional"]
-destinations: ["portugal"]
+destinations: ["portugal", "quintarao-cerca-de-mato-de-miranda"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/2026-ecis-leadership-conference-love-based-leadership.webp"]
 categories: ["retiro"]

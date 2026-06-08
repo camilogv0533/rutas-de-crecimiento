@@ -7,20 +7,19 @@ host_name: "The Happy Startup School"
 host_url: "https://alptitu.de"
 location_city: "Morillon"
 location_country: "FR"
-location_region: "French Alps"
+location_region: "Alpes Franceses"
 duration_days: 7
-recurring: "annually"
 price_usd_from: 4445.0
 currency_original: "GBP"
 price_original: 3500.0
 language: "English"
-group_size_max: 5
-what_unique: "Es una reunión empresarial transformadora donde no hay charlas magistrales ni egos. Los participantes comparten historias significativas, aprenden de sus pares y encuentran respuestas a través de la naturaleza y la sabiduría colectiva. Todo es opcional, permitiendo que cada persona viva la semana que necesita. El corazón de la experiencia son las conversaciones espontáneas junto a la hoguera, charlas improvisadas y momentos mágicos en la montaña.</unique> <parameter name=\"who_for\">Fundadores y líderes con propósito que buscan claridad, reinvención y conexión. Emprendedores en busca de un reset, agentes de cambio que quieren mayor impacto, líderes que desean inspiración, y profesionales que necesitan alejarse de la rutina diaria para recalibrar."
+what_unique: "No hay conferencias magistrales ni egos. La experiencia se centra en conversaciones de campamento, charlas improvisadas y sesiones de \"Multitudes Sabias\" donde la sabiduría colectiva de los pares es el maestro. El plan es completamente flexible: todo es opcional, permitiendo que cada participante customice su propia semana. La ubicación en los Alpes Franceses con actividades de aventura integradas (senderismo de 2 días con refugio nocturno, rafting, parapente opcional) proporciona un entorno transformacional único."
+who_for: "Fundadores que buscan claridad sobre su dirección futura, emprendedores de cambio que buscan mayor impacto con menos esfuerzo, líderes que desean inspirarse y construir su tribu, y profesionales que necesitan alejarse de lo cotidiano para recalibrarse."
 skills: ["liderazgo", "resiliencia", "toma-decisiones"]
-destinations: ["alpes-franceses"]
+destinations: ["alpes-franceses", "perigord"]
 reviewed_by_us: true
 image_urls: ["/img/retreats/alptitude-alpes-franceses.webp"]
-categories: ["retiro"]
+categories: ["retiro", "mastermind", "liderazgo"]
 ---
 
-Alptitude es una reunión empresarial con una diferencia. No hay charlas, pero se cuentan historias poderosas. No hay egos, pero encontrarás a algunas de las personas más inspiradoras que jamás hayas conocido. Es un espacio donde encuentras respuestas, no de gurús, sino de la naturaleza en su máxima expresión y la sabiduría colectiva. Este es el futuro de los eventos empresariales: emergentes, lúdicos y transformadores. Una semana de 7 días para fundadores y líderes con propósito, en el corazón de los Alpes Franceses.
+Alptitude es una reunión empresarial con una diferencia. No hay conferencias, pero se cuentan historias poderosas. No hay egos, pero encontrarás a algunas de las personas más inspiradoras que jamás conozcerás. Aquí encuentras respuestas, no de gurús, sino de la naturaleza en su máxima expresión y la sabiduría colectiva. Este es el futuro de los eventos empresariales: emergente, lúdico y transformacional. Una semana de 7 días para fundadores y líderes con propósito que buscan crecer, crear, aprender, liderar, conectar y reposar en un entorno de montaña inspirador.

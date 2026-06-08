@@ -18,7 +18,7 @@ group_size_max: 24
 what_unique: "Kripalu es uno de los centros de retreats de bienestar más serios de Norteamérica. Epic Leadership aprovecha el ecosistema (yoga, alimentación, naturaleza) para integrar prácticas que sostienen el liderazgo a largo plazo — no como descanso, sino como tecnología de presencia."
 who_for: "Ejecutivos, directores de L&D y founders interesados en integrar mindfulness con práctica de liderazgo organizacional."
 skills: ["liderazgo", "inteligencia-emocional", "mindfulness"]
-destinations: ["estados-unidos"]
+destinations: ["estados-unidos", "colorado", "az"]
 reviewed_by_us: true
 image_urls: ["/img/retreats/epic-leadership-kripalu.webp"]
 categories: ["retiro"]

@@ -59,6 +59,7 @@ EXTRACTION_TOOL = {
             "social_instagram": {"type": ["string", "null"]},
             "image_urls": {"type": "array", "items": {"type": "string"}, "default": []},
             "is_actually_a_retreat": {"type": "boolean", "description": "True if the page is an immersive multi-day in-person learning experience that requires travel to a destination. This includes: retreats, residencies, and MASTERMINDS with a physical travel component. False if it is: an online course, a hotel listing without curated programming, a blog post, a hardware product, or a pure conference without travel/lodging component."},
+            "is_skill_development_retreat": {"type": "boolean", "description": "TRUE only if the core purpose is developing a transferable HUMAN SKILL or capability through immersion — e.g. leadership, creativity/writing, communication, entrepreneurship/business, purpose & career reinvention, resilience/mindset, survival skills, public speaking. Like Epic Leadership, WanderLearn, a Tuscany/Portugal writing retreat, a leadership mastermind. FALSE for: language-learning immersions (English/Mandarin/Spanish etc.), academic conferences, leadership 'forums'/'summits' that are really conferences, debate or speech camps, teacher/educator professional-development events, pure wellness/yoga/spa with no skill outcome, tour packages. When in doubt about whether it teaches a real life/work skill vs. just a topic or event, return false."},
             "categories": {"type": "array", "items": {"type": "string"}, "description": "Tags describing the format. Always include one of: 'retiro', 'mastermind', 'residencia', 'inmersion'. Add others if clearly applicable (e.g. 'liderazgo', 'escritura'). Must include 'mastermind' if the page uses that word or clearly describes a peer mastermind group format.", "default": ["retiro"]}
         },
         "required": ["title", "is_actually_a_retreat"]
@@ -93,6 +94,10 @@ def extract(url: str, text: str) -> tuple[dict, dict]:
     system = (
         "You extract structured retreat data from web pages. "
         "Strictness: do NOT invent. If a field is not visible, use null. "
+        "This directory only lists SKILL-DEVELOPMENT retreats (turismo para desarrollar habilidades). "
+        "Judge is_skill_development_retreat strictly: it must teach a transferable human skill (leadership, "
+        "writing/creativity, communication, business, purpose/career, resilience, survival). Language-learning "
+        "immersions, conferences/forums/summits, debate camps, educator PD events and pure wellness are NOT. "
         "Set is_actually_a_retreat=false if the page is a hotel listing, online course, "
         "blog article, agency homepage, or anything that is not an immersive multi-day learning retreat with a defined cohort. "
         "IDIOMA: el sitio publica en español. Traduce SIEMPRE al español natural y editorial estos campos narrativos: "
@@ -224,12 +229,42 @@ def upsert(data: dict, source_url: str) -> str:
     return slug
 
 
+def _record_rejection(url: str, title: str | None, reason: str):
+    """Persist a stub row with status='rejected' so this URL is never re-scraped
+    (batch dedup scans source_url across ALL rows) and never exported (export filters status='active')."""
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM retreats WHERE source_url=?", (url,))
+    if cur.fetchone():
+        cur.execute("UPDATE retreats SET status='rejected', last_seen_at=? WHERE source_url=?", (now_iso(), url))
+    else:
+        slug = (slugify(title or "")[:80] or slugify(urlparse(url).netloc) or "rejected")[:80]
+        # ensure slug uniqueness for the stub
+        base, n = slug, 1
+        while cur.execute("SELECT 1 FROM retreats WHERE slug=?", (slug,)).fetchone():
+            n += 1
+            slug = f"{base}-{n}"[:80]
+        cur.execute(
+            "INSERT INTO retreats (slug, source_url, title, categories, status, scraped_at, last_seen_at) "
+            "VALUES (?,?,?,?,'rejected',?,?)",
+            (slug, url, title or url, reason, now_iso(), now_iso())
+        )
+    conn.commit()
+    conn.close()
+
+
 def process_url(url: str, dry_run: bool = False) -> dict:
     html = fetch_html(url)
     text = strip_to_text(html)
     data, usage = extract(url, text)
     if not data.get("is_actually_a_retreat", True):
+        if not dry_run:
+            _record_rejection(url, data.get("title"), "not_a_retreat")
         return {"url": url, "skipped": True, "reason": "not a retreat", "cost": cost_of(HAIKU, usage)}
+    if not data.get("is_skill_development_retreat", True):
+        if not dry_run:
+            _record_rejection(url, data.get("title"), "not_skill_development")
+        return {"url": url, "skipped": True, "reason": "not a skill-development retreat", "cost": cost_of(HAIKU, usage)}
     if dry_run:
         return {"url": url, "dry_run": True, "data": data, "cost": cost_of(HAIKU, usage)}
     slug = upsert(data, url)

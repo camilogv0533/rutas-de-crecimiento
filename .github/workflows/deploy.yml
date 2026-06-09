@@ -8,6 +8,7 @@ on:
     # GitHub no dispara 'push' desde commits del bot (anti-loop), por eso workflow_run.
     workflows:
       - "Scrape weekly"
+      - "Master queue ingest"
       - "Content weekly"
       - "Content quincenal"
       - "Mastermind weekly"

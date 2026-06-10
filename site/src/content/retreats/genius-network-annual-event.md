@@ -1,21 +1,22 @@
 ---
 slug: "genius-network-annual-event"
 title: "Genius Network Annual Event"
-tagline: "Un Lugar Seguro para Ser Peligroso</anline> <parameter name=\"intro\">Genius Network® reúne a los empresarios e innovadores más brillantes del mundo para ayudarte a acceder a la sabiduría y estrategias más relevantes para hacer crecer tu negocio y diseñar tu mejor vida. El miembro promedio de Genius Network® dirige una empresa con ingresos anuales de $9 millones y tiene un fuerte deseo de jugar en su nivel más alto."
+tagline: "Un lugar seguro para ser peligroso — donde los mejores emprendedores del mundo se reúnen"
 source_url: "https://geniusnetwork.com"
 host_name: "Joe Polish"
 host_url: "https://geniusnetwork.com"
 location_city: "Scottsdale"
 location_country: "US"
-location_region: "AZ"
+location_region: "Arizona"
 duration_days: 3
-recurring: "Anual"
-language: "Inglés"
-what_unique: "Comunidad exclusiva de empresarios de élite con ingresos promedio de $9 millones anuales; acceso a discusiones curadas con individuos de mentalidad afín que caminan un camino similar; ambiente colaborativo y creativo diseñado para llevar tu negocio al siguiente nivel."
-who_for: "Emprendedores de alto desempeño que ya han alcanzado éxito pero buscan evolucionar sin sacrificio, que desean conectar con pares similares y acceder a la sabiduría colectiva de líderes empresariales transformadores."
+language: "English"
+what_unique: "Acceso a un grupo selecto de los \"supermejores emprendedores\" del mundo. Conexiones con líderes de transformación industrial. Ambiente colaborativo diseñado para llevar tu negocio a donde quieres que vaya. Herramientas, técnicas y retroalimentación de aquellos que ya han alcanzado donde quieres ir."
+who_for: "Emprendedores de alto desempeño que ya han alcanzado éxito en los negocios pero desean crecer sin sacrificio. Aquellos que buscan conectar con líderes de industria y crecer su negocio mientras diseñan su mejor vida."
 skills: ["liderazgo", "toma-decisiones", "emprendimiento", "estrategia", "networking"]
-destinations: ["estados-unidos", "colorado", "az"]
+destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/genius-network-annual-event.webp"]
-categories: ["mastermind"]
+categories: ["mastermind", "liderazgo", "networking"]
 ---
+
+Genius Network reúne a los transformadores de industria y líderes más brillantes del mundo para ayudarte a acceder a la sabiduría y estrategias más relevantes para crecer tu negocio y diseñar tu mejor vida. Este evento anual de tres días ofrece discusiones curadas sobre temas y desafíos verdaderamente relevantes, en un ambiente colaborativo y creativo, con individuos de mentalidad similar que caminan un camino similar. El miembro promedio de Genius Network dirige una empresa de $9 millones anuales y tiene un fuerte deseo de jugar en su nivel más alto.

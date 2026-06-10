@@ -11,7 +11,7 @@ location_region: "Catalonia"
 language: "EN, ES"
 what_unique: "Enfoque único basado en el silencio como herramienta transformadora: un período continuo de 24 horas sin tecnología, comunicación verbal limitada y movimiento silencioso, complementado con actividades de meditación, ejercicios de movimiento y proyectos artísticos. Los retiros se personalizan completamente según las necesidades del equipo e incluyen sesiones de integración en línea después del retiro para consolidar aprendizajes"
 who_for: "Equipos corporativos, ejecutivos (CEO), nuevos equipos que necesitan construir confianza, empleados experimentando estrés y agotamiento, y cualquier organización buscando mejorar la salud mental, la conexión y la productividad del equipo"
-skills: []
+skills: ["resiliencia", "trabajo-equipo", "inteligencia-emocional", "mindfulness", "manejo-burnout"]
 destinations: ["espana-camino-santiago", "catalonia"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/silent-focus-corporate-silent-retreats.webp"]

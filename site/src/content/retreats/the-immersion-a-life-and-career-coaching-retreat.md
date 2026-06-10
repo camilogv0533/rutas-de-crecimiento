@@ -13,7 +13,7 @@ language: "Inglés"
 what_unique: "Experiencia altamente personalizada que combina sesiones de coaching individuales dedicadas con tiempo ininterrumpido para reflexionar, ejercicios prácticos que aclaran la dirección, conversaciones honestas sobre decisiones difíciles, y un plan claro para los próximos pasos. Tiene lugar en un entorno de retiro privado diseñado para el enfoque, la reflexión y la conversación significativa."
 who_for: "Personas que se sienten atrapadas en su dirección profesional o de vida, que consideran un cambio o transición importante, que desean claridad antes de tomar una decisión importante, que necesitan tiempo ininterrumpido para pensar, y que están listas para avanzar pero no saben cómo."
 skills: ["proposito", "toma-decisiones", "inteligencia-emocional", "mindfulness", "estrategia"]
-destinations: ["estados-unidos", "colorado", "az"]
+destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/the-immersion-a-life-and-career-coaching-retreat.webp"]
 categories: ["retiro", "liderazgo"]

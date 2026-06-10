@@ -74,30 +74,30 @@
     "skill_hint": "Team Building",
     "pool": "master",
     "source_sheet": "curated",
-    "status": "pending",
-    "attempts": 1,
+    "status": "failed",
+    "attempts": 2,
     "added_at": null,
-    "note": "404 Client Error: Not Found for url: https://www.retreatfinder.com/programs/2024-resilience-retreat.html"
+    "note": "403 Client Error: Forbidden for url: https://www.retreatfinder.com/programs/2024-resilience-retreat.html"
   },
   {
     "url": "https://www.teamraderie.com/trust-journey",
     "skill_hint": "Team Building",
     "pool": "master",
     "source_sheet": "curated",
-    "status": "pending",
-    "attempts": 0,
+    "status": "rejected",
+    "attempts": 1,
     "added_at": null,
-    "note": null
+    "note": "not a retreat"
   },
   {
     "url": "https://www.teamraderie.com/experiences/virtual-team-building-the-nascar-experience/?_spage=experience-finder",
     "skill_hint": "Team Building",
     "pool": "master",
     "source_sheet": "curated",
-    "status": "pending",
-    "attempts": 0,
+    "status": "rejected",
+    "attempts": 1,
     "added_at": null,
-    "note": null
+    "note": "not a retreat"
   },
   {
     "url": "https://www.teamraderie.com/experiences/games-for-teams/?_spage=experience-finder",
@@ -2494,10 +2494,10 @@
     "skill_hint": null,
     "pool": "referent",
     "source_sheet": "Referentes claves",
-    "status": "pending",
-    "attempts": 0,
+    "status": "rejected",
+    "attempts": 1,
     "added_at": null,
-    "note": null
+    "note": "not a retreat"
   },
   {
     "url": "https://www.masterclass.com",

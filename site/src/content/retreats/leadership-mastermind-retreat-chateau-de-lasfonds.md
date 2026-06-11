@@ -17,7 +17,7 @@ group_size_max: 10
 what_unique: "Grupo cuidadosamente curado de 5-10 pares excepcionales; ubicación excepcional en el Château de Lasfonds, una propiedad del siglo XIX en el campo francés; garantía de resultados sin precedentes (reembolso completo antes del Día 3 si no siente valor excepcional); conducción por Ashley Dudarenok, una empresaria en serie reconocida globalmente; sesiones mastermind diarias con dinámica de grupo óptima; experiencias curadas que combinan reflexión estratégica, dinámicas de grupo de pares y actividades culturales y gastronómicas."
 who_for: "Profesionales ambiciosos navegando transiciones pivotales. Emprendedores que escalan sus empresas al siguiente nivel, profesionales contemplando cambios de carrera significativos, empresarios que recientemente vendieron sus empresas y buscan una pausa estratégica, y líderes de equipos en industrias de rápido movimiento que necesitan tiempo para reflexionar. Este retiro es para cualquiera en una posición de liderazgo, gestión o responsabilidad profesional significativa."
 skills: ["liderazgo", "proposito", "toma-decisiones", "inteligencia-emocional", "estrategia"]
-destinations: ["alpes-franceses", "perigord"]
+destinations: ["alpes-franceses", "perigord", "french-alps"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/leadership-mastermind-retreat-chateau-de-lasfonds.webp"]
 categories: ["mastermind", "liderazgo", "inmersion"]

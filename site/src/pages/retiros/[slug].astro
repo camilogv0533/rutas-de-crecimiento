@@ -73,7 +73,7 @@ const breadcrumbSchema = {
   ],
 };
 ---
-<Base title={r.title} description={r.tagline} schema={schema}>
+<Base title={r.title} description={r.tagline} schema={schema} image={r.image_urls[0]}>
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 <article class="narrow retreat-detail" style="padding-top: 3rem;">

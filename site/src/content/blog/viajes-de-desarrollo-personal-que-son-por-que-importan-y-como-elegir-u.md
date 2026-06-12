@@ -4,7 +4,7 @@ slug: "viajes-de-desarrollo-personal-que-son-por-que-importan-y-como-elegir-u"
 date: "2026-05-29"
 target_keyword: "viajes de desarrollo personal"
 related_retreats: ["alptitude-alpes-franceses", "epic-leadership-kripalu", "wanderlearn-ischia"]
-status: "published"
+description: "Hay un momento que muchos profesionales reconocen cuando lo leen, aunque raramente lo digan en voz alta: llevas años haciendo bien tu trabajo, tu agenda está…"
 ---
 
 Hay un momento que muchos profesionales reconocen cuando lo leen, aunque raramente lo digan en voz alta: llevas años haciendo bien tu trabajo, tu agenda está llena, tus métricas están bien, y aun así algo no cuadra. No es crisis existencial de manual. Es más sutil — una especie de inercia donde cada semana se parece demasiado a la anterior.

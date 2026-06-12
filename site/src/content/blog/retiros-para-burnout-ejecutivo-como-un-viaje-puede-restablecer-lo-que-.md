@@ -4,7 +4,7 @@ slug: "retiros-para-burnout-ejecutivo-como-un-viaje-puede-restablecer-lo-que-"
 date: "2026-06-06"
 target_keyword: "retiros para burnout ejecutivo"
 related_retreats: ["alptitude-alpes-franceses", "epic-leadership-kripalu", "wanderlearn-ischia"]
-status: "published"
+description: "Hay un tipo de cansancio que no desaparece con una semana en la playa. Te lo digo porque probablemente lo conoces: regresas del descanso, desempacas, y al…"
 ---
 
 Hay un tipo de cansancio que no desaparece con una semana en la playa. Te lo digo porque probablemente lo conoces: regresas del descanso, desempacas, y al tercer día de vuelta en el trabajo la fatiga ya está ahí otra vez, intacta. Como si nunca te hubieras ido.

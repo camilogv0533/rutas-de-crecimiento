@@ -4,7 +4,7 @@ slug: "retiros-de-resiliencia-lo-que-un-entorno-distinto-puede-ensenarte-sobr"
 date: "2026-06-03"
 target_keyword: "retiros de resiliencia"
 related_retreats: ["alptitude-alpes-franceses", "epic-leadership-kripalu", "wanderlearn-ischia"]
-status: "published"
+description: "Hay un momento que muchos profesionales reconocen, aunque pocas veces lo dicen en voz alta: el cansancio ya no desaparece con el fin de semana. Terminas el…"
 ---
 
 Hay un momento que muchos profesionales reconocen, aunque pocas veces lo dicen en voz alta: el cansancio ya no desaparece con el fin de semana. Terminas el viernes con la sensación de que llegaste al límite, y el lunes ya estás ahí otra vez, al límite. No es flojera. Tampoco es falta de motivación. Es lo que pasa cuando una persona ha estado operando demasiado tiempo en modo reactivo, sin que el entorno cambie, sin que el cuerpo descanse de verdad, sin que el cerebro procese lo que está acumulando.

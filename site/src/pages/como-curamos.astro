@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const retreats = await getCollection('retreats');
+const reviewed = retreats.filter(r => r.data.reviewed_by_us).length;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Cómo curamos — Rutas de Crecimiento',
+  description: 'Criterios de curaduría del directorio de viajes que desarrollan habilidades.',
+  url: new URL('/como-curamos', Astro.site).toString(),
+};
+---
+<Base
+  title="Cómo curamos"
+  description="Qué exigimos para listar un retiro: habilidad concreta, lugar con sentido, programa real. Y qué descartamos."
+  schema={schema}
+>
+<article class="narrow" style="padding-top: 3rem;">
+  <h1>Cómo curamos</h1>
+  <p class="lede">Curamos viajes que desarrollan habilidades. No vacaciones disfrazadas.</p>
+
+  <section>
+    <h2>Qué buscamos</h2>
+    <p>
+      Nos interesan los viajes que toman inspiración del lugar para crear una experiencia de
+      aprendizaje conectada a ese sitio: liderazgo donde hay montaña que exige decisiones,
+      escritura donde hay silencio y mesa larga, estrategia donde la historia la enseñó primero.
+      Estamos conceptualizando un nuevo tipo de turismo — turismo de desarrollo de habilidades —
+      y sabemos que el nombre todavía no suena pegajoso. Lo decimos abiertamente.
+    </p>
+  </section>
+
+  <section>
+    <h2>Los criterios</h2>
+    <p>Para entrar al directorio, un retiro tiene que pasar estos filtros:</p>
+    <ol>
+      <li><strong>Habilidad concreta y transferible.</strong> Liderazgo, escritura, comunicación, resiliencia, propósito profesional. Si no podemos nombrar qué te llevas, no entra.</li>
+      <li><strong>Inmersivo y presencial.</strong> Varios días, en destino, con cohorte definida. Un curso online o una conferencia con hotel no es un retiro.</li>
+      <li><strong>El lugar enseña.</strong> El destino no es telón de fondo: la experiencia usa el entorno como parte del método.</li>
+      <li><strong>Programa real.</strong> Itinerario, facilitadores con trayectoria, grupo limitado. No "agenda flexible según el flow".</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Qué descartamos</h2>
+    <p>
+      Buscadores genéricos ya existen. Por eso descartamos: retiros solo-yoga o solo-wellness sin
+      habilidad de salida, inmersiones de idiomas, congresos y "summits" que son conferencias con
+      otro nombre, listados de hoteles, y cualquier experiencia saturada de gente donde la caminata
+      de 8 km existe solo para la foto.
+    </p>
+  </section>
+
+  <section>
+    <h2>El proceso</h2>
+    <p>
+      Cada retiro del directorio pasa por extracción estructurada de su programa (qué enseña,
+      itinerario, qué incluye, precio, fechas) y una clasificación contra nuestra taxonomía de
+      habilidades. Los marcados como <strong>Curado</strong> ({reviewed} hoy) además fueron revisados
+      manualmente por nosotros. Los datos vienen del sitio del host y pueden cambiar —
+      siempre verifica antes de reservar.
+    </p>
+  </section>
+
+  <section>
+    <h2>Qué no somos</h2>
+    <p>
+      No somos agencia de viajes. No somos un buscador de retiros espirituales. No somos Airbnb,
+      Booking ni Tripadvisor. No cobramos por listar y no listamos por cobrar.
+    </p>
+  </section>
+
+  <div class="home-hero__actions" style="margin-top: 2.5rem;">
+    <a href="/retiros" class="btn-primary">Ver el directorio</a>
+    <a href="/habilidades" class="btn-ghost">Explorar por habilidad</a>
+  </div>
+</article>
+</Base>

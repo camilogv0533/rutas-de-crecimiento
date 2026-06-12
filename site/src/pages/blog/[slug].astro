@@ -20,7 +20,9 @@ const schema = {
   url: new URL(Astro.url.pathname, Astro.site).toString()
 };
 ---
-<Base title={p.title} description={p.description} schema={schema}>
+{/* json_ld del generador ya trae Article+FAQPage — no duplicar el Article básico */}
+<Base title={p.title} description={p.description} schema={p.json_ld ? undefined : schema}>
+{p.json_ld && <script type="application/ld+json" set:html={p.json_ld} />}
 <article class="narrow" style="padding: 3rem 0;">
   <h1>{p.title}</h1>
   <p style="color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 2rem;">{p.date}</p>

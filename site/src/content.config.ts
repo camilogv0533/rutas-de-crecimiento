@@ -71,7 +71,8 @@ const blog = defineCollection({
     date: z.string(),
     description: z.string().optional(),
     target_keyword: z.string().optional(),
-    related_retreats: z.array(z.string()).default([])
+    related_retreats: z.array(z.string()).default([]),
+    json_ld: z.string().optional()
   })
 });
 

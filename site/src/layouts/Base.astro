@@ -11,7 +11,7 @@ const { title, description, image, canonical, schema } = Astro.props;
 const siteName = 'Rutas de Crecimiento';
 const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
 const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
-const ogImage = image || new URL('/og-default.png', Astro.site).toString();
+const ogImage = new URL(image || '/og-default.png', Astro.site).toString();
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -57,6 +57,7 @@ const ogImage = image || new URL('/og-default.png', Astro.site).toString();
   <div class="container">
     <p>Rutas de Crecimiento — Turismo para el desarrollo de habilidades.</p>
     <p>Curamos viajes que desarrollan habilidades. No agencia de viajes, no buscador genérico.</p>
+    <p><a href="/como-curamos">Cómo curamos</a> · <a href="/fechas">Próximas fechas</a> · <a href="/rss.xml">RSS</a></p>
   </div>
 </footer>
 </body>

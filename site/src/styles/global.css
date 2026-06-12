@@ -365,7 +365,8 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 
 .price { font-family: var(--font-mono); font-weight: 500; color: var(--text-primary); }
 
-.section { margin: 3rem 0; }
+/* auto en X: no pisar el centrado de .container cuando van juntas (class="container section") */
+.section { margin: 3rem auto; }
 .section h2 { margin-bottom: 1rem; }
 
 .retreat-detail .lede { font-size: 1.15rem; color: var(--text-secondary); margin: 1rem 0 2rem; }

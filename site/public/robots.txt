@@ -1,4 +1,32 @@
+# Rutas de Crecimiento — directorio curado de viajes que desarrollan habilidades.
+# Crawlers de buscadores y de IA son bienvenidos. Resumen del sitio en /llms.txt
+
 User-agent: *
+Allow: /
+
+# AI crawlers — bienvenidos explícitamente (AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://rutasdecrecimiento.com/sitemap-index.xml

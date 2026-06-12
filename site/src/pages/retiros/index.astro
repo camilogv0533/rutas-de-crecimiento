@@ -11,10 +11,24 @@ const sorted = [...retreats].sort((a, b) => (b.data.reviewed_by_us ? 1 : 0) - (a
 const skillNames = new Map(skills.map(s => [s.data.slug, s.data.name_es]));
 const skillsInUse = [...new Set(retreats.flatMap(r => r.data.skills))].sort();
 const countries = [...new Set(retreats.map(r => r.data.location_country).filter(Boolean))].sort() as string[];
+
+const listSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Retiros que desarrollan habilidades',
+  numberOfItems: sorted.length,
+  itemListElement: sorted.map((r, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: r.data.title,
+    url: new URL(`/retiros/${r.data.slug}`, Astro.site).toString(),
+  })),
+};
 ---
 <Base
   title="Todos los retiros"
   description="Catálogo completo de retiros que desarrollan habilidades. Filtra por habilidad, país, precio y duración."
+  schema={listSchema}
 >
 
 <section class="skills-hero container">

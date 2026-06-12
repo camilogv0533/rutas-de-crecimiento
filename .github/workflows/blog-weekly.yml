@@ -48,11 +48,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MONTHLY_BUDGET_USD: '4'
         run: python scripts/content_gen.py --blog
+      - name: Publicar al blog
+        # El gate humano es el Approve de este workflow (environment 'aprobacion').
+        # Sin este paso los drafts se acumulaban y el blog se quedaba en 1 post.
+        run: python scripts/publish_blog.py --latest
       - name: Commit draft
         run: |
           git config user.name "rutas-bot"
           git config user.email "bot@rutasdecrecimiento.com"
-          git add content/drafts/articles/ data/retreats.db || true
+          git add content/drafts/articles/ site/src/content/blog/ data/retreats.db || true
           git diff --staged --quiet && echo "sin cambios" && exit 0
           git commit -m "blog semanal $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do
@@ -69,7 +73,7 @@ jobs:
           JOB_STATUS: ${{ job.status }}
         run: |
           ICON="✅"; [ "$JOB_STATUS" != "success" ] && ICON="❌"
-          MSG=$(printf '%s Blog semanal — draft en content/drafts/articles/\nEstado: %s\nRevísalo y publícalo en Content Studio.\n%s' "$ICON" "$JOB_STATUS" "$RUN_URL")
+          MSG=$(printf '%s Blog semanal — artículo PUBLICADO en /blog (draft también en content/drafts/articles/)\nEstado: %s\n%s' "$ICON" "$JOB_STATUS" "$RUN_URL")
           curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
             -d "chat_id=$CHAT_ID" \
             --data-urlencode "text=$MSG"

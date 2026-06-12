@@ -1,0 +1,117 @@
+---
+import Base from '../../layouts/Base.astro';
+import RetreatCard from '../../components/RetreatCard.astro';
+import { getCollection } from 'astro:content';
+
+const retreats = await getCollection('retreats');
+const skills = await getCollection('skills');
+
+const sorted = [...retreats].sort((a, b) => (b.data.reviewed_by_us ? 1 : 0) - (a.data.reviewed_by_us ? 1 : 0));
+
+const skillNames = new Map(skills.map(s => [s.data.slug, s.data.name_es]));
+const skillsInUse = [...new Set(retreats.flatMap(r => r.data.skills))].sort();
+const countries = [...new Set(retreats.map(r => r.data.location_country).filter(Boolean))].sort() as string[];
+---
+<Base
+  title="Todos los retiros"
+  description="Catálogo completo de retiros que desarrollan habilidades. Filtra por habilidad, país, precio y duración."
+>
+
+<section class="skills-hero container">
+  <h1>Todos los retiros</h1>
+  <p class="lede">{retreats.length} retiros curados. Filtra por lo que quieres desarrollar, dónde y cuánto.</p>
+</section>
+
+<section class="container section-lg" style="padding-top: 1rem;">
+  <div class="filters" id="filter-skills" role="group" aria-label="Filtrar por habilidad">
+    <button class="filter-pill active" data-value="">Todas las habilidades</button>
+    {skillsInUse.map(s => (
+      <button class="filter-pill" data-value={s}>{skillNames.get(s) ?? s.replace(/-/g, ' ')}</button>
+    ))}
+  </div>
+  <div class="filters" id="filter-countries" role="group" aria-label="Filtrar por país">
+    <button class="filter-pill active" data-value="">Todos los países</button>
+    {countries.map(c => <button class="filter-pill" data-value={c}>{c}</button>)}
+  </div>
+  <div class="filters">
+    <select id="filter-price" class="filter-pill" aria-label="Precio máximo">
+      <option value="">Cualquier precio</option>
+      <option value="2000">Hasta $2.000</option>
+      <option value="5000">Hasta $5.000</option>
+      <option value="10000">Hasta $10.000</option>
+    </select>
+    <select id="filter-days" class="filter-pill" aria-label="Duración">
+      <option value="">Cualquier duración</option>
+      <option value="1-3">1–3 días</option>
+      <option value="4-7">4–7 días</option>
+      <option value="8-99">8+ días</option>
+    </select>
+  </div>
+
+  <div class="retreat-grid" id="catalog">
+    {sorted.map((r, i) => (
+      <div
+        class="catalog-item"
+        data-skills={r.data.skills.join(',')}
+        data-country={r.data.location_country || ''}
+        data-price={r.data.price_usd_from ?? ''}
+        data-days={r.data.duration_days ?? ''}
+      >
+        <RetreatCard data={{ ...r.data }} index={i} />
+      </div>
+    ))}
+  </div>
+  <p id="no-results" style="display: none; color: var(--text-muted); text-align: center; padding: 3rem 0;">
+    Ningún retiro coincide con esos filtros. Prueba quitando alguno.
+  </p>
+</section>
+
+<script>
+  const state = { skill: '', country: '', price: '', days: '' };
+
+  function applyFilters() {
+    let visible = 0;
+    document.querySelectorAll<HTMLElement>('.catalog-item').forEach(item => {
+      const skills = (item.dataset.skills || '').split(',');
+      const price = parseFloat(item.dataset.price || '');
+      const days = parseInt(item.dataset.days || '');
+      let show = true;
+      if (state.skill && !skills.includes(state.skill)) show = false;
+      if (state.country && item.dataset.country !== state.country) show = false;
+      if (state.price && (isNaN(price) || price > parseFloat(state.price))) show = false;
+      if (state.days) {
+        const [min, max] = state.days.split('-').map(Number);
+        if (isNaN(days) || days < min || days > max) show = false;
+      }
+      item.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    const empty = document.getElementById('no-results');
+    if (empty) empty.style.display = visible === 0 ? '' : 'none';
+  }
+
+  function wirePills(groupId: string, key: 'skill' | 'country') {
+    const group = document.getElementById(groupId);
+    if (!group) return;
+    group.querySelectorAll<HTMLButtonElement>('.filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state[key] = btn.dataset.value || '';
+        applyFilters();
+      });
+    });
+  }
+
+  wirePills('filter-skills', 'skill');
+  wirePills('filter-countries', 'country');
+  document.getElementById('filter-price')?.addEventListener('change', e => {
+    state.price = (e.target as HTMLSelectElement).value;
+    applyFilters();
+  });
+  document.getElementById('filter-days')?.addEventListener('change', e => {
+    state.days = (e.target as HTMLSelectElement).value;
+    applyFilters();
+  });
+</script>
+</Base>

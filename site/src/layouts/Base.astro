@@ -33,6 +33,7 @@ const ogImage = image || new URL('/og-default.png', Astro.site).toString();
 {description && <meta name="twitter:description" content={description} />}
 <meta name="twitter:image" content={ogImage} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="Rutas de Crecimiento — Blog" href="/rss.xml" />
 {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 </head>
 <body>
@@ -40,7 +41,7 @@ const ogImage = image || new URL('/og-default.png', Astro.site).toString();
   <div class="container inner">
     <div class="brand"><a href="/">Rutas de Crecimiento</a></div>
     <nav>
-      <a href="/">Retiros</a>
+      <a href="/retiros">Retiros</a>
       <a href="/habilidades">Habilidades</a>
       <a href="/destinos">Destinos</a>
       <a href="/blog">Blog</a>

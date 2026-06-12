@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import RetreatCard from '../../components/RetreatCard.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -10,6 +11,26 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const r = entry.data;
 const { Content } = await render(entry);
+
+// Próxima fecha solo si es futura (datos del scrape pueden quedar viejos)
+const today = new Date().toISOString().slice(0, 10);
+const nextDate = r.next_date && r.next_date >= today ? r.next_date : null;
+const nextDateLabel = nextDate
+  ? new Date(nextDate + 'T12:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
+  : null;
+
+// Retiros relacionados: más skills compartidas, mismo país desempata
+const all = await getCollection('retreats');
+const related = all
+  .filter(o => o.data.slug !== r.slug)
+  .map(o => ({
+    entry: o,
+    shared: o.data.skills.filter((s: string) => r.skills.includes(s)).length,
+    sameCountry: o.data.location_country && o.data.location_country === r.location_country ? 1 : 0,
+  }))
+  .filter(x => x.shared > 0 || x.sameCountry > 0)
+  .sort((a, b) => (b.shared - a.shared) || (b.sameCountry - a.sameCountry))
+  .slice(0, 3);
 
 const schema: Record<string, any> = {
   '@context': 'https://schema.org',
@@ -22,6 +43,7 @@ const schema: Record<string, any> = {
 };
 if (r.price_usd_from) {
   schema.offers = { '@type': 'Offer', price: r.price_usd_from, priceCurrency: 'USD', url: r.source_url };
+  if (nextDate) schema.offers.validFrom = nextDate;
 }
 if (r.location_city) {
   schema.location = {
@@ -30,15 +52,30 @@ if (r.location_city) {
     address: { '@type': 'PostalAddress', addressLocality: r.location_city, addressCountry: r.location_country }
   };
 }
+if (r.sample_itinerary) schema.itinerary = { '@type': 'ItemList', description: r.sample_itinerary };
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Retiros', item: new URL('/retiros', Astro.site).toString() },
+    { '@type': 'ListItem', position: 2, name: r.title, item: new URL(Astro.url.pathname, Astro.site).toString() },
+  ],
+};
 ---
 <Base title={r.title} description={r.tagline} schema={schema}>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 <article class="narrow retreat-detail" style="padding-top: 3rem;">
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="/retiros">Retiros</a> <span aria-hidden="true">›</span> <span>{r.title}</span>
+  </nav>
   <h1>{r.title}</h1>
   {r.tagline && <p class="lede">{r.tagline}</p>}
 
   <div class="meta-bar">
     {r.location_city && <span><strong>Dónde:</strong>{r.location_city}, {r.location_country}</span>}
     {r.duration_days && <span><strong>Duración:</strong>{r.duration_days} días</span>}
+    {nextDateLabel && <span><strong>Próxima fecha:</strong>{nextDateLabel}</span>}
     {r.recurring && <span><strong>Frecuencia:</strong>{r.recurring}</span>}
     {r.price_usd_from && <span class="price"><strong>Desde:</strong>${r.price_usd_from} USD</span>}
     {r.language && <span><strong>Idioma:</strong>{r.language}</span>}
@@ -72,6 +109,36 @@ if (r.location_city) {
     </section>
   )}
 
+  {r.what_youll_learn && (
+    <section>
+      <h2>Qué aprenderás</h2>
+      <p>{r.what_youll_learn}</p>
+    </section>
+  )}
+
+  {r.sample_itinerary && (
+    <section>
+      <h2>Itinerario de ejemplo</h2>
+      <p>{r.sample_itinerary}</p>
+    </section>
+  )}
+
+  {(r.included || r.not_included) && (
+    <section>
+      <h2>Qué incluye</h2>
+      {r.included && <p>{r.included}</p>}
+      {r.not_included && <p><strong>No incluye:</strong> {r.not_included}</p>}
+    </section>
+  )}
+
+  {(r.accommodation || r.food) && (
+    <section>
+      <h2>Alojamiento y comida</h2>
+      {r.accommodation && <p>{r.accommodation}</p>}
+      {r.food && <p>{r.food}</p>}
+    </section>
+  )}
+
   <section>
     <Content />
   </section>
@@ -90,4 +157,15 @@ if (r.location_city) {
     Información curada por Rutas de Crecimiento. Datos del host pueden cambiar — verifica en su sitio antes de reservar.
   </p>
 </article>
+
+{related.length > 0 && (
+  <section class="container section-lg">
+    <div class="section-header">
+      <h2>Retiros relacionados</h2>
+    </div>
+    <div class="retreat-grid">
+      {related.map((x, i) => <RetreatCard data={{ ...x.entry.data }} index={i} />)}
+    </div>
+  </section>
+)}
 </Base>

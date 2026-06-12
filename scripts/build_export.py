@@ -89,6 +89,13 @@ def export_retreats(conn, only_slug: str | None = None):
             "group_size_max": r.get("group_size_max"),
             "what_unique": r.get("what_unique") or "",
             "who_for": r.get("who_for") or "",
+            "next_date": r.get("next_date") or "",
+            "what_youll_learn": r.get("what_youll_learn") or "",
+            "sample_itinerary": r.get("sample_itinerary") or "",
+            "included": r.get("included") or "",
+            "not_included": r.get("not_included") or "",
+            "accommodation": r.get("accommodation") or "",
+            "food": r.get("food") or "",
             "skills": skills,
             "destinations": destinations,
             "reviewed_by_us": bool(r.get("reviewed_by_us")),
@@ -97,7 +104,9 @@ def export_retreats(conn, only_slug: str | None = None):
         }
         for k in ("title", "tagline", "host_name", "host_url", "location_city",
                   "location_country", "location_region", "recurring",
-                  "currency_original", "language", "what_unique", "who_for"):
+                  "currency_original", "language", "what_unique", "who_for",
+                  "next_date", "what_youll_learn", "sample_itinerary",
+                  "included", "not_included", "accommodation", "food"):
             if fm.get(k) == "":
                 del fm[k]
         for k in ("duration_days", "price_usd_from", "price_original", "group_size_max"):

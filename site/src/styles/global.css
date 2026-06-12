@@ -463,3 +463,11 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
   header.site-header nav a { margin-left: 1rem; font-size: 0.85rem; }
   .skills-mosaic { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Breadcrumb (detalle de retiro) */
+.breadcrumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+.breadcrumb a { color: var(--accent-green); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* Selects en barra de filtros */
+select.filter-pill { appearance: none; -webkit-appearance: none; font-family: inherit; }

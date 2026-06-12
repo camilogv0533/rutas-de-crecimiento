@@ -30,11 +30,11 @@ def analyze_gaps(conn: sqlite3.Connection) -> dict:
         "WHERE rs.skill_id IS NULL"
     ).fetchall()
 
+    # retreats no tiene columna destinations; la relación se deriva por país (igual que build_export)
     destinations_low = conn.execute(
-        "SELECT d.slug, d.name, COUNT(rd.retreat_id) as cnt "
+        "SELECT d.slug, d.name, COUNT(r.id) as cnt "
         "FROM destinations d "
-        "LEFT JOIN (SELECT DISTINCT r.id as retreat_id, jd.value as dest_slug "
-        "           FROM retreats r, json_each(r.destinations) jd) rd ON rd.dest_slug=d.slug "
+        "LEFT JOIN retreats r ON r.location_country = d.country AND r.status='active' "
         "GROUP BY d.id HAVING cnt < 2 ORDER BY cnt"
     ).fetchall()
 

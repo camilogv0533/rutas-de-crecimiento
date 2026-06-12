@@ -45,6 +45,19 @@ def write_md(path: Path, frontmatter: dict, body: str = ""):
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def _parse_faq(raw) -> list:
+    """faq se guarda como JSON [{q, a}, ...]; descartar entradas malformadas."""
+    if not raw:
+        return []
+    try:
+        items = json.loads(raw)
+    except (json.JSONDecodeError, TypeError):
+        return []
+    if not isinstance(items, list):
+        return []
+    return [x for x in items if isinstance(x, dict) and x.get("q") and x.get("a")][:6]
+
+
 def export_retreats(conn, only_slug: str | None = None):
     out_dir = SITE_CONTENT / "retreats"
     if not only_slug and out_dir.exists():
@@ -96,6 +109,7 @@ def export_retreats(conn, only_slug: str | None = None):
             "not_included": r.get("not_included") or "",
             "accommodation": r.get("accommodation") or "",
             "food": r.get("food") or "",
+            "faq": _parse_faq(r.get("faq")),
             "skills": skills,
             "destinations": destinations,
             "reviewed_by_us": bool(r.get("reviewed_by_us")),
@@ -112,6 +126,8 @@ def export_retreats(conn, only_slug: str | None = None):
         for k in ("duration_days", "price_usd_from", "price_original", "group_size_max"):
             if fm.get(k) is None:
                 del fm[k]
+        if not fm.get("faq"):
+            del fm["faq"]
         body = (r.get("intro") or "").strip()
         write_md(out_dir / f"{r['slug']}.md", fm, body)
         n += 1

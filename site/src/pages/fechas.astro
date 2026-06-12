@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import RetreatCard from '../components/RetreatCard.astro';
+import { getCollection } from 'astro:content';
+
+const retreats = await getCollection('retreats');
+const today = new Date().toISOString().slice(0, 10);
+
+const upcoming = retreats
+  .filter(r => r.data.next_date && r.data.next_date >= today)
+  .sort((a, b) => a.data.next_date!.localeCompare(b.data.next_date!));
+
+// Agrupar por mes (clave YYYY-MM, label "junio 2026")
+const byMonth = new Map<string, typeof upcoming>();
+for (const r of upcoming) {
+  const key = r.data.next_date!.slice(0, 7);
+  if (!byMonth.has(key)) byMonth.set(key, []);
+  byMonth.get(key)!.push(r);
+}
+const monthLabel = (key: string) =>
+  new Date(key + '-15T12:00:00').toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+const dayLabel = (iso: string) =>
+  new Date(iso + 'T12:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
+
+const noDate = retreats.filter(r => !r.data.next_date || r.data.next_date < today);
+---
+<Base
+  title="Próximas fechas"
+  description="Calendario de retiros con fecha confirmada, ordenados por próxima salida."
+>
+
+<section class="skills-hero container">
+  <h1>Próximas fechas</h1>
+  <p class="lede">{upcoming.length} retiros con fecha confirmada, en orden de salida.</p>
+</section>
+
+<section class="container section-lg" style="padding-top: 1rem;">
+  {upcoming.length === 0 && (
+    <p style="color: var(--text-muted);">
+      Ningún retiro tiene fecha futura confirmada ahora mismo. Mira el <a href="/retiros">catálogo completo</a> —
+      muchos son recurrentes y publican fechas en su sitio.
+    </p>
+  )}
+
+  {[...byMonth.entries()].map(([key, items]) => (
+    <div class="month-group">
+      <h2 class="month-group__title">{monthLabel(key)}</h2>
+      <div class="retreat-grid">
+        {items.map((r, i) => (
+          <div class="dated-card">
+            <p class="dated-card__date">Empieza el {dayLabel(r.data.next_date!)}</p>
+            <RetreatCard data={{ ...r.data }} index={i} />
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  {noDate.length > 0 && (
+    <p style="margin-top: 3rem; color: var(--text-muted);">
+      {noDate.length} retiros más sin fecha próxima publicada — explóralos en el
+      <a href="/retiros">catálogo</a> o consulta el sitio del host.
+    </p>
+  )}
+</section>
+</Base>

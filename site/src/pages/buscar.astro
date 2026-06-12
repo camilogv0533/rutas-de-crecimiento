@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Buscar"
+  description="Busca retiros, habilidades, destinos y artículos en Rutas de Crecimiento."
+>
+
+<section class="skills-hero container">
+  <h1>Buscar</h1>
+  <p class="lede">Retiros, habilidades, destinos y artículos del blog.</p>
+</section>
+
+<section class="container section-lg" style="padding-top: 1rem;">
+  <div id="search" class="search-box"></div>
+  <noscript><p>La búsqueda requiere JavaScript. Explora el <a href="/retiros">catálogo de retiros</a>.</p></noscript>
+</section>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof PagefindUI !== 'undefined') {
+      new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        translations: {
+          placeholder: 'Busca "liderazgo", "Toscana", "escritura"…',
+          zero_results: 'Nada para "[SEARCH_TERM]". Prueba otra palabra.',
+          clear_search: 'Limpiar',
+          load_more: 'Más resultados',
+        },
+      });
+    } else {
+      // En dev (astro dev) el índice de Pagefind no existe; solo se genera en build.
+      const el = document.getElementById('search');
+      if (el) el.innerHTML = '<p style="color: var(--text-muted);">Índice de búsqueda no disponible en modo dev. Corre <code>npm run build</code>.</p>';
+    }
+  });
+</script>
+</Base>

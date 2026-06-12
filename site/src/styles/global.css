@@ -471,3 +471,16 @@ footer.site-footer { border-top: 1px solid var(--border); padding: 3rem 0; margi
 
 /* Selects en barra de filtros */
 select.filter-pill { appearance: none; -webkit-appearance: none; font-family: inherit; }
+
+/* Página de fechas */
+.month-group { margin-bottom: 3rem; }
+.month-group__title { font-size: 1.4rem; text-transform: capitalize; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.25rem; }
+.dated-card__date { font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: var(--accent-green); margin: 0 0 0.5rem; }
+
+/* FAQ en detalle de retiro */
+.faq-item { border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.6rem; background: var(--bg-card); }
+.faq-item summary { cursor: pointer; font-weight: 600; color: var(--text-primary); }
+.faq-item p { margin: 0.6rem 0 0; color: var(--text-secondary); }
+
+/* Caja de búsqueda Pagefind — alinear con design system */
+.search-box { --pagefind-ui-primary: var(--accent-green); --pagefind-ui-text: var(--text-primary); --pagefind-ui-background: var(--bg-card); --pagefind-ui-border: var(--border); --pagefind-ui-font: "IBM Plex Sans", sans-serif; max-width: 720px; }

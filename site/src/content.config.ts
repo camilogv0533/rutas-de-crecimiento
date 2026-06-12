@@ -29,6 +29,7 @@ const retreats = defineCollection({
     not_included: z.string().optional(),
     accommodation: z.string().optional(),
     food: z.string().optional(),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
     skills: z.array(z.string()).default([]),
     destinations: z.array(z.string()).default([]),
     reviewed_by_us: z.boolean().default(false),

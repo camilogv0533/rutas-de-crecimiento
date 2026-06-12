@@ -45,10 +45,12 @@ const ogImage = image || new URL('/og-default.png', Astro.site).toString();
       <a href="/habilidades">Habilidades</a>
       <a href="/destinos">Destinos</a>
       <a href="/blog">Blog</a>
+      <a href="/fechas">Fechas</a>
+      <a href="/buscar" aria-label="Buscar">🔍</a>
     </nav>
   </div>
 </header>
-<main>
+<main data-pagefind-body>
   <slot />
 </main>
 <footer class="site-footer">

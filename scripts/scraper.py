@@ -54,6 +54,15 @@ EXTRACTION_TOOL = {
             "not_included": {"type": ["string", "null"]},
             "accommodation": {"type": ["string", "null"]},
             "food": {"type": ["string", "null"]},
+            "faq": {
+                "type": ["array", "null"],
+                "items": {
+                    "type": "object",
+                    "properties": {"q": {"type": "string"}, "a": {"type": "string"}},
+                    "required": ["q", "a"]
+                },
+                "description": "Preguntas frecuentes visibles en la página (sección FAQ o preguntas con respuesta). Máx 6 pares, EN ESPAÑOL. null si la página no tiene FAQ — no inventes preguntas."
+            },
             "host_name": {"type": ["string", "null"]},
             "host_url": {"type": ["string", "null"]},
             "social_instagram": {"type": ["string", "null"]},
@@ -101,7 +110,7 @@ def extract(url: str, text: str) -> tuple[dict, dict]:
         "Set is_actually_a_retreat=false if the page is a hotel listing, online course, "
         "blog article, agency homepage, or anything that is not an immersive multi-day learning retreat with a defined cohort. "
         "IDIOMA: el sitio publica en español. Traduce SIEMPRE al español natural y editorial estos campos narrativos: "
-        "tagline, intro, what_unique, who_for, what_youll_learn — aunque la página original esté en inglés u otro idioma. "
+        "tagline, intro, what_unique, who_for, what_youll_learn, faq — aunque la página original esté en inglés u otro idioma. "
         "NO traduzcas: title (nombre propio del retiro), host_name, ni códigos (país, moneda). "
         "Return all fields by calling the save_retreat tool."
     )
@@ -203,6 +212,7 @@ def upsert(data: dict, source_url: str) -> str:
         "not_included": data.get("not_included"),
         "accommodation": data.get("accommodation"),
         "food": data.get("food"),
+        "faq": json.dumps(data["faq"], ensure_ascii=False) if data.get("faq") else None,
         "host_name": data.get("host_name"),
         "host_url": data.get("host_url"),
         "social_instagram": data.get("social_instagram"),

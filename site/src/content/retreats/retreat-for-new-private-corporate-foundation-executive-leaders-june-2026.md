@@ -15,6 +15,10 @@ price_original: 699.0
 language: "English"
 what_unique: "Enfoque exclusivamente en líderes ejecutivos de fundaciones de nuevo ingreso (3 años o menos en rol); facilitadores de alto nivel incluyendo presidentes de fundaciones líderes; oportunidad para conectar con colegas y construir una red de apoyo; sesiones de coaching entre pares diseñadas para abordar desafíos reales de liderazgo."
 who_for: "Líderes ejecutivos (CEOs, Presidentes, Directores Ejecutivos) de fundaciones privadas, fundaciones corporativas y programas de donaciones que han estado en su rol ejecutivo actual durante tres años o menos."
+next_date: "2026-06-08"
+what_youll_learn: "Navegación del cambio organizacional; transformación de operaciones; construcción de instituciones para el futuro; coaching entre pares sobre desafíos de liderazgo principales; intercambio de recursos y mejores prácticas con nuevos líderes ejecutivos de fundaciones."
+sample_itinerary: "Lunes 8 de junio, 12:00 p.m.: Inicio del retiro. Sesiones sobre desafíos clave para ejecutivos de fundaciones de nuevo ingreso. Sesiones de coaching entre pares. Martes 9 de junio: Continuación de sesiones; construcción de relaciones entre pares. Cierre a las 2:00 p.m. ET."
+accommodation: "Humana Foundation"
 skills: ["liderazgo", "resiliencia", "toma-decisiones", "trabajo-equipo", "estrategia"]
 destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky"]
 reviewed_by_us: false

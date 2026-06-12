@@ -10,6 +10,9 @@ location_region: "Colorado"
 duration_days: 2
 language: "English"
 what_unique: "Tiempo ininterrumpido dedicado únicamente a ti en un entorno privado diseñado para el enfoque y la reflexión profunda. Combina sesiones de coaching uno-a-uno guiadas con tiempo sin distracciones para pensar, reflexionar y tomar decisiones. Incluye ejercicios prácticos que aclaran la dirección, conversaciones honestas sobre decisiones difíciles, y un plan claro para tus próximos pasos.</unique> <parameter name=\"who_for\">Personas que se sienten atrapadas en la dirección de su carrera o vida, están considerando un cambio o transición importante, quieren claridad antes de tomar una decisión importante, necesitan tiempo sin interrupciones para pensar, y están listas para avanzar pero inseguras de cómo hacerlo."
+what_youll_learn: "Clarificar qué está funcionando en tu vida y qué no. Identificar patrones o suposiciones que te retienen. Definir cómo quieres que se vea tu próximo capítulo. Evaluar opciones realistas para avanzar. Crear un plan claro y práctico. Obtener decisiones y claridad sobre tu próximo paso.</youll_learn> <parameter name=\"host_name\">Cindy Carrillo"
+included: "Dedicated one-on-one coaching sessions, quiet time for reflection and planning, practical exercises that clarify direction, honest conversations about difficult choices, a clear plan for next steps"
+accommodation: "CC Blue Ranch - private retreat setting"
 skills: ["proposito", "toma-decisiones", "inteligencia-emocional", "mindfulness", "estrategia"]
 destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky"]
 reviewed_by_us: false

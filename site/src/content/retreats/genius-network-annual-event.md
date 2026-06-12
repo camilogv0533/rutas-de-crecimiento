@@ -13,6 +13,8 @@ recurring: "Anual"
 language: "en"
 what_unique: "Acceso exclusivo a un grupo mastermind de emprendedores de nivel empresarial ($9M+ promedio); facilitado por Joe Polish, experto reconocido en marketing y desarrollo empresarial; combinación de discusiones curadas, entrenamiento especializado y acceso a conferencistas de clase mundial; ambiente diseñado específicamente para emprendedores de alto rendimiento que buscan evolución más allá del éxito financiero."
 who_for: "Emprendedores de alto desempeño que ya han logrado éxito empresarial significativo pero buscan optimizar su crecimiento, mejorar su bienestar y jugar en su nivel más alto. El miembro promedio de Genius Network gestiona una empresa con facturación de $9 millones anuales."
+next_date: "2026-11-05"
+what_youll_learn: "Acceso a la sabiduría colectiva de los mejores empresarios del mundo; estrategias curadas sobre crecimiento empresarial, escalabilidad y diseño de vida; networking y conexión con pares de nivel similar; técnicas de negociación y creación de relaciones; principios de éxito empresarial de los 9 Principios de Genius Networking."
 skills: ["liderazgo", "toma-decisiones", "emprendimiento", "estrategia", "networking"]
 destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky"]
 reviewed_by_us: false

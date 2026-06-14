@@ -5,3 +5,7 @@ _Site built at: /home/runner/work/rutas-de-crecimiento/rutas-de-crecimiento/site
 Total findings: 0
 
 ✅ No issues detected.
+## UX gaps — 2026-06-14
+- 7 habilidades sin retiros
+- 16 destinos con < 2 retiros
+- Ver wishlist: data/wishlist.md

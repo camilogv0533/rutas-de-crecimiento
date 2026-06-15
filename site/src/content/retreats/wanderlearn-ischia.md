@@ -18,7 +18,7 @@ group_size_max: 10
 what_unique: "El programa está construido alrededor de tres anclas: prácticas creativas matutinas, exploración cultural curada, y reflexión nocturna en grupo. La pequeña escala y la geografía de la isla obligan a un encuentro humano denso — improbable en retiros de 50 personas."
 who_for: "Creadores, escritores, founders early-stage y profesionales senior con un proyecto creativo aplazado."
 skills: ["creatividad", "proposito", "escritura"]
-destinations: ["italia-toscana", "italia-ischia", "tuscany"]
+destinations: ["italia-toscana", "italia-ischia", "tuscany", "toscana"]
 reviewed_by_us: true
 image_urls: ["/img/retreats/wanderlearn-ischia.webp"]
 categories: ["retiro"]

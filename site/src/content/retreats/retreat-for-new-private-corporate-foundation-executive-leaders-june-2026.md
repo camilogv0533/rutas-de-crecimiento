@@ -20,7 +20,7 @@ what_youll_learn: "Navegación del cambio organizacional; transformación de ope
 sample_itinerary: "Lunes 8 de junio, 12:00 p.m.: Inicio del retiro. Sesiones sobre desafíos clave para ejecutivos de fundaciones de nuevo ingreso. Sesiones de coaching entre pares. Martes 9 de junio: Continuación de sesiones; construcción de relaciones entre pares. Cierre a las 2:00 p.m. ET."
 accommodation: "Humana Foundation"
 skills: ["liderazgo", "resiliencia", "toma-decisiones", "trabajo-equipo", "estrategia"]
-destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky"]
+destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky", "southwest-colorado"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/retreat-for-new-private-corporate-foundation-executive-leaders-june-2026.webp"]
 categories: ["retiro", "liderazgo"]

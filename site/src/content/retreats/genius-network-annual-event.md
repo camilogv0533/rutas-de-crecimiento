@@ -9,17 +9,16 @@ location_city: "Scottsdale"
 location_country: "US"
 location_region: "AZ"
 duration_days: 3
-recurring: "Anual"
 language: "en"
-what_unique: "Acceso exclusivo a un grupo mastermind de emprendedores de nivel empresarial ($9M+ promedio); facilitado por Joe Polish, experto reconocido en marketing y desarrollo empresarial; combinación de discusiones curadas, entrenamiento especializado y acceso a conferencistas de clase mundial; ambiente diseñado específicamente para emprendedores de alto rendimiento que buscan evolución más allá del éxito financiero."
-who_for: "Emprendedores de alto desempeño que ya han logrado éxito empresarial significativo pero buscan optimizar su crecimiento, mejorar su bienestar y jugar en su nivel más alto. El miembro promedio de Genius Network gestiona una empresa con facturación de $9 millones anuales."
+what_unique: "Acceso a las discusiones curadas sobre temas y desafíos verdaderamente relevantes en tiempo real; un ambiente colaborativo y creativo con empresarios de mentalidad similar; acceso al colectivo de genios y sabiduría compartida de miembros de clase mundial."
+who_for: "Empresarios de alto nivel que buscan llevar su negocio al siguiente nivel, escalar sus empresas, crear más riqueza y mejorar su calidad de vida. El miembro promedio ejecuta una empresa de $9 millones de dólares anuales y tiene un fuerte deseo de jugar a su nivel más alto."
 next_date: "2026-11-05"
-what_youll_learn: "Acceso a la sabiduría colectiva de los mejores empresarios del mundo; estrategias curadas sobre crecimiento empresarial, escalabilidad y diseño de vida; networking y conexión con pares de nivel similar; técnicas de negociación y creación de relaciones; principios de éxito empresarial de los 9 Principios de Genius Networking."
+what_youll_learn: "Acceso a la sabiduría y estrategias de líderes empresariales de clase mundial; principios de networking para obtener lo que quieres ayudando a otros a obtener lo que quieren; herramientas, técnicas y retroalimentación de aquellos que han logrado lo que buscas; cómo convertirte en un súper conector y crear una conexión rápida con personas generosas."
 skills: ["liderazgo", "toma-decisiones", "emprendimiento", "estrategia", "networking"]
-destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky"]
+destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky", "southwest-colorado"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/genius-network-annual-event.webp"]
-categories: ["mastermind", "liderazgo"]
+categories: ["retiro", "mastermind", "liderazgo"]
 ---
 
-Genius Network reúne a los líderes y transformadores de la industria más brillantes del mundo para ayudarte a acceder a la sabiduría y estrategias más relevantes para hacer crecer tu negocio y diseñar tu mejor vida. Con discusiones curadas sobre temas y desafíos verdaderamente relevantes para ti y tu negocio en este momento, junto a individuos afines que caminan un camino similar. Un entorno colaborativo y creativo que necesitas para llevar tu negocio a donde quieres que vaya.
+Genius Network reúne a los empresarios más brillantes y líderes transformadores de la industria para ayudarte a acceder a la sabiduría y estrategias más relevantes para crecer tu negocio y diseñar tu mejor vida. A través de discusiones curadas sobre temas y desafíos verdaderamente relevantes para ti y tu empresa, en un ambiente colaborativo y creativo con individuos de mentalidad similar que caminan un sendero similar.

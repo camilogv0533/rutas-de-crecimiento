@@ -17,7 +17,7 @@ included: "Meditación guiada, ejercicios de movimiento, proyectos artísticos, 
 accommodation: "Casas rurales de lujo cerca de Barcelona, Catalonia, o boutiques hoteles (para grupos de 25 o más personas)"
 food: "Incluido (desayunos, almuerzos y cenas compartidas; se proporciona acceso a recetas de los retiros)"
 skills: ["resiliencia", "trabajo-equipo", "inteligencia-emocional", "mindfulness", "manejo-burnout"]
-destinations: ["espana-camino-santiago", "catalonia"]
+destinations: ["espana-camino-santiago", "catalonia", "espana"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/silent-focus-corporate-silent-retreats.webp"]
 categories: ["retiro", "bienestar", "liderazgo"]

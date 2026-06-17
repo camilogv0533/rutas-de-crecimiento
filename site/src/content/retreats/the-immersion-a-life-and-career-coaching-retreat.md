@@ -18,7 +18,7 @@ sample_itinerary: "El Inmersion se lleva a cabo de miércoles por la tarde a vie
 included: "Sesiones de coaching dedicadas uno-a-uno, tiempo tranquilo para reflexión y planificación, ejercicios prácticos que aclaran dirección, conversaciones honestas sobre decisiones difíciles, un plan claro para tus próximos pasos."
 accommodation: "CC Blue Ranch"
 skills: ["proposito", "toma-decisiones", "inteligencia-emocional", "mindfulness", "estrategia"]
-destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky", "southwest-colorado"]
+destinations: ["estados-unidos", "colorado", "az", "arizona", "kentucky", "southwest-colorado", "oregon", "california"]
 reviewed_by_us: false
 image_urls: ["/img/retreats/the-immersion-a-life-and-career-coaching-retreat.webp"]
 categories: ["retiro", "liderazgo"]

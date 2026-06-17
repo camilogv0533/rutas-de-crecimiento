@@ -1,7 +1,7 @@
 ---
 slug: "networking"
 name_es: "Networking"
-retreat_count: 6
+retreat_count: 8
 name_en: "Networking"
 type: "soft"
 ---

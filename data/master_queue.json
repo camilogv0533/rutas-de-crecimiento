@@ -104,30 +104,30 @@
     "skill_hint": "Team Building",
     "pool": "master",
     "source_sheet": "curated",
-    "status": "pending",
-    "attempts": 0,
+    "status": "rejected",
+    "attempts": 1,
     "added_at": null,
-    "note": null
+    "note": "not a retreat"
   },
   {
     "url": "https://www.teamraderie.com/experiences/virtual-team-building-lego-activity",
     "skill_hint": "Team Building",
     "pool": "master",
     "source_sheet": "curated",
-    "status": "pending",
-    "attempts": 0,
+    "status": "rejected",
+    "attempts": 1,
     "added_at": null,
-    "note": null
+    "note": "not a retreat"
   },
   {
     "url": "https://www.teamraderie.com/experiences/rescue-mission-a-virtual-exercise-in-strategy-planning-and-teamwork/?_spage=experience-finder",
     "skill_hint": "Team Building",
     "pool": "master",
     "source_sheet": "curated",
-    "status": "pending",
-    "attempts": 0,
+    "status": "rejected",
+    "attempts": 1,
     "added_at": null,
-    "note": null
+    "note": "not a retreat"
   },
   {
     "url": "https://www.teamraderie.com/experiences/cujo-fighter-pilot-experience/?_spage=experience-finder",
@@ -2894,10 +2894,10 @@
     "skill_hint": null,
     "pool": "referent",
     "source_sheet": "Transformative travel, communit",
-    "status": "pending",
-    "attempts": 0,
+    "status": "rejected",
+    "attempts": 1,
     "added_at": null,
-    "note": null
+    "note": "not a retreat"
   },
   {
     "url": "https://www.alternativetravelers.com/transformative-travel",

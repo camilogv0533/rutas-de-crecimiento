@@ -1,7 +1,7 @@
 ---
 slug: "estrategia"
 name_es: "Pensamiento estratégico"
-retreat_count: 12
+retreat_count: 13
 name_en: "Strategic thinking"
 type: "soft"
 ---
